@@ -1,0 +1,274 @@
+---
+title: "This Job is Killing Me"
+subtitle: "A Survival Analysis of Federal Civil Servants"
+author: "Chris Birdsall"
+date: "February 28, 2025"
+format: 
+  revealjs:
+    preview-links: auto
+execute:
+  echo: true
+---
+## Overview
+
+- **Background**: Analysis of federal employee survival patterns
+- **Data Source**: OPM's Central Personnel Data File (CPDF)
+- **Time Period**: 1973-2013
+- **Key Research Questions**:
+  - How do mortality patterns differ among federal employees?
+  - What factors are associated with survival differences?
+  - How do demographics and job characteristics impact mortality risk?
+
+## Data Description
+
+- **Source**: Dynamic and status records from CPDF
+- **Size**: Multiple data chunks, thousands of federal employees
+- **Key Variables**:
+  - Demographics (age, veteran status, minority status, education)
+  - Job characteristics (salary, supervisory status, occupation category)
+  - Time-varying events (awards, stressful events (furloughs, suspensions)
+  - Death events
+- **Analytical Approach**: Survival analysis
+
+## Mortality Patterns
+
+- Overall mortality rate among federal employees
+- Differences by decade
+- Key death-related action codes in the CPDF:
+  - Code 350: Death
+  - Evidence of other separation codes
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-cap: "Overall Survival Curve for Federal Employees"
+
+# This is where you would put code to display your overall survival curve
+# knitr::include_graphics("path/to/overall_survival.png")
+```
+
+## Demographics and Survival
+
+::: {.panel-tabset}
+
+### Veterans
+
+- Survival differences between veterans and non-veterans
+- Log-rank test comparison
+- Higher mortality risk observed for veterans (HR = 1.96, p < 0.001)
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_veteran.png")
+```
+
+### Minorities
+
+- Survival patterns by minority status
+- Log-rank test results
+- Lower mortality risk for minorities (HR = 0.70, p < 0.001)
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_minority.png")
+```
+
+### Age
+
+- Age-stratified survival analysis
+- Linear relationship with mortality risk
+- Slight negative coefficient (HR = 0.99 per year of age)
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_age.png")
+```
+
+:::
+
+## Job Characteristics and Survival
+
+::: {.panel-tabset}
+
+### Supervisory Status
+
+- Supervisors vs. non-supervisors
+- Log-rank test comparison
+- Lower mortality risk for supervisors (HR = 0.76, p < 0.001)
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_supervisor.png")
+```
+
+### Education
+
+- Survival by education level
+- Small positive effect of higher education (HR = 1.04 per education level)
+- Visualized across four education groups
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_education.png")
+```
+
+### Salary
+
+- Strong association with survival
+- Higher salary quartiles show significantly lower mortality
+- Largest effect among all variables (HR = 0.48 per quartile)
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/survival_curves_salary.png")
+```
+
+:::
+
+## Time-Varying Events
+
+- **Award Events**: 
+  - Strong negative association with mortality (HR = 0.23)
+  - Suggests potential protective effect or selection bias
+
+- **Stressful Events**:
+  - Very strong negative association with mortality (HR = 0.06)
+  - Unexpected direction - requires further investigation
+  - Potential immortal time bias or measurement issues
+
+## Cox Proportional Hazards Results
+
+```{r}
+#| echo: false
+#| fig-align: center
+# knitr::include_graphics("path/to/time_varying_hazard_ratios.png")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Option 1: Read results directly from the file and format as a table
+# This assumes you have your results saved in a text or CSV file
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Example method to read results from a file and convert to a nice table
+read_cox_results <- function() {
+  # Option A: Read from the text file and parse (a bit more work)
+  # results_text <- readLines("longitudnal_results/standard_cox_results.txt")
+  # processed_results <- ... # Add parsing logic here
+  
+  # Option B: If results are already in CSV format
+  # results_df <- read.csv("longitudnal_results/standard_cox_results.csv")
+  
+  # For example purposes, creating a sample dataframe
+  results_df <- data.frame(
+    Variable = c("Veteran status", "Minority status", "Age (per year)", 
+                "Education level", "Supervisor", "Salary group", 
+                "Award event", "Stressful event"),
+    `Hazard Ratio` = c(1.96, 0.70, 0.99, 1.04, 0.76, 0.48, 0.23, 0.06),
+    `95% CI` = c("(1.87, 2.06)", "(0.66, 0.75)", "(0.99, 1.00)", 
+                "(1.01, 1.06)", "(0.71, 0.81)", "(0.46, 0.49)", 
+                "(0.12, 0.46)", "(0.02, 0.16)"),
+    `p-value` = c("<0.001", "<0.001", "<0.001", "0.003", "<0.001", "<0.001", "<0.001", "<0.001")
+  )
+  
+  return(results_df)
+}
+
+# Load and display the results as a nicely formatted table
+cox_results <- read_cox_results()
+
+# Display with kableExtra for nicer formatting
+kable(cox_results) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                font_size = 18,
+                full_width = FALSE) %>%
+  row_spec(c(5, 6), background = "#E8F4F9") %>%  # Highlight important rows
+  column_spec(2, bold = TRUE)  # Make hazard ratios bold
+```
+
+<!-- Option 2: Read directly from a model object if you're running the model in Quarto -->
+```{r}
+#| echo: false
+#| eval: false  # Set to true if you want to use this approach
+
+# library(lifelines)  # You would use the R equivalent like survival or survminer
+# Load your survival data
+# survival_data <- read.csv("survival_data.csv")
+
+# Run Cox model in R
+# cox_model <- coxph(Surv(time, event) ~ is_veteran + is_minority + age_numeric + 
+#                   education_group + is_supervisor + salary_group, 
+#                   data = survival_data)
+
+# Display results summary
+# summary(cox_model)
+
+# Or format nicely with broom and kableExtra
+# library(broom)
+# tidy(cox_model) %>%
+#   mutate(HR = exp(estimate),
+#          CI = paste0("(", round(exp(conf.low), 2), ", ", round(exp(conf.high), 2), ")")) %>%
+#   select(term, HR, CI, p.value) %>%
+#   kable() %>%
+#   kable_styling()
+```
+
+## Key Findings
+
+- **Demographic Factors**:
+  - Veterans have significantly higher mortality risk
+  - Minorities show lower mortality risk
+  - Age shows expected but modest effects
+
+- **Job Characteristics**:
+  - Higher salary strongly predicts lower mortality
+  - Supervisory status associated with lower mortality
+  - Education has a small positive association with mortality
+
+## Limitations and Future Directions
+
+- **Limitations**:
+  - Potential immortal time bias in time-varying events
+  - Missing data for some covariates
+  - Lack of cause-specific mortality information
+  - Need for more comprehensive covariates
+
+- **Future Directions**:
+  - Cause-specific mortality analysis
+  - Further investigation of unexpected findings (time-varying events)
+  - Extended time period analysis
+  - Inclusion of additional covariates (health-related variables)
+
+## Conclusions
+
+- Federal employee mortality patterns show significant associations with demographic and job characteristics
+- Strongest predictors: veteran status (+), salary (-), supervisory status (-)
+- Time-varying events require careful interpretation
+- Results highlight importance of considering socioeconomic factors in mortality studies
+- Implications for federal workforce health initiatives and policies
+
+## Thank You
+
+**Questions or Comments?**
+
+```{r}
+#| echo: false
+#| fig-align: center
+# You could include a summary visualization here
+```
+
+## References
+
+- Central Personnel Data File (CPDF) documentation
+- Cox, D. R. (1972). Regression models and life-tables. *Journal of the Royal Statistical Society: Series B (Methodological)*, 34(2), 187-202.
+- Kaplan, E. L., & Meier, P. (1958). Nonparametric estimation from incomplete observations. *Journal of the American Statistical Association*, 53(282), 457-481.

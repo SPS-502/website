@@ -1,0 +1,128 @@
+---
+title: "Quantitative Methods I"
+subtitle: "SPS 501"
+format: 
+  revealjs:
+    theme: [simple]
+editor: visual
+---
+
+```{r Setup}
+library(tidyverse)
+library(fGarch)
+library(gganimate)
+library(lubridate)
+library(scales)
+options(knitr.table.format = "latex")
+```
+
+# Descriptive Statistics
+
+::: incremental
+-   Descriptive statistics aim to summarize a sample; there are two types of descriptive statistics:
+    1.  **Measures of central tendency** provide information about the most typical or average value of a variable
+    2.  **Measures of variability (dispersion)** provide information about the distribution of a variable
+:::
+
+# Measures of Central Tendency
+
+## Mean
+
+::: incremental
+-   **Arithmetic Mean (**$\bar{x}$ or $\mu$): the sum of a series of observations divided by the number of observations $$\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$$
+-   Use when describing continuous variables
+-   ***Sensitive to extreme values (e.g., income)***
+:::
+
+## Median
+
+::: incremental
+-   The middle value in a series of observations
+    -   Arrange a series of observations from smallest to greatest then take the middle value
+        -   Note: if there is an even number of observations, then there is no single middle value; the median is then usually defined to be the mean of the two middle values
+-   In a distribution, the median is the $2^{nd}$ quartile and the $50^{th}$ percentile
+-   Use when describing continuous variables
+-   ***Robust to extreme values (e.g., income)***
+:::
+
+## Normal Distribution {auto-animate="true"}
+
+```{r Central Tendency (Normal Distribution), fig.width = 10, fig.height = 5}
+set.seed(1)
+d <- data.frame(Height = round(rnorm(mean = 65, sd = 2, n = 1000), 1))
+ggplot(d, aes(Height)) +
+  stat_density(geom = "line", size = 2) +
+  theme(axis.text = element_text(size = 16), axis.title = element_text(size = 18,face = "bold")) +
+  geom_vline(xintercept = mean(d$Height), linetype = 1, size = 1, color = "red") +
+  geom_vline(xintercept = median(d$Height), linetype = 1, size = 1, color = "blue") +
+  annotate("text", y = 0, label = "Mean", size = 8, color = "red", x = mean(d$Height), vjust = 0.5, hjust = 0) +
+  annotate("text", y = 0, label = "Median", size = 8, color = "blue", x = median(d$Height), vjust = 0.5, hjust = 1) +
+  ylab("Density") + xlab("Height (Inches)")
+```
+
+## Postive Skewed Distribution {auto-animate="true"}
+
+```{r Central Tendency (Postive Skewed Distribution), fig.width = 10, fig.height = 5}
+set.seed(1)
+d <- data.frame(Height = round(rsnorm(mean = 65, sd = 2, xi = 3, n = 1000), 1))
+ggplot(d, aes(Height)) +
+  stat_density(geom = "line", size = 2) +
+  theme(axis.text = element_text(size = 16), axis.title = element_text(size = 18,face = "bold")) +
+  geom_vline(xintercept = mean(d$Height), linetype = 1, size = 1, color = "red") +
+  geom_vline(xintercept = median(d$Height), linetype = 1, size = 1, color = "blue") +
+  annotate("text", y = 0, label = "Mean", size = 8, color = "red", x = mean(d$Height), vjust = 0.5, hjust = 0) +
+  annotate("text", y = 0, label = "Median", size = 8, color = "blue", x = median(d$Height), vjust = 0.5, hjust = 1) +
+  ylab("Density") + xlab("Height (Inches)")
+```
+
+## Negative Skewed Distribution {auto-animate="true"}
+
+```{r Central Tendency (Negative Skewed Distribution), fig.width = 10, fig.height = 5}
+set.seed(1)
+d <- data.frame(Height = round(rsnorm(mean = 65, sd = 2, xi = -3, n = 1000), 1))
+ggplot(d, aes(Height)) +
+  stat_density(geom = "line", size = 2) +
+  theme(axis.text = element_text(size = 16), axis.title = element_text(size = 18,face = "bold")) +
+  geom_vline(xintercept = mean(d$Height), linetype = 1, size = 1, color = "red") +
+  geom_vline(xintercept = median(d$Height), linetype = 1, size = 1, color = "blue") +
+  annotate("text", y = 0, label = "Mean", size = 8, color = "red", x = mean(d$Height), vjust = 0.5, hjust = 1.2) +
+  annotate("text", y = 0, label = "Median", size = 8, color = "blue", x = median(d$Height), vjust = 0.5, hjust = -0.2) +
+  ylab("Density") + xlab("Height (Inches)")
+```
+
+## Mode
+
+-   **Mode:** the most common value in a series of observations
+    -   Some variables include multiple modes (multimodal)
+-   Use when describing discrete (e.g., categorical) variables
+
+## Central Tendency Review
+
+-   **Arithmetic mean:** sum of values divided by number of values
+
+-   **Median:** middle value
+
+-   **Mode:** most frequent value
+
+-   What is the mean, median, and mode of $x$?
+
+    -   $x$ = {1, 2, 2, 3, 4, 7, 9, 10, 11, 12, 12}
+
+# Measures of Dispersion
+
+## Variance
+
+-   **Variance (**$s^{2}$, $\sigma^{2}$): the extent to which a variable's values deviate from or vary around its mean; the average distance of each observation from the mean $$s^{2} = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$$
+
+## Variance
+
+-   Measures how far observations are from their average value (spread of the data)
+    -   Low variance $\rightarrow$ observations are relatively close to the mean value
+    -   High variance $\rightarrow$ observations are relatively far from the mean value
+-   ***Expressed in square units (i.e.,*** $\text{inches}^2$)
+
+## Standard Deviation
+
+-   **Standard Deviation (**$s$, $\sigma$): standardized measure of variance $$s = \sqrt{s^2} = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2}$$
+-   ***Expressed in the same units as the mean (i.e., inches)***
+    -   Mean distance from the mean

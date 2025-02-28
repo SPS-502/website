@@ -1888,5 +1888,89 @@
     "title": "\n            LAST CLASS!!!\n        ",
     "section": "Datascience Pipeline",
     "text": "Datascience Pipeline\n\n\n\ndatascience pipeline"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#overview",
+    "href": "SPS_Research_Roundup.html#overview",
+    "title": "This Job is Killing Me",
+    "section": "Overview",
+    "text": "Overview\n\nBackground: Analysis of federal employee survival patterns\nData Source: OPM’s Central Personnel Data File (CPDF)\nTime Period: 1973-2013\nKey Research Questions:\n\nHow do mortality patterns differ among federal employees?\nWhat factors are associated with survival differences?\nHow do demographics and job characteristics impact mortality risk?"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#data-description",
+    "href": "SPS_Research_Roundup.html#data-description",
+    "title": "This Job is Killing Me",
+    "section": "Data Description",
+    "text": "Data Description\n\nSource: Dynamic and status records from CPDF\nSize: Multiple data chunks, thousands of federal employees\nKey Variables:\n\nDemographics (age, veteran status, minority status, education)\nJob characteristics (salary, supervisory status, occupation category)\nTime-varying events (awards, stressful events (furloughs, suspensions)\nDeath events\n\nAnalytical Approach: Survival analysis"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#mortality-patterns",
+    "href": "SPS_Research_Roundup.html#mortality-patterns",
+    "title": "This Job is Killing Me",
+    "section": "Mortality Patterns",
+    "text": "Mortality Patterns\n\nOverall mortality rate among federal employees\nDifferences by decade\nKey death-related action codes in the CPDF:\n\nCode 350: Death\nEvidence of other separation codes"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#demographics-and-survival",
+    "href": "SPS_Research_Roundup.html#demographics-and-survival",
+    "title": "This Job is Killing Me",
+    "section": "Demographics and Survival",
+    "text": "Demographics and Survival\n\nVeteransMinoritiesAge\n\n\n\nSurvival differences between veterans and non-veterans\nLog-rank test comparison\nHigher mortality risk observed for veterans (HR = 1.96, p &lt; 0.001)\n\n\n\n\nSurvival patterns by minority status\nLog-rank test results\nLower mortality risk for minorities (HR = 0.70, p &lt; 0.001)\n\n\n\n\nAge-stratified survival analysis\nLinear relationship with mortality risk\nSlight negative coefficient (HR = 0.99 per year of age)"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#job-characteristics-and-survival",
+    "href": "SPS_Research_Roundup.html#job-characteristics-and-survival",
+    "title": "This Job is Killing Me",
+    "section": "Job Characteristics and Survival",
+    "text": "Job Characteristics and Survival\n\nSupervisory StatusEducationSalary\n\n\n\nSupervisors vs. non-supervisors\nLog-rank test comparison\nLower mortality risk for supervisors (HR = 0.76, p &lt; 0.001)\n\n\n\n\nSurvival by education level\nSmall positive effect of higher education (HR = 1.04 per education level)\nVisualized across four education groups\n\n\n\n\nStrong association with survival\nHigher salary quartiles show significantly lower mortality\nLargest effect among all variables (HR = 0.48 per quartile)"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#time-varying-events",
+    "href": "SPS_Research_Roundup.html#time-varying-events",
+    "title": "This Job is Killing Me",
+    "section": "Time-Varying Events",
+    "text": "Time-Varying Events\n\nAward Events:\n\nStrong negative association with mortality (HR = 0.23)\nSuggests potential protective effect or selection bias\n\nStressful Events:\n\nVery strong negative association with mortality (HR = 0.06)\nUnexpected direction - requires further investigation\nPotential immortal time bias or measurement issues"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#cox-proportional-hazards-results",
+    "href": "SPS_Research_Roundup.html#cox-proportional-hazards-results",
+    "title": "This Job is Killing Me",
+    "section": "Cox Proportional Hazards Results",
+    "text": "Cox Proportional Hazards Results\n\n\n\n\n\nVariable\nHazard.Ratio\nX95..CI\np.value\n\n\n\n\nVeteran status\n1.96\n(1.87, 2.06)\n&lt;0.001\n\n\nMinority status\n0.70\n(0.66, 0.75)\n&lt;0.001\n\n\nAge (per year)\n0.99\n(0.99, 1.00)\n&lt;0.001\n\n\nEducation level\n1.04\n(1.01, 1.06)\n0.003\n\n\nSupervisor\n0.76\n(0.71, 0.81)\n&lt;0.001\n\n\nSalary group\n0.48\n(0.46, 0.49)\n&lt;0.001\n\n\nAward event\n0.23\n(0.12, 0.46)\n&lt;0.001\n\n\nStressful event\n0.06\n(0.02, 0.16)\n&lt;0.001"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#key-findings",
+    "href": "SPS_Research_Roundup.html#key-findings",
+    "title": "This Job is Killing Me",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nDemographic Factors:\n\nVeterans have significantly higher mortality risk\nMinorities show lower mortality risk\nAge shows expected but modest effects\n\nJob Characteristics:\n\nHigher salary strongly predicts lower mortality\nSupervisory status associated with lower mortality\nEducation has a small positive association with mortality"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#limitations-and-future-directions",
+    "href": "SPS_Research_Roundup.html#limitations-and-future-directions",
+    "title": "This Job is Killing Me",
+    "section": "Limitations and Future Directions",
+    "text": "Limitations and Future Directions\n\nLimitations:\n\nPotential immortal time bias in time-varying events\nMissing data for some covariates\nLack of cause-specific mortality information\nNeed for more comprehensive covariates\n\nFuture Directions:\n\nCause-specific mortality analysis\nFurther investigation of unexpected findings (time-varying events)\nExtended time period analysis\nInclusion of additional covariates (health-related variables)"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#conclusions",
+    "href": "SPS_Research_Roundup.html#conclusions",
+    "title": "This Job is Killing Me",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nFederal employee mortality patterns show significant associations with demographic and job characteristics\nStrongest predictors: veteran status (+), salary (-), supervisory status (-)\nTime-varying events require careful interpretation\nResults highlight importance of considering socioeconomic factors in mortality studies\nImplications for federal workforce health initiatives and policies"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#thank-you",
+    "href": "SPS_Research_Roundup.html#thank-you",
+    "title": "This Job is Killing Me",
+    "section": "Thank You",
+    "text": "Thank You\nQuestions or Comments?"
+  },
+  {
+    "objectID": "SPS_Research_Roundup.html#references",
+    "href": "SPS_Research_Roundup.html#references",
+    "title": "This Job is Killing Me",
+    "section": "References",
+    "text": "References\n\nCentral Personnel Data File (CPDF) documentation\nCox, D. R. (1972). Regression models and life-tables. Journal of the Royal Statistical Society: Series B (Methodological), 34(2), 187-202.\nKaplan, E. L., & Meier, P. (1958). Nonparametric estimation from incomplete observations. Journal of the American Statistical Association, 53(282), 457-481."
   }
 ]

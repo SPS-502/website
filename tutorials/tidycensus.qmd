@@ -41,7 +41,7 @@ Next you'll want to get the variables you'd like to use in your project. There a
 
 ```{r message=FALSE, warning=FALSE, results=FALSE}
 tidycensusvariables2020 <- load_variables(year = 2020, dataset = "acs5/profile") 
-
+tidycensusvariables2018 <- load_variables(year = 2018, dataset = "acs5/profile")
 #Run View(tidycensusvariables) in your console
 ```
 
@@ -117,7 +117,7 @@ years <- lst(2009, 2010, 2015, 2016, 2017, 2018, 2019, 2021)
 multi_year_id_acs <- map(
   years,
   ~ get_acs(
-  geography = "county",
+  geography = "zcta",
   state = "Idaho",
    variables = c(median_monthly_mortgage = "DP04_0095",
                 median_gross_rent = "DP04_0121",
@@ -160,3 +160,18 @@ id_2005_2008 <- reduce(multi_year_id_acs, rbind)
 
 ```
 
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+	id_acs_tract <- get_acs(
+  geography = "tract",
+  state = "Idaho",
+  county = "Ada County",
+  variables = c(female_pct = "DP05_0003P",
+                median_hh_income = "DP03_0062",
+                median_family_income = "DP03_0086",
+                pct_below_poverty = "DP03_0119P"),
+  output = "wide",
+  geometry = TRUE,
+  year = 2018
+)
+```
