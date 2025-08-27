@@ -1972,5 +1972,390 @@
     "title": "This Job is Killing Me",
     "section": "References",
     "text": "References\n\nCentral Personnel Data File (CPDF) documentation\nCox, D. R. (1972). Regression models and life-tables. Journal of the Royal Statistical Society: Series B (Methodological), 34(2), 187-202.\nKaplan, E. L., & Meier, P. (1958). Nonparametric estimation from incomplete observations. Journal of the American Statistical Association, 53(282), 457-481."
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#open-the-starter-project-in-rstudio-cloud",
+    "href": "labs/Lab01_SPS506.html#open-the-starter-project-in-rstudio-cloud",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Open the starter project in RStudio Cloud",
+    "text": "Open the starter project in RStudio Cloud\nVisit Posit.cloud and login using the credentials you setup in our first class. Once you load up RStudio Cloud in your web browser you should see something like this (though you’ll see BSU - PPA PhD instead of SPS 502):\n\nIn the left side bar you’ll see a header, “Space”, under which you’ll see “Your Workspace” and “BSU - PPA PhD”. Click BSU - PPA PhD to view the list of projects associated with our class.\nThere you’ll see the Lab 01 starter project, called “Lab01 - R & RStudio & Dinosaurs! Oh my!”\nClick “Start” to begin the lab"
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#opening-the-starter-file",
+    "href": "labs/Lab01_SPS506.html#opening-the-starter-file",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Opening the starter file",
+    "text": "Opening the starter file\nWhen you want to write a paper, you have to open a Word document to type your ideas into, and save your work in. In R we use a document type called an R Markdown document. R Markdown documents are useful for both running code, and annotating the code with comments. The document can be saved, so you can refer back to your code later, and can be used to create other document types (html, word, pdf, or slides) for presenting the results of your analyses. R Markdown provides a way to generate clear and reproducible statistical analyses."
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#editing-an-r-markdown-file",
+    "href": "labs/Lab01_SPS506.html#editing-an-r-markdown-file",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Editing an R Markdown file",
+    "text": "Editing an R Markdown file\nThe top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for “YAML Ain’t Markup Language”. It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML it contains meta information about your document, such as the title of the document, the author name, and the date.\nLet’s start by adding your first and last name in author field and adding the date. Be sure to keep the quotation marks."
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#saving-a-file",
+    "href": "labs/Lab01_SPS506.html#saving-a-file",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Saving a file",
+    "text": "Saving a file\nYou will complete your lab work in an R Markdown file like this each week, so it is important to learn how to save these files. It’s generally good practice to periodically save your work as you go.\nClick File &gt; Save\nOkay, let’s get to the fun part!"
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#loading-packages",
+    "href": "labs/Lab01_SPS506.html#loading-packages",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Loading Packages",
+    "text": "Loading Packages\nIn this lab we will use the tidyverse and datasauRus packages. We can load them using the following (this code is already provided for you in your starter document):\n\nlibrary(tidyverse)\n\nlibrary(datasauRus)"
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#data",
+    "href": "labs/Lab01_SPS506.html#data",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Data",
+    "text": "Data\nThe data frame we will be working with today is called datasaurus_dozen and it’s in the datasauRus package. Actually, this single data frame contains 13 datasets, designed to show us why data visualization is important and how summary statistics alone can be misleading. The different datasets are marked by the dataset variable.\n\nExercise 1\nTo find out more about the dataset, type the following in your Console: ?datasaurus_dozen. A question mark before the name of an object will always bring up its help file. This command must be run in the Console.\nBased on the help file, how many rows and how many columns does the datasaurus_dozen file have? What are the variables included in the data frame? Add your responses to your lab report.\nLet’s take a closer look at these datasets by making a frequency table of the dataset variable. Add the following code block to your R Markdown document and run it (copy the code then paste it into a code block under your answer in exercise 1):\n\ndatasaurus_dozen %&gt;%\ncount(dataset) %&gt;%\nprint(13)\n\nTo add a codeblock click the green “C+” button (as shown below) and click r:\n\nYou should see a “tibble” pop up listing the names of the datasets in one column and the number of observations (n) in the next column."
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#data-visualization-and-summary",
+    "href": "labs/Lab01_SPS506.html#data-visualization-and-summary",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Data Visualization and Summary",
+    "text": "Data Visualization and Summary\nOkay, we’re about to do a lot of stuff that won’t make a ton of sense yet. We’ll go through a brief explanation in this lab, but more details and context for these commands will come in the next couple of weeks. For now, buckle up!\n\nExercise 2\nPlot y vs. x for the dino dataset. Then, calculate the correlation coefficient between x and y for this dataset. (Er… excuse me?)\nDon’t worry. All the code you need to accomplish this is already in your lab for you. You’ll just need to include the code and some other information in your R Markdown file.\nStart with the datasaurus_dozen and pipe it into the filter function to filter for observations where dataset == \"dino\". Store the resulting filtered data frame as a new data frame called dino_data.\n\ndino_data &lt;- datasaurus_dozen %&gt;%\n\nfilter(dataset == \"dino\")\n\nThere is a lot going on here, so let’s go through each part:\nFirst, the pipe operator: %&gt;%, takes what comes before it and sends it as the first argument to what comes after it. So here, we’re saying filter the datasaurus_dozen data frame for observations where dataset == \"dino\".\nSecond, the assignment operator: &lt;-, assigns the name dino_data to the filtered data frame and stores it as an object in your environment (take a look at the environment pane in the top left corner).\nNext, we need to visualize these data (yes, plural). We will use the ggplot function for this. The first argument specifies the data you’re visualizing. Next we define the aesthetic mappings (more on this next week). In other words, the columns of the data that get mapped to certain aesthetic features of the plot, e.g. the x axis will represent the variable called x and the y axis will represent the variable called y. Then, we add another layer to this plot where we define which geometric shapes we want to use to represent each observation in the data. In this case we want these to be points, hence geom_point.\n\nggplot(data = dino_data, mapping = aes(x = x, y = y)) +\n\ngeom_point()\n\nIf this seems like a lot, it is. And you will learn about the philosophy of building data visualizations in detail next week. For now, just stick with it and follow along with the code . Again, I do not expect this to make much sense yet.\nFor the second part of this exercise, we need to calculate a summary statistic: the correlation coefficient. Correlation coefficients, often referred to as \\(r\\) in statistics, measure the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate \\(r\\) only if relevant. In this case, calculating a correlation coefficient really doesn’t make sense since the relationship between x and y is definitely not linear…. it’s shaped like a dinosaur!\nBut, for illustrative purposes, let’s calculate the correlation coefficient between x and y anyway.\n\n\nStart with dino_data and calculate a summary statistic that we will call r as the correlation between x and y.\n\ndino_data %&gt;%\n  summarize(r = cor(x, y))\n\n\n\nExercise 3\nPlot y vs. x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the r of dino?\n\n\nExercise 4\nPlot y vs. x for the circle dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the r of dino?\n\n\nExercise 5\nFinally, let’s plot all datasets at once. In order to do this we will make use of facetting.\n\nggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+\n  geom_point()+\n  facet_wrap(~ dataset, ncol = 3) +\n  theme(legend.position = \"none\")\n\n\n\nFacet by the dataset variable, placing the plots in a 3 column grid, and don’t add a legend.\nAnd we can use the group_by function to generate all the summary correlation coefficients.\n\ndatasaurus_dozen %&gt;%\n  group_by(dataset) %&gt;%\n  summarize(r = cor(x, y)) %&gt;%\n  print(13)"
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#kniting-an-html-file",
+    "href": "labs/Lab01_SPS506.html#kniting-an-html-file",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "kniting an HTML file",
+    "text": "kniting an HTML file\nClick the “knit” button at the top left side of the screen to knit the file, or in other words, produce an output document. An .html file will be generated.\nNote: If you see the popup below you can hit try again (which should work) or just hit cancel and file will still be there for you to open in the files pane:\n\nThen click on the html file in the “Files” pane to open it in your web browser:"
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#finishing-touches",
+    "href": "labs/Lab01_SPS506.html#finishing-touches",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Finishing touches",
+    "text": "Finishing touches\nAlmost done, but I’d like you to do two more things:\n\nResize your figures:\n\nClick on the gear icon in on top of the R Markdown document, and select “Output Options…” in the dropdown menu. In the pop up dialogue box go to the Figures tab and change the height and width of the figures, and hit OK when done. Then, knit your document and see how you like the new sizes. Change and knit again and again until you’re happy with the figure sizes. Note that these values get saved in the YAML.\n\nYou can also use different figure sizes for different figures. To do so click on the gear icon within the chunk where you want to make a change. Changing the figure sizes added new options to these chunks: fig.width and fig.height (click the checkbox next to “Use custom figure size” first. You can change them by defining different values directly in your R Markdown document as well.\n\n\nChange the look of your report:\n\nOnce again click on the gear icon in on top of the R Markdown document, and select “Output Options…” in the dropdown menu. In the General tab of the pop up dialogue box try out different Syntax highlighting and theme options. Hit OK and knit your document to see how it looks. Play around with these until you’re happy with the look."
+  },
+  {
+    "objectID": "labs/Lab01_SPS506.html#submission",
+    "href": "labs/Lab01_SPS506.html#submission",
+    "title": "\n            Lab 01 - R & RStudio & Dinosaurs! Oh my!\n        ",
+    "section": "Submission",
+    "text": "Submission\nFinally, you need to save your html file and submit it to me on Canvas. Here’s how to do it (see image below for reference):\n\n\nFirst, click the checkbox next to the html file in your files pane.\nNext, click “More” and select “Export”\nSave the html file somewhere on your computer where you can find it (e.g., downloads folder, documents folder, desktop, or a folder you created for the class).\nGo to our class page on canvas and click on “assignments”. Navigate to “Lab 01” under “Labs” and submit just as you would a paper in any other class.\n\nAnd you’re done!"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#introductions",
+    "href": "lectures/lecture00/lecture00.html#introductions",
+    "title": "Course Overview",
+    "section": "Introductions",
+    "text": "Introductions\n\nName\nProgram (MPA, PhD, nondegree, etc.)\nPolicy interest(s) (e.g., environment, education, health, etc.)\nBonus: If you could get your hands on any kind of dataset (real or imagined), what would it be and why? (could the dataset help solve a problem? provide insight into something we don’t know very much about?)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#social-research",
+    "href": "lectures/lecture00/lecture00.html#social-research",
+    "title": "Course Overview",
+    "section": "Social Research",
+    "text": "Social Research\n\n\nWhat is social research?\n\nAttempt by social scientists to develop and sharpen our understanding of human society and social relationships\n\nWhy do we engage in social research?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#normative-vs.-empirical-research",
+    "href": "lectures/lecture00/lecture00.html#normative-vs.-empirical-research",
+    "title": "Course Overview",
+    "section": "Normative vs. Empirical Research",
+    "text": "Normative vs. Empirical Research\n\n\nNormative research seeks to answer questions about how the world should or ought to be\n\nPhilosophical, based on values, subjective\nExample: what is the best management style?\n\nEmpirical research seeks to answer questions about how the world is\n\nFactual, based on observation (data), (more) objective\nExample: what management style optimizes employee retention?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#basic-vs.-applied-research",
+    "href": "lectures/lecture00/lecture00.html#basic-vs.-applied-research",
+    "title": "Course Overview",
+    "section": "Basic vs. Applied Research",
+    "text": "Basic vs. Applied Research\n\n\nBasic research seeks to develop new knowledge about the nature of phenomena\n\nInnate curiosity\nExample: why are people violent?\n\nApplied research seeks to answer specific questions about real-world problems and their solutions\n\nProblem solving\nExample: how do we reduce violence in schools?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#descriptive-vs.-explanatory-research",
+    "href": "lectures/lecture00/lecture00.html#descriptive-vs.-explanatory-research",
+    "title": "Course Overview",
+    "section": "Descriptive vs. Explanatory Research",
+    "text": "Descriptive vs. Explanatory Research\n\n\nDescriptive research seeks to characterize the nature of a problem of phenomena.\n\nExample: how pervasive is school violence?\n\nExplanatory research seeks to explain the causes of a problem or phenomena and/or the effectiveness of particular solutions\n\nExample(s):\n\nWhat causes school violence?\nDo metal detectors reduce the likelihood of school violence?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#research-process",
+    "href": "lectures/lecture00/lecture00.html#research-process",
+    "title": "Course Overview",
+    "section": "Research Process",
+    "text": "Research Process"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#research-question",
+    "href": "lectures/lecture00/lecture00.html#research-question",
+    "title": "Course Overview",
+    "section": "Research Question",
+    "text": "Research Question"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#research-question-1",
+    "href": "lectures/lecture00/lecture00.html#research-question-1",
+    "title": "Course Overview",
+    "section": "Research Question",
+    "text": "Research Question\n\n\nThe question you plan to answer in a given study\nCan be challenging—should be narrow enough to answer in a given study, but broad enough to matter\n\nToo broad: How can we reduce recidivism in the US?\nToo narrow: What was the recidivism rate in the US in 2014?\nJust right: Do work release programs reduce recidivism?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#review-previous-research",
+    "href": "lectures/lecture00/lecture00.html#review-previous-research",
+    "title": "Course Overview",
+    "section": "Review Previous Research",
+    "text": "Review Previous Research"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#review-previous-research-1",
+    "href": "lectures/lecture00/lecture00.html#review-previous-research-1",
+    "title": "Course Overview",
+    "section": "Review Previous Research",
+    "text": "Review Previous Research\n\n\nPlace your research within the context of existing scholarship—what do we know and what do we need to know about the relationship between work release programs and recidivism?\n\nHave other scholars addressed the question?\n\nIf so, what did they find and what are you adding to their findings?\n\nDo theories/findings exist in other areas of research (i.e., private sector business management) that might speak to your question?\n\nIf so, what are those theories/findings and how might they relate to your question?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#develop-theory",
+    "href": "lectures/lecture00/lecture00.html#develop-theory",
+    "title": "Course Overview",
+    "section": "Develop Theory",
+    "text": "Develop Theory"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#develop-theory-1",
+    "href": "lectures/lecture00/lecture00.html#develop-theory-1",
+    "title": "Course Overview",
+    "section": "Develop Theory",
+    "text": "Develop Theory\n\nSet of interrelated propositions that seek to explain and, in some cases, predict an observed phenomenon\n\nParticipation in work release program \\(\\Rightarrow\\) job skills \\(\\Rightarrow\\) more likely to secure job after release \\(\\Rightarrow\\) reduced likelihood of recidivism"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#develop-theory-2",
+    "href": "lectures/lecture00/lecture00.html#develop-theory-2",
+    "title": "Course Overview",
+    "section": "Develop Theory",
+    "text": "Develop Theory\n\n\nGood theories are:\n\nAccurate—consistent with reality\nGeneralizable—applicable to a wide variety of cases\nProductive—generate testable(falsifiable) hypotheses"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#develop-theory-3",
+    "href": "lectures/lecture00/lecture00.html#develop-theory-3",
+    "title": "Course Overview",
+    "section": "Develop Theory",
+    "text": "Develop Theory\n\n\nWhere does theory come from?\n\nLogic (deduction)\nObservation (induction)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#construct-hypotheses",
+    "href": "lectures/lecture00/lecture00.html#construct-hypotheses",
+    "title": "Course Overview",
+    "section": "Construct Hypotheses",
+    "text": "Construct Hypotheses"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#construct-hypotheses-1",
+    "href": "lectures/lecture00/lecture00.html#construct-hypotheses-1",
+    "title": "Course Overview",
+    "section": "Construct Hypotheses",
+    "text": "Construct Hypotheses\n\n\nSpecific statement about the expected relationship between the dependent (outcome) and independent (explanatory) variables in a theory\n\nDependent variables are affected by (“depend on”) other variables; sometimes called outcome variables\nIndependent variables affect/explain/cause changes in dependent variables; sometimes called explanatory or treatment variables\nDependent variables (y) vary as a function of independent variables (x): y=f(x) or y~x\n\nRecidivism = f(Work Release Participation) or Recidivism~Work Release Participation"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#construct-hypotheses-2",
+    "href": "lectures/lecture00/lecture00.html#construct-hypotheses-2",
+    "title": "Course Overview",
+    "section": "Construct Hypotheses",
+    "text": "Construct Hypotheses\n\n\nGood hypotheses…\n\nMatch the theory\nSpecify the expected direction of the relationship between the independent and dependent variables (positive or negative)\nAre falsifiable—clear enough to be wrong!\n\nExample: if my theory is correct, then…\n\nH: Prisoners participating in work release programs will be less likely to return to prison than those who do not participate."
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#design-study-and-collect-data",
+    "href": "lectures/lecture00/lecture00.html#design-study-and-collect-data",
+    "title": "Course Overview",
+    "section": "Design Study and Collect Data",
+    "text": "Design Study and Collect Data"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#design-study-and-collect-data-1",
+    "href": "lectures/lecture00/lecture00.html#design-study-and-collect-data-1",
+    "title": "Course Overview",
+    "section": "Design Study and Collect Data",
+    "text": "Design Study and Collect Data"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#tips-for-surviving-as-you-learn-r",
+    "href": "lectures/lecture00/lecture00.html#tips-for-surviving-as-you-learn-r",
+    "title": "Course Overview",
+    "section": "Tips for Surviving as you Learn R",
+    "text": "Tips for Surviving as you Learn R\n\nTake your time\nMake mistakes\nTake notes\nGoogle your problems (or ask ChatGPT with caution)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-public-administration",
+    "href": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-public-administration",
+    "title": "Course Overview",
+    "section": "Where to Find Journal Articles: Public Administration",
+    "text": "Where to Find Journal Articles: Public Administration\n\nJournal of Public Administration Research and Theory (JPART)\nPublic Administration Review (PAR)\nAmerican Review of Public Administration (ARPA)\nInternational Public Management Journal (IPMJ)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-public-policy",
+    "href": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-public-policy",
+    "title": "Course Overview",
+    "section": "Where to Find Journal Articles: Public Policy",
+    "text": "Where to Find Journal Articles: Public Policy\n\nPolicy Studies Journal (PSJ)\nJournal of Policy Analysis and Management (JPAM) (please bombard BSU with ILL requests)\nReview of Policy Research"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-political-science",
+    "href": "lectures/lecture00/lecture00.html#where-to-find-journal-articles-political-science",
+    "title": "Course Overview",
+    "section": "Where to Find Journal Articles: Political Science",
+    "text": "Where to Find Journal Articles: Political Science\n\nAmerican Journal of Political Science (AJPS)\nAmerican Political Science Review (APSR)\nThe Journal of Politics (JOP)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#how-to-find-an-article",
+    "href": "lectures/lecture00/lecture00.html#how-to-find-an-article",
+    "title": "Course Overview",
+    "section": "How to Find an Article",
+    "text": "How to Find an Article\n\nBSU Library Web Site\n\nhttps://library.boisestate.edu\n\nGoogle Scholar\n\nhttp://scholar.google.com"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#lab-1",
+    "href": "lectures/lecture00/lecture00.html#lab-1",
+    "title": "Course Overview",
+    "section": "Lab 1",
+    "text": "Lab 1\n\nOpen lab instructions on Canvas"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-were-doing-in-this-course",
+    "href": "lectures/lecture00/lecture00.html#what-were-doing-in-this-course",
+    "title": "Course Overview",
+    "section": "What we’re doing in this course",
+    "text": "What we’re doing in this course"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#test-slide",
+    "href": "lectures/lecture00/lecture00.html#test-slide",
+    "title": "Course Overview",
+    "section": "Test slide",
+    "text": "Test slide\n\\[\n\\sum_{i=1}^n x_i^2\n\\]\n\n🚫"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#how-are-we-doing-it",
+    "href": "lectures/lecture00/lecture00.html#how-are-we-doing-it",
+    "title": "Course Overview",
+    "section": "How are we doing it?",
+    "text": "How are we doing it?\n\n\\[\n\\Pr(Y_i = j \\mid Z_i = z) = \n\\frac{\\exp(z' \\gamma_j)}\n     {1 + \\sum_{l=1}^J \\exp(z' \\gamma_l)}\n\\]"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-were-actually-doing",
+    "href": "lectures/lecture00/lecture00.html#what-were-actually-doing",
+    "title": "Course Overview",
+    "section": "What we’re actually doing",
+    "text": "What we’re actually doing\nThis…\n\ncounties &lt;- ggplot(\n  data = idaho_county_merged,\n  mapping = aes(x = pct_collegeE, y = median_incomeE)\n) +\n  geom_point() +\n  labs(\n    title = \"Idaho Counties: Education and Median Income\",\n    subtitle = \"Linear relationship between education and income\",\n    x = \"Pct Adults w/ Bachelor's Degree or Higher\",\n    y = \"Median Income\",\n    caption = \"Source: Education & income: U.S. Census Bureau\"\n  )"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#test",
+    "href": "lectures/lecture00/lecture00.html#test",
+    "title": "Course Overview",
+    "section": "Test",
+    "text": "Test\n\n\n```{r}\n#| output-location: column\n#| code-line-numbers: \"|14\"\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. Candidate (2020)\",\n       caption = \"Source:Education and income data from U.S. Census Bureau. \\n Voting data from the Harvard Dataverse\") +\n scale_color_manual(values = c(\"blue\",\"red\")) \n```"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#to-turn-this",
+    "href": "lectures/lecture00/lecture00.html#to-turn-this",
+    "title": "Course Overview",
+    "section": "…to turn this",
+    "text": "…to turn this\n\n\n# A tibble: 10 × 23\n   county_fips NAME        median_incomeE median_incomeM median_ageE median_ageM\n         &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n 1       16001 Ada County…          69952           1549        37.2         0.2\n 2       16003 Adams Coun…          50309           3186        55.3         1.3\n 3       16005 Bannock Co…          51977           2046        34.1         0.3\n 4       16007 Bear Lake …          52829           3650        39.4         0.9\n 5       16009 Benewah Co…          47983           2962        46           0.5\n 6       16011 Bingham Co…          58260           2673        34.1         0.3\n 7       16013 Blaine Cou…          64627           4953        43.7         0.6\n 8       16015 Boise Coun…          51760           7210        54.4         0.4\n 9       16017 Bonner Cou…          51594           3114        47.9         0.4\n10       16019 Bonneville…          61435           1525        33           0.3\n# ℹ 17 more variables: total_populationE &lt;dbl&gt;, total_populationM &lt;dbl&gt;,\n#   median_valueE &lt;dbl&gt;, median_valueM &lt;dbl&gt;, pct_collegeE &lt;dbl&gt;,\n#   pct_collegeM &lt;dbl&gt;, county_name &lt;chr&gt;, totalvotes &lt;dbl&gt;,\n#   democrat_votes &lt;dbl&gt;, libertarian_votes &lt;dbl&gt;, other_votes &lt;dbl&gt;,\n#   republican_votes &lt;dbl&gt;, pct_democrat_votes &lt;dbl&gt;,\n#   pct_libertarian_votes &lt;dbl&gt;, pct_other_votes &lt;dbl&gt;,\n#   pct_republican_votes &lt;dbl&gt;, win_candidate &lt;chr&gt;"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#into-this",
+    "href": "lectures/lecture00/lecture00.html#into-this",
+    "title": "Course Overview",
+    "section": "Into this!",
+    "text": "Into this!"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#or-this",
+    "href": "lectures/lecture00/lecture00.html#or-this",
+    "title": "Course Overview",
+    "section": "Or this!",
+    "text": "Or this!"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#or-this-1",
+    "href": "lectures/lecture00/lecture00.html#or-this-1",
+    "title": "Course Overview",
+    "section": "Or this!",
+    "text": "Or this!"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn",
+    "href": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn",
+    "title": "Course Overview",
+    "section": "How are we going to learn?",
+    "text": "How are we going to learn?\n\nReading\n\nModerndive\nA few other things\n\nPracticing\n\nDatacamp\nModerndive"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-about-ai",
+    "href": "lectures/lecture00/lecture00.html#what-about-ai",
+    "title": "Course Overview",
+    "section": "What about AI?",
+    "text": "What about AI?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-about-ai-1",
+    "href": "lectures/lecture00/lecture00.html#what-about-ai-1",
+    "title": "Course Overview",
+    "section": "What about AI?",
+    "text": "What about AI?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-about-ai-2",
+    "href": "lectures/lecture00/lecture00.html#what-about-ai-2",
+    "title": "Course Overview",
+    "section": "What about AI?",
+    "text": "What about AI?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-about-ai-3",
+    "href": "lectures/lecture00/lecture00.html#what-about-ai-3",
+    "title": "Course Overview",
+    "section": "What about AI?",
+    "text": "What about AI?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#what-about-ai-4",
+    "href": "lectures/lecture00/lecture00.html#what-about-ai-4",
+    "title": "Course Overview",
+    "section": "What about AI?",
+    "text": "What about AI?"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#canshould-i-use-ai-in-this-course",
+    "href": "lectures/lecture00/lecture00.html#canshould-i-use-ai-in-this-course",
+    "title": "Course Overview",
+    "section": "Can/Should I use AI in this course?",
+    "text": "Can/Should I use AI in this course?\n\nYES… BUT sparingly at first while you learn to code\nI use it daily\nIt can be a great time saver/helper/troubleshooter when it comes to coding\nYou should DEFINITELY be using it"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#ai-and-your-brain",
+    "href": "lectures/lecture00/lecture00.html#ai-and-your-brain",
+    "title": "Course Overview",
+    "section": "AI and your brain",
+    "text": "AI and your brain"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#ai-and-this-course",
+    "href": "lectures/lecture00/lecture00.html#ai-and-this-course",
+    "title": "Course Overview",
+    "section": "AI and this course",
+    "text": "AI and this course\n\nIt can basically do everything in the class for you… But\n\nIt frequently overcomplicates or gets things wrong\nIf you don’t know how to code, you might not know there’s a problem and/or might not know how to fix it (or ask it to fix it)"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#ai-and-this-course-1",
+    "href": "lectures/lecture00/lecture00.html#ai-and-this-course-1",
+    "title": "Course Overview",
+    "section": "AI and this course",
+    "text": "AI and this course\n\nYou have an opportunity to grow your skills well beyond what we do in class this semester.\nOver-reliance on AI will rob you of that opportunity. You’re investing a tremendous amount of your time to this course and your education, generally.\nIf you can’t do anything more than what AI/LLM can do then it CAN replace you"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn-1",
+    "href": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn-1",
+    "title": "Course Overview",
+    "section": "…How are we going to learn?",
+    "text": "…How are we going to learn?\n\nDoing\n\nIn-class labs\nHomework\nFinal Project"
   }
 ]
