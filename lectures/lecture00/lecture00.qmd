@@ -222,4 +222,8 @@ p
 - Over-reliance on AI will rob you of that opportunity. You're investing a tremendous amount of your time to this course and your education, generally.
 - If you can't do anything more than what AI/LLM can do then it CAN replace you
 
-## 
+## Toolkit
+- Datacamp
+- Posit cloud (RStudio in your browser)
+- Slack
+- Canvas
