@@ -11,6 +11,12 @@ editor: visual
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Class Overview 
+
+1. Social Science Research Overview 
+2. R Survival Tips 
+3. Finding/Reading Published Research
+
 ## Social Research
 
 ::: incremental
@@ -26,7 +32,7 @@ knitr::opts_chunk$set(echo = FALSE)
     -   Philosophical, based on values, subjective
     -   Example: what is the best management style?
 -   **Empirical research** seeks to answer questions about how the world *is*
-    -   Factual, based on observation (data), (more) objective
+    -   Factual, based on observation (data), (more) objective(ish)
     -   Example: what management style optimizes employee retention?
 :::
 
@@ -148,7 +154,7 @@ knitr::opts_chunk$set(echo = FALSE)
 -   Take your time
 -   Make mistakes
 -   Take notes
--   Google your problems (or ask ChatGPT with caution)
+-   Google your problems (or ask ChatGPT/Gemini/Claude with caution)
 
 ## Where to Find Journal Articles: Public Administration
 

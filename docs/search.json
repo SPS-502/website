@@ -1619,121 +1619,121 @@
   {
     "objectID": "lectures/lecture01/lecture01.html#social-research",
     "href": "lectures/lecture01/lecture01.html#social-research",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Social Research",
     "text": "Social Research\n\n\nWhat is social research?\n\nAttempt by social scientists to develop and sharpen our understanding of human society and social relationships\n\nWhy do we engage in social research?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#normative-vs.-empirical-research",
     "href": "lectures/lecture01/lecture01.html#normative-vs.-empirical-research",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Normative vs. Empirical Research",
-    "text": "Normative vs. Empirical Research\n\n\nNormative research seeks to answer questions about how the world should or ought to be\n\nPhilosophical, based on values, subjective\nExample: what is the best management style?\n\nEmpirical research seeks to answer questions about how the world is\n\nFactual, based on observation (data), (more) objective\nExample: what management style optimizes employee retention?"
+    "text": "Normative vs. Empirical Research\n\n\nNormative research seeks to answer questions about how the world should or ought to be\n\nPhilosophical, based on values, subjective\nExample: what is the best management style?\n\nEmpirical research seeks to answer questions about how the world is\n\nFactual, based on observation (data), (more) objective(ish)\nExample: what management style optimizes employee retention?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#basic-vs.-applied-research",
     "href": "lectures/lecture01/lecture01.html#basic-vs.-applied-research",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Basic vs. Applied Research",
     "text": "Basic vs. Applied Research\n\n\nBasic research seeks to develop new knowledge about the nature of phenomena\n\nInnate curiosity\nExample: why are people violent?\n\nApplied research seeks to answer specific questions about real-world problems and their solutions\n\nProblem solving\nExample: how do we reduce violence in schools?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#descriptive-vs.-explanatory-research",
     "href": "lectures/lecture01/lecture01.html#descriptive-vs.-explanatory-research",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Descriptive vs. Explanatory Research",
     "text": "Descriptive vs. Explanatory Research\n\n\nDescriptive research seeks to characterize the nature of a problem of phenomena.\n\nExample: how pervasive is school violence?\n\nExplanatory research seeks to explain the causes of a problem or phenomena and/or the effectiveness of particular solutions\n\nExample(s):\n\nWhat causes school violence?\nDo metal detectors reduce the likelihood of school violence?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#research-process",
     "href": "lectures/lecture01/lecture01.html#research-process",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Research Process",
     "text": "Research Process"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#research-question",
     "href": "lectures/lecture01/lecture01.html#research-question",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Research Question",
     "text": "Research Question"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#research-question-1",
     "href": "lectures/lecture01/lecture01.html#research-question-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Research Question",
     "text": "Research Question\n\n\nThe question you plan to answer in a given study\nCan be challenging—should be narrow enough to answer in a given study, but broad enough to matter\n\nToo broad: How can we reduce recidivism in the US?\nToo narrow: What was the recidivism rate in the US in 2014?\nJust right: Do work release programs reduce recidivism?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#review-previous-research",
     "href": "lectures/lecture01/lecture01.html#review-previous-research",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Review Previous Research",
     "text": "Review Previous Research"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#review-previous-research-1",
     "href": "lectures/lecture01/lecture01.html#review-previous-research-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Review Previous Research",
     "text": "Review Previous Research\n\n\nPlace your research within the context of existing scholarship—what do we know and what do we need to know about the relationship between work release programs and recidivism?\n\nHave other scholars addressed the question?\n\nIf so, what did they find and what are you adding to their findings?\n\nDo theories/findings exist in other areas of research (i.e., private sector business management) that might speak to your question?\n\nIf so, what are those theories/findings and how might they relate to your question?"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#develop-theory",
     "href": "lectures/lecture01/lecture01.html#develop-theory",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Develop Theory",
     "text": "Develop Theory"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#develop-theory-1",
     "href": "lectures/lecture01/lecture01.html#develop-theory-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Develop Theory",
     "text": "Develop Theory\n\nSet of interrelated propositions that seek to explain and, in some cases, predict an observed phenomenon\n\nParticipation in work release program \\(\\Rightarrow\\) job skills \\(\\Rightarrow\\) more likely to secure job after release \\(\\Rightarrow\\) reduced likelihood of recidivism"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#construct-hypotheses",
     "href": "lectures/lecture01/lecture01.html#construct-hypotheses",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Construct Hypotheses",
     "text": "Construct Hypotheses"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#construct-hypotheses-1",
     "href": "lectures/lecture01/lecture01.html#construct-hypotheses-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Construct Hypotheses",
     "text": "Construct Hypotheses\n\n\nSpecific statement about the expected relationship between the dependent (outcome) and independent (explanatory) variables in a theory\n\nDependent variables are affected by (“depend on”) other variables; sometimes called outcome variables\nIndependent variables affect/explain/cause changes in dependent variables; sometimes called explanatory or treatment variables\nDependent variables (y) vary as a function of independent variables (x): y=f(x) or y~x\n\nRecidivism = f(Work Release Participation) or Recidivism~Work Release Participation"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#construct-hypotheses-2",
     "href": "lectures/lecture01/lecture01.html#construct-hypotheses-2",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Construct Hypotheses",
     "text": "Construct Hypotheses\n\n\nGood hypotheses…\n\nMatch the theory\nSpecify the expected direction of the relationship between the independent and dependent variables (positive or negative)\nAre falsifiable—clear enough to be wrong!\n\nExample: if my theory is correct, then…\n\nH: Prisoners participating in work release programs will be less likely to return to prison than those who do not participate."
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#design-study-and-collect-data",
     "href": "lectures/lecture01/lecture01.html#design-study-and-collect-data",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Design Study and Collect Data",
     "text": "Design Study and Collect Data"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#design-study-and-collect-data-1",
     "href": "lectures/lecture01/lecture01.html#design-study-and-collect-data-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Design Study and Collect Data",
     "text": "Design Study and Collect Data"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#tips-for-surviving-as-you-learn-r",
     "href": "lectures/lecture01/lecture01.html#tips-for-surviving-as-you-learn-r",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Tips for Surviving as you Learn R",
-    "text": "Tips for Surviving as you Learn R\n\nTake your time\nMake mistakes\nTake notes\nGoogle your problems (or ask ChatGPT with caution)"
+    "text": "Tips for Surviving as you Learn R\n\nTake your time\nMake mistakes\nTake notes\nGoogle your problems (or ask ChatGPT/Gemini/Claude with caution)"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#datacamp-assignments",
@@ -1752,49 +1752,49 @@
   {
     "objectID": "lectures/lecture01/lecture01.html#how-to-find-an-article",
     "href": "lectures/lecture01/lecture01.html#how-to-find-an-article",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "How to Find an Article",
     "text": "How to Find an Article\n\nBSU Library Web Site\n\nhttps://library.boisestate.edu\n\nGoogle Scholar\n\nhttp://scholar.google.com"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#lab-1",
     "href": "lectures/lecture01/lecture01.html#lab-1",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Lab 1",
     "text": "Lab 1\n\nOpen lab instructions on Canvas"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-public-administration",
     "href": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-public-administration",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Where to Find Journal Articles: Public Administration",
     "text": "Where to Find Journal Articles: Public Administration\n\nJournal of Public Administration Research and Theory (JPART)\nPublic Administration Review (PAR)\nAmerican Review of Public Administration (ARPA)\nInternational Public Management Journal (IPMJ)"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-public-policy",
     "href": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-public-policy",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Where to Find Journal Articles: Public Policy",
     "text": "Where to Find Journal Articles: Public Policy\n\nPolicy Studies Journal (PSJ)\nJournal of Policy Analysis and Management (JPAM) (please bombard BSU with ILL requests)\nReview of Policy Research"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-political-science",
     "href": "lectures/lecture01/lecture01.html#where-to-find-journal-articles-political-science",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Where to Find Journal Articles: Political Science",
     "text": "Where to Find Journal Articles: Political Science\n\nAmerican Journal of Political Science (AJPS)\nAmerican Political Science Review (APSR)\nThe Journal of Politics (JOP)"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#develop-theory-2",
     "href": "lectures/lecture01/lecture01.html#develop-theory-2",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Develop Theory",
     "text": "Develop Theory\n\n\nGood theories are:\n\nAccurate—consistent with reality\nGeneralizable—applicable to a wide variety of cases\nProductive—generate testable(falsifiable) hypotheses"
   },
   {
     "objectID": "lectures/lecture01/lecture01.html#develop-theory-3",
     "href": "lectures/lecture01/lecture01.html#develop-theory-3",
-    "title": "\n            Introduction to \\(R\\) and Social Science\n        ",
+    "title": "Introduction to \\(R\\) and Social Science",
     "section": "Develop Theory",
     "text": "Develop Theory\n\n\nWhere does theory come from?\n\nLogic (deduction)\nObservation (induction)"
   },
@@ -2364,5 +2364,12 @@
     "title": "Course Overview",
     "section": "Toolkit",
     "text": "Toolkit\n\nDatacamp\nPosit cloud (RStudio in your browser)\nSlack\nCanvas"
+  },
+  {
+    "objectID": "lectures/lecture01/lecture01.html#class-overview",
+    "href": "lectures/lecture01/lecture01.html#class-overview",
+    "title": "Introduction to \\(R\\) and Social Science",
+    "section": "Class Overview",
+    "text": "Class Overview\n\nSocial Science Research Overview\nR Survival Tips\nFinding/Reading Published Research"
   }
 ]
