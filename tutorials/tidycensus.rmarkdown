@@ -1,0 +1,225 @@
+---
+title: "Using `tidycensus`"
+sidebar: false
+toc: true
+page-layout: full
+format: html
+---
+
+
+
+
+This is adapted from the "Basic usage of tidycensus" page, which can be found [here](https://walker-data.com/tidycensus/articles/basic-usage.html). 
+
+# Setup
+
+You'll need to install, load, and configure the `tidycensus` package. BUT it's not that hard!
+
+## Step 1: Install
+
+Run the following code to install and load the necessary packages:
+
+
+
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+install.packages("tidycensus")
+library(tidycensus)
+library(tidyverse)
+```
+
+
+
+
+
+
+## Step 2: Load and configure
+
+- Next, you'll need to get an API key from the U.S. Census Bureau. Follow this [link](https://api.census.gov/data/key_signup.html), enter your information and you should get an email with your API key shortly.
+
+- Next, add your api key and run the following code:
+
+
+
+
+```{r eval=FALSE}
+census_api_key("YOUR API KEY GOES HERE", install = TRUE)
+```
+
+
+
+
+# Get Data
+
+## Step 3: Find variables
+Next you'll want to get the variables you'd like to use in your project. There are a TON of variables you can get through `tidycensus`. So the best way to start is to use the `load_variables()` function to get a searchable table of all the variables you can use. In this case, we'll call up the 2020 American Community Survey and store the results in an object called `tidycensusvariables`. We can then browse and search with the `View()` function (see video for demonstration of this part). 
+
+
+
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+tidycensusvariables2020 <- load_variables(year = 2020, dataset = "acs5/profile") 
+tidycensusvariables2018 <- load_variables(year = 2018, dataset = "acs5/profile")
+#Run View(tidycensusvariables) in your console
+```
+
+
+
+
+
+To make searching easier, we're going to use the `separate()` function from `tidyr`. 
+
+
+
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+tidycensusvariables2020_sep <- tidycensusvariables2020 %>% 
+  separate(label, into=c("measure", "topic", "group", "variable", "variable2" ), sep="!!")
+```
+
+
+
+
+This code is telling R to take the `label` variable in `tidycensusvariables2020` and separate it into columns based on the seperator "!!". This is going to make it a lot easier to search using "filter" in `View()`. Plese see the video for more details about searching for variables. 
+
+## Step 4: Download Data
+
+Now that I've searched through the dataframe and found the variables I want to use, I'll use `get_acs()` to pull the actual data into a new dataframe. 
+
+
+
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+	id_acs <- get_acs(
+  geography = "county",
+  state = "Idaho",
+  variables = c(edu_attainment_pct = "DP02_0068P",
+                median_income = "DP03_0062",
+                snap_pct = "DP03_0074P",
+                unaffordable_rent_pct = "DP04_0142P",
+                median_age = "DP05_0018"),
+  output = "wide",
+  geometry = TRUE,
+  year = 2020
+)
+```
+
+
+
+
+Since `tidycensus` pulls both the estimated value and the margin of error for each variable, we'll just keep the estimated value using the code below. Dealing with the margin of error variables is beyond the scope of the course, but you can read more about it here: https://walker-data.com/tidycensus/articles/margins-of-error.html. The codeblock below also removes the "E" at the end of each variable name. 
+
+
+
+
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+id_acs <- id_acs %>% 
+  select(ends_with("E")) %>% 
+  rename_with(~str_remove(., 'E'))
+```
+
+
+
+
+
+So. With that, you've got a nice, tidy dataframe with demographic data ready to analyze. 
+
+
+# Bonus: Making maps with `tidycensus`
+
+Now, what if you would like do a map visualization with your data? `Tidycensus` has a ton of tools and methods for doing that, which I encourage you to explore. For now, we'll do a simple one with median income. 
+
+## Median Income
+
+To make a map visualization of `median_income` in Idaho, you'll use `ggplot()` and the fill aesthetic with `geom_sf()`:
+
+
+
+
+```{r}
+ggplot(data = id_acs, aes(fill = median_income)) + 
+  geom_sf() + 
+  scale_fill_distiller(direction = 1) + 
+  labs(title = "  Median Income by County",
+       caption = "Data source: 2020 5-year ACS, US Census Bureau",
+       fill = "ACS estimate") + 
+  theme_void()
+```
+
+
+
+
+You can replicate similar maps with any of the variables we pulled into `id_acs`. 
+
+## Multiple Years
+
+You can pull multiple years using the `map()` function then binding the dataframes
+
+
+
+
+```{r}
+years <- lst(2009, 2010, 2015, 2016, 2017, 2018, 2019, 2021)
+
+multi_year_id_acs <- map(
+  years,
+  ~ get_acs(
+  geography = "zcta",
+  state = "Idaho",
+   variables = c(median_monthly_mortgage = "DP04_0095",
+                median_gross_rent = "DP04_0121",
+                renter_occupied = "DP04_0042",
+                home_owner_occupied = "DP04_0041",
+                median_household_income = "DP03_0061"),
+    year = .x,
+    survey = "acs1",
+    geometry = TRUE,
+  output = "wide"
+    )
+  ) %>% 
+  map2(years, ~ mutate(.x, id = .y))
+
+id_2009_2021 <- reduce(multi_year_id_acs, rbind)
+
+```
+
+```{r}
+years <- lst(2005, 2006, 2007, 2008)
+
+multi_year_id_acs <- map(
+  years,
+  ~ get_acs(
+  geography = "county",
+  state = "Idaho",
+   variables = c(median_monthly_mortgage = "DP04_0095",
+                median_gross_rent = "DP04_0121",
+                renter_occupied = "DP04_0042",
+                home_owner_occupied = "DP04_0041",
+                median_household_income = "DP03_0061"),
+    year = .x,
+    survey = "acs1",
+  output = "wide"
+    )
+  ) %>% 
+  map2(years, ~ mutate(.x, id = .y))
+
+id_2005_2008 <- reduce(multi_year_id_acs, rbind)
+
+```
+
+```{r message=FALSE, warning=FALSE, results=FALSE}
+	id_acs_tract <- get_acs(
+  geography = "tract",
+  state = "Idaho",
+  county = "Ada County",
+  variables = c(female_pct = "DP05_0003P",
+                median_hh_income = "DP03_0062",
+                median_family_income = "DP03_0086",
+                pct_below_poverty = "DP03_0119P"),
+  output = "wide",
+  geometry = TRUE,
+  year = 2018
+)
+```
+
