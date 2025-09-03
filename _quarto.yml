@@ -9,7 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - icon: slack
-        href: "https://sps502f22.slack.com"
+        href: "https://sps502-fall25.slack.com"
         aria-label: Slack
       - icon: cloud-fill
         href: "https://rstudio.cloud"
