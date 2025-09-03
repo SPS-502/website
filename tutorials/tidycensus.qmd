@@ -53,7 +53,7 @@ tidycensusvariables2020_sep <- tidycensusvariables2020 %>%
   separate(label, into=c("measure", "topic", "group", "variable", "variable2" ), sep="!!")
 ```
 
-This code is telling R to take the `label` variable in `tidycensusvariables2020` and separate it into columns based on the seperator "!!". This is going to make it a lot easier to search using "filter" in `View()`. Plese see the video for more details about searching for variables. 
+This code is telling R to take the `label` variable in `tidycensusvariables2020` and separate it into columns based on the seperator "!!". This is going to make it a lot easier to search using "filter" in `View()`. Please see the video for more details about searching for variables. 
 
 ## Step 4: Download Data
 
@@ -111,14 +111,14 @@ You can replicate similar maps with any of the variables we pulled into `id_acs`
 
 You can pull multiple years using the `map()` function then binding the dataframes
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 years <- lst(2009, 2010, 2015, 2016, 2017, 2018, 2019, 2021)
 
 multi_year_id_acs <- map(
   years,
   ~ get_acs(
-  geography = "zcta",
-  state = "Idaho",
+  geography = "county",
+  state = "ID",
    variables = c(median_monthly_mortgage = "DP04_0095",
                 median_gross_rent = "DP04_0121",
                 renter_occupied = "DP04_0042",
@@ -136,7 +136,7 @@ id_2009_2021 <- reduce(multi_year_id_acs, rbind)
 
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 years <- lst(2005, 2006, 2007, 2008)
 
 multi_year_id_acs <- map(
@@ -159,6 +159,7 @@ multi_year_id_acs <- map(
 id_2005_2008 <- reduce(multi_year_id_acs, rbind)
 
 ```
+
 
 
 ```{r message=FALSE, warning=FALSE, results=FALSE}

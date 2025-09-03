@@ -2,7 +2,7 @@
 title: "Data Science for Public Service"
 subtitle: Data wrangling, visualization, and inference
 details: |
-  SPS 502 - Fall 2023<br>School of Public Service<br> Boise State University
+  SPS 502 - Fall 2025<br>School of Public Service<br> Boise State University
 sidebar: false
 toc: false
 page-layout: full

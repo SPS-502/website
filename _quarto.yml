@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "SPS 502 | Data Science"
+  title: "SPS 502 | Data Science for Public Service"
   navbar:
     right:
       - href: index.qmd

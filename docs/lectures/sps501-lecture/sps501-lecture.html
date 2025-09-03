@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Wrangling – SPS 502 | Data Science</title>
+<title>Quantitative Methods I – SPS 502 | Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -180,17 +180,17 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture03.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="sps501-lecture.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="course-title title display-7">
-            Data Wrangling
+            Quantitative Methods I
         </h1></header>
 
 <div class="grid title-block">
     <div class="course-details-title-block g-col-12 g-col-sm-8 order-2 order-sm-1 text-center text-sm-start">
         
         <div class="course-subtitle">
-            <p>SPS 502</p>
+            <p>SPS 501</p>
         </div>
         <div class="course-meta">
             <p></p>
@@ -206,6 +206,45 @@ window.Quarto = {
 </div>
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fGarch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>NOTE: Packages 'fBasics', 'timeDate', and 'timeSeries' are no longer
+attached to the search() path when 'fGarch' is attached.
+
+If needed attach them yourself in your R script by e.g.,
+        require("timeSeries")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'
+
+The following object is masked from 'package:purrr':
+
+    discard
+
+The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.table.format =</span> <span class="st">"latex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="descriptive-statistics" class="level1">
 <h1>Descriptive Statistics</h1>
 <div class="incremental">
@@ -250,10 +289,24 @@ window.Quarto = {
 <section id="normal-distribution" class="level2" data-auto-animate="true">
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="normal-distribution">Normal Distribution</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Height =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">n =</span> <span class="dv">1000</span>), <span class="dv">1</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Height)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,<span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Mean"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">x =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Median"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">x =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Height (Inches)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture03_files/figure-revealjs/Central Tendency (Normal Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="sps501-lecture_files/figure-html/Central Tendency (Normal Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -262,10 +315,20 @@ window.Quarto = {
 <section id="postive-skewed-distribution" class="level2" data-auto-animate="true">
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="postive-skewed-distribution">Postive Skewed Distribution</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Height =</span> <span class="fu">round</span>(<span class="fu">rsnorm</span>(<span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">xi =</span> <span class="dv">3</span>, <span class="at">n =</span> <span class="dv">1000</span>), <span class="dv">1</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Height)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,<span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Mean"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">x =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Median"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">x =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Height (Inches)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture03_files/figure-revealjs/Central Tendency (Postive Skewed Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="sps501-lecture_files/figure-html/Central Tendency (Postive Skewed Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -274,10 +337,20 @@ window.Quarto = {
 <section id="negative-skewed-distribution" class="level2" data-auto-animate="true">
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="negative-skewed-distribution">Negative Skewed Distribution</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Height =</span> <span class="fu">round</span>(<span class="fu">rsnorm</span>(<span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">2</span>, <span class="at">xi =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">n =</span> <span class="dv">1000</span>), <span class="dv">1</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Height)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,<span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Mean"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">x =</span> <span class="fu">mean</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Median"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">x =</span> <span class="fu">median</span>(d<span class="sc">$</span>Height), <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Height (Inches)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture03_files/figure-revealjs/Central Tendency (Negative Skewed Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="sps501-lecture_files/figure-html/Central Tendency (Negative Skewed Distribution)-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -334,293 +407,12 @@ window.Quarto = {
 <li>Mean distance from the mean</li>
 </ul></li>
 </ul>
-</section>
-</section>
-<section id="data-wrangling" class="level1">
-<h1>Data Wrangling</h1>
-<section id="traditional-nested-functions" class="level2">
-<h2 class="anchored" data-anchor-id="traditional-nested-functions">Traditional Nested Functions</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leave_house</span>(<span class="fu">get_dressed</span>(<span class="fu">get_out_of_bed</span>(<span class="fu">wake_up</span>(chris))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="pipe" class="level2">
-<h2 class="anchored" data-anchor-id="pipe">pipe %&gt;%</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leave_house</span>(<span class="fu">get_dressed</span>(<span class="fu">get_out_of_bed</span>(<span class="fu">wake_up</span>(chris))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>“Pipe” a data frame into a “verb” command</li>
-<li>“Chain” the results from one “verb” command into another</li>
-<li>Think of it as the word “then”</li>
-</ul>
-<div class="notes">
-<p>Writing it out using pipes give it a more natural (and easier to read) structure</p>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chris <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wake_up</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_out_of_bed</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dressed</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leave_house</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="data-wrangling-1" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling-1">Data Wrangling</h2>
-</section>
-<section id="filter" class="level2">
-<h2 class="anchored" data-anchor-id="filter"><code>filter()</code></h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/paste-6EFD0079.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="filter-to-select-a-subset-of-rows" class="level2">
-<h2 class="anchored" data-anchor-id="filter-to-select-a-subset-of-rows"><code>filter()</code> to select a subset of rows</h2>
-<p>for crashes in Canyon county</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(County <span class="sc">==</span> <span class="st">"Canyon"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 35,492 × 12
-   OBJECTID Severity            Mile_Point  Year County Number_Of_Fatalities
-      &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1    20294 Property Dmg Report      0.004  2005 Canyon                    0
- 2    21886 Property Dmg Report      5.25   2005 Canyon                    0
- 3    26693 Property Dmg Report     NA      2005 Canyon                    0
- 4    18673 Property Dmg Report      9.27   2005 Canyon                    0
- 5    17678 Property Dmg Report     NA      2005 Canyon                    0
- 6    17287 B Injury Accident       NA      2005 Canyon                    0
- 7    26710 Property Dmg Report     NA      2005 Canyon                    0
- 8    19529 Property Dmg Report     39      2005 Canyon                    0
- 9    20899 B Injury Accident       50.0    2005 Canyon                    0
-10    19655 B Injury Accident       23.5    2005 Canyon                    0
-# ℹ 35,482 more rows
-# ℹ 6 more variables: Number_Of_Injuries &lt;dbl&gt;, IntersectionRelated &lt;chr&gt;,
-#   Accident_Date_Time &lt;dttm&gt;, Hour &lt;int&gt;, Month &lt;ord&gt;, Day &lt;ord&gt;</code></pre>
-</div>
-</div>
-<div class="notes">
-<p>dbl = numerical chr = text data See moderndive 1.4.3 for more info</p>
-</div>
-</section>
-<section id="filter-for-many-conditions-at-once" class="level2">
-<h2 class="anchored" data-anchor-id="filter-for-many-conditions-at-once"><code>filter()</code> for many conditions at once</h2>
-<p>for crashes in Canyon county in 2017</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(County <span class="sc">==</span> <span class="st">"Canyon"</span>, Year <span class="sc">==</span> <span class="dv">2017</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,191 × 12
-   OBJECTID Severity            Mile_Point  Year County Number_Of_Fatalities
-      &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1   295441 B Injury Accident         4.32  2017 Canyon                    0
- 2   288513 Fatal Accident           31.1   2017 Canyon                    1
- 3   293711 Property Dmg Report      31.1   2017 Canyon                    0
- 4   291456 Property Dmg Report     105.    2017 Canyon                    0
- 5   306112 C Injury Accident        31.5   2017 Canyon                    0
- 6   299918 A Injury Accident        11.2   2017 Canyon                    0
- 7   295624 C Injury Accident        31.2   2017 Canyon                    0
- 8   304753 Property Dmg Report      59.3   2017 Canyon                    0
- 9   293682 Property Dmg Report       3.03  2017 Canyon                    0
-10   292901 Property Dmg Report      28.8   2017 Canyon                    0
-# ℹ 3,181 more rows
-# ℹ 6 more variables: Number_Of_Injuries &lt;dbl&gt;, IntersectionRelated &lt;chr&gt;,
-#   Accident_Date_Time &lt;dttm&gt;, Hour &lt;int&gt;, Month &lt;ord&gt;, Day &lt;ord&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="select-to-keep-variables" class="level2">
-<h2 class="anchored" data-anchor-id="select-to-keep-variables"><code>select()</code> to keep variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(County <span class="sc">==</span> <span class="st">"Canyon"</span>, Year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(IntersectionRelated, Number_Of_Injuries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,191 × 2
-   IntersectionRelated Number_Of_Injuries
-   &lt;chr&gt;                            &lt;dbl&gt;
- 1 N                                    1
- 2 N                                    1
- 3 N                                    0
- 4 Y                                    0
- 5 N                                    1
- 6 N                                    1
- 7 N                                    1
- 8 Y                                    0
- 9 Y                                    0
-10 N                                    0
-# ℹ 3,181 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="select-to-exclude-variables" class="level2">
-<h2 class="anchored" data-anchor-id="select-to-exclude-variables"><code>select()</code> to exclude variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>OBJECTID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 299,135 × 11
-   Severity      Mile_Point  Year County Number_Of_Fatalities Number_Of_Injuries
-   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;              &lt;dbl&gt;
- 1 Property Dmg…    270.     2005 Oneida                    0                  0
- 2 Property Dmg…      0.004  2005 Canyon                    0                  0
- 3 Property Dmg…      5.25   2005 Canyon                    0                  0
- 4 Property Dmg…      4.6    2005 Twin …                    0                  0
- 5 C Injury Acc…      1.62   2005 Koote…                    0                  2
- 6 Property Dmg…     20.5    2005 Ada                       0                  0
- 7 Property Dmg…     NA      2005 Canyon                    0                  0
- 8 Property Dmg…     NA      2005 Latah                     0                  0
- 9 Property Dmg…     NA      2005 Koote…                    0                  0
-10 Property Dmg…     NA      2005 Bonne…                    0                  0
-# ℹ 299,125 more rows
-# ℹ 5 more variables: IntersectionRelated &lt;chr&gt;, Accident_Date_Time &lt;dttm&gt;,
-#   Hour &lt;int&gt;, Month &lt;ord&gt;, Day &lt;ord&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="select-a-range-of-variables" class="level2">
-<h2 class="anchored" data-anchor-id="select-a-range-of-variables"><code>select()</code> a range of variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Severity<span class="sc">:</span>Mile_Point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 299,135 × 2
-   Severity            Mile_Point
-   &lt;chr&gt;                    &lt;dbl&gt;
- 1 Property Dmg Report    270.   
- 2 Property Dmg Report      0.004
- 3 Property Dmg Report      5.25 
- 4 Property Dmg Report      4.6  
- 5 C Injury Accident        1.62 
- 6 Property Dmg Report     20.5  
- 7 Property Dmg Report     NA    
- 8 Property Dmg Report     NA    
- 9 Property Dmg Report     NA    
-10 Property Dmg Report     NA    
-# ℹ 299,125 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="summarize" class="level2">
-<h2 class="anchored" data-anchor-id="summarize"><code>summarize()</code></h2>
-<p><img src="images/paste-4890C576.png" class="img-fluid"></p>
-<div class="notes">
-<p>Summary functions take many values and return one value meant to describe all those values as a group.</p>
-</div>
-</section>
-<section id="summarize-1" class="level2">
-<h2 class="anchored" data-anchor-id="summarize-1"><code>summarize()</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_injuries =</span> <span class="fu">mean</span>(Number_Of_Injuries))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  avg_injuries
-         &lt;dbl&gt;
-1        0.521</code></pre>
-</div>
-</div>
-</section>
-<section id="group_by-summarize" class="level2">
-<h2 class="anchored" data-anchor-id="group_by-summarize"><code>group_by()</code> &amp; <code>summarize()</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(IntersectionRelated) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_injuries =</span> <span class="fu">mean</span>(Number_Of_Injuries))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  IntersectionRelated avg_injuries
-  &lt;chr&gt;                      &lt;dbl&gt;
-1 N                          0.478
-2 Y                          0.583</code></pre>
-</div>
-</div>
-</section>
-<section id="mutate-to-add-new-variables" class="level2">
-<h2 class="anchored" data-anchor-id="mutate-to-add-new-variables"><code>mutate()</code> to add new variables</h2>
-<p><img src="images/paste-94859903.png" class="img-fluid"></p>
-</section>
-<section id="mutate-to-add-new-variables-1" class="level2">
-<h2 class="anchored" data-anchor-id="mutate-to-add-new-variables-1"><code>mutate()</code> to add new variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_inj_fat =</span> Number_Of_Injuries <span class="sc">+</span> Number_Of_Fatalities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 299,135 × 13
-   OBJECTID Severity            Mile_Point  Year County     Number_Of_Fatalities
-      &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt;
- 1    17633 Property Dmg Report    270.     2005 Oneida                        0
- 2    20294 Property Dmg Report      0.004  2005 Canyon                        0
- 3    21886 Property Dmg Report      5.25   2005 Canyon                        0
- 4    22038 Property Dmg Report      4.6    2005 Twin Falls                    0
- 5    18025 C Injury Accident        1.62   2005 Kootenai                      0
- 6    19661 Property Dmg Report     20.5    2005 Ada                           0
- 7    26693 Property Dmg Report     NA      2005 Canyon                        0
- 8    18787 Property Dmg Report     NA      2005 Latah                         0
- 9    19633 Property Dmg Report     NA      2005 Kootenai                      0
-10    22197 Property Dmg Report     NA      2005 Bonneville                    0
-# ℹ 299,125 more rows
-# ℹ 7 more variables: Number_Of_Injuries &lt;dbl&gt;, IntersectionRelated &lt;chr&gt;,
-#   Accident_Date_Time &lt;dttm&gt;, Hour &lt;int&gt;, Month &lt;ord&gt;, Day &lt;ord&gt;,
-#   total_inj_fat &lt;dbl&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="save-when-you-mutate" class="level2">
-<h2 class="anchored" data-anchor-id="save-when-you-mutate">“Save” when you <code>mutate</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>idaho_crashes <span class="ot">&lt;-</span> idaho_crashes <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_inj_fat =</span> Number_Of_Injuries <span class="sc">+</span> Number_Of_Fatalities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="notes">
-<p>Most often when you define a new variable with <code>mutate</code> you’ll also want to save the resulting data frame, often by writing over the original data frame.</p>
-</div>
 
 
 </section>
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
