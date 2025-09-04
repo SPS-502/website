@@ -50,7 +50,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Descriptive vs. Explanatory Research
 
 ::: incremental
--   **Descriptive research** seeks to characterize the nature of a problem of phenomena.
+-   **Descriptive research** seeks to characterize the nature of a problem or phenomena.
     -   Example: how pervasive is school violence?
 -   **Explanatory research** seeks to explain the causes of a problem or phenomena and/or the effectiveness of particular solutions
     -   Example(s):
@@ -166,7 +166,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Where to Find Journal Articles: Public Policy
 
 -   Policy Studies Journal (PSJ)
--   Journal of Policy Analysis and Management (JPAM) (please bombard BSU with ILL requests)
+-   Journal of Policy Analysis and Management (JPAM) 
 -   Review of Policy Research
 
 ## Where to Find Journal Articles: Political Science
