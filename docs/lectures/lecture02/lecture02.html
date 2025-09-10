@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <title>SPS 502 | Data Science for Public Service – Lecture 3 - Data Visualization</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Lecture 3 - Data Visualization</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="sps-502" class="slide level2">
+<h2>SPS 502</h2>
+<p>Data Visualization</p>
+</section>
+<section id="the-datasaurus-dozen" class="slide level2">
+<h2>The Datasaurus Dozen</h2>
+
+<img data-src="images/DataDino.gif" class="r-stretch"></section>
+<section id="the-summary-stats-are-virtually-the-same" class="slide level2">
+<h2>The summary stats are virtually the SAME!!!</h2>
+
+<img data-src="images/DinoSequential.gif" class="r-stretch"></section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>“never trust summary statistics alone; always visualize your data”</p>
+<p>– Alberto Cairo</p>
+<p>Author of The Truthful Art</p>
+</section>
+<section id="the-best-stats-youve-ever-seen" class="slide level2">
+<h2>The Best Stats You’ve Ever Seen</h2>
+<p><a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en" class="uri">https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en</a></p>
+</section>
+<section id="data-visualization-as-story-telling" class="slide level2">
+<h2>Data Visualization as Story Telling</h2>
+<ul>
+<li><p>Graphs let us see patterns in our data</p></li>
+<li><p>Sometimes graphs alone are sufficient for telling our story and drawing inferences from our data</p></li>
+</ul>
+</section>
+<section id="john-snow" class="slide level2">
+<h2>John Snow</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/John_Snow.jpg"></p>
+</div><div class="column flex v-center" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">Soho, London 1854</li>
+<li class="fragment">Severe cholera outbreak</li>
+<li class="fragment">Thousands fell ill and at least 600 died</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="cholera-and-miasma-theory" class="slide level2">
+<h2>Cholera and Miasma Theory</h2>
+
+<img data-src="images/Cholera_art-335.jpg" class="r-stretch"></section>
+<section id="john-snow-1" class="slide level2">
+<h2>John Snow</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/John_Snow.jpg"></p>
+</div><div class="column flex v-center" style="width:50%;">
+<div>
+<ul>
+<li class="fragment">Skeptical of miasma theory</li>
+<li class="fragment">Believed cholera outbreaks were related to contaminated water</li>
+<li class="fragment">Investigated the 1854 outbreak and began to suspect the Broad Street pump</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>“Within 250 yards of the spot where Cambridge Street joins Broad Street there were upwards of 500 fatal attacks of cholera in 10 days… As soon as I became acquainted with the situation and extent of this irruption (sic) of cholera, I suspected some contamination of the water of the much-frequented street-pump in Broad Street … There were only ten deaths in houses situated decidedly nearer to another street-pump. In five of these cases the families of the deceased persons informed me that they always sent to the pump in Broad Street, as they preferred the water to that of the pumps which were nearer. In three other cases, the deceased were children who went to school near the pump in Broad Street.”</p>
+</section>
+<section id="section-2" class="slide level2" data-background-image="images/Snow-cholera-map-1-406.jpg" data-background-size="cover" data-background-position="center">
+<h2></h2>
+</section>
+<section id="broad-street-implications" class="slide level2">
+<h2>Broad Street Implications</h2>
+<div class="columns">
+<div class="column flex v-center" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><p>Beginning of germ theory and beginning of the end for miasma theory</p></li>
+<li class="fragment"><p>Major catalyst for modern epidemiology</p></li>
+<li class="fragment"><p>Read more in Steven Johnson’s book —&gt;</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/ghostmap.png"></p>
+</div></div>
+</section>
+<section id="napoleons-1812-march-on-russia" class="slide level2">
+<h2>Napoleon’s 1812 March on Russia</h2>
+
+<img data-src="images/Minard-605.png" class="r-stretch"></section>
+<section>
+<section id="the-grammar-of-graphics" class="title-slide slide level1 center">
+<h1>The Grammar of Graphics</h1>
+
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>grammar: “the fundamental principles or rules of an art or science”</p>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p>A statistical graphic is a <code>mapping</code> of data <code>variables</code> to <code>aes</code>thetic attributes of <code>geom</code>etric objects.</p>
+<p>The components of grammar:</p>
+</section>
+<section id="grammar-components" class="slide level2">
+<h2>Grammar Components</h2>
+<p><strong>data</strong> : information from the dataset we map.</p>
+<p><strong>geom</strong> : the geometric object in question (points, lines, bars).</p>
+<p><strong>aes</strong> : aesthetic attributes of the geometric object that we can perceive on a graphic (x/y position, color, shape, and size).</p>
+<p><strong>facet</strong> : breaks up a plot into small multiples corresponding to the levels of another variable</p>
+<p><strong>position</strong> : adjustments for barplots</p>
+</section></section>
+<section>
+<section id="napoleons-1812-march-on-russia-in-r" class="title-slide slide level1 center">
+<h1>Napoleon’s 1812 March on Russia in <code>R</code></h1>
+
+</section>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a><span class="co"># Load the historical data</span></span>
+<span id="cb1-6"><a></a>troops <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Minard.troops.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-7"><a></a>  <span class="fu">select</span>(<span class="at">longitude =</span> long, <span class="at">latitude =</span> lat, direction, survivors, group)</span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a>minard_temps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Minard.temp.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a></a>  <span class="fu">uncount</span>(days) <span class="sc">|&gt;</span> </span>
+<span id="cb1-11"><a></a>  <span class="fu">mutate</span>(<span class="at">day_index =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())</span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a>cities <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"data/cities.txt"</span>,</span>
+<span id="cb1-14"><a></a>                     <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-story" class="slide level2">
+<h2>The Story</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="temperature-during-retreat">Temperature During Retreat</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture02_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<h3 id="army-casualties">Army Casualties</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture02_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="column" style="width:50%;">
+<h3 id="what-is-data">What is Data?</h3>
+<ul>
+<li><strong>Columns</strong> in a dataset</li>
+<li>Variables we want to visualize</li>
+<li>The information we’re communicating</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="what-is-an-aesthetic">What is an Aesthetic?</h3>
+<ul>
+<li><strong>Visual property</strong> of a graph</li>
+<li>Position, shape, color, size, etc.</li>
+<li>How we “see” the data</li>
+</ul>
+</div></section>
+<section id="our-dataset-troops" class="slide level2">
+<h2>Our Dataset: <code>troops</code></h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">longitude</th>
+<th style="text-align: right;">latitude</th>
+<th style="text-align: left;">direction</th>
+<th style="text-align: right;">survivors</th>
+<th style="text-align: right;">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">24.0</td>
+<td style="text-align: right;">54.9</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">340000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24.5</td>
+<td style="text-align: right;">55.0</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">340000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">54.5</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">340000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">54.7</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">320000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27.0</td>
+<td style="text-align: right;">54.8</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">300000</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Each row represents a point along Napoleon’s march</p>
+</section>
+<section id="the-mapping-process" class="slide level2">
+<h2>The Mapping Process</h2>
+<p>Here’s the table converted to markdown:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Aesthetic</th>
+<th>Graphic/Geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Longitude</td>
+<td>Position (x-axis)</td>
+<td>Point</td>
+</tr>
+<tr class="even">
+<td>Latitude</td>
+<td>Position (y-axis)</td>
+<td>Point</td>
+</tr>
+<tr class="odd">
+<td>Army size</td>
+<td>Size</td>
+<td>Path</td>
+</tr>
+<tr class="even">
+<td>Army direction</td>
+<td>Color</td>
+<td>Path</td>
+</tr>
+<tr class="odd">
+<td>Date</td>
+<td>Position (x-axis)</td>
+<td>Line + text</td>
+</tr>
+<tr class="even">
+<td>Temperature</td>
+<td>Position (y-axis)</td>
+<td>Line + text</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-mapping-process-1" class="slide level2">
+<h2>The Mapping Process</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Data</th>
+<th><code>aes()</code></th>
+<th><code>geom</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Longitude</td>
+<td><code>x</code></td>
+<td><code>geom_point()</code></td>
+</tr>
+<tr class="even">
+<td>Latitude</td>
+<td><code>y</code></td>
+<td><code>geom_point()</code></td>
+</tr>
+<tr class="odd">
+<td>Army size</td>
+<td><code>size</code></td>
+<td><code>geom_path()</code></td>
+</tr>
+<tr class="even">
+<td>Army direction</td>
+<td><code>color</code></td>
+<td><code>geom_path()</code></td>
+</tr>
+<tr class="odd">
+<td>Date</td>
+<td><code>x</code></td>
+<td><code>geom_line() + geom_text()</code></td>
+</tr>
+<tr class="even">
+<td>Temperature</td>
+<td><code>y</code></td>
+<td><code>geom_line() + geom_text()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-ggplot2-template" class="slide level2">
+<h2>The ggplot2 Template</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|1|2|3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> DATA) <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">GEOM_FUNCTION</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">AESTHETIC =</span> VARIABLE,</span>
+<span id="cb2-3"><a></a>                              <span class="at">AESTHETIC =</span> VARIABLE,</span>
+<span id="cb2-4"><a></a>                              ...))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<h3 id="three-essential-components">Three Essential Components:</h3>
+<ol type="1">
+<li><strong>DATA</strong>: The dataset to visualize</li>
+<li><strong>GEOM_FUNCTION</strong>: The type of plot (points, lines, bars, etc.)</li>
+<li><strong>AESTHETIC MAPPINGS</strong>: Which variables map to which visual properties</li>
+</ol>
+</div>
+</section>
+<section id="building-our-visualization-step-1" class="slide level2">
+<h2>Building Our Visualization: Step 1</h2>
+<p>Start with the data and coordinate system:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> troops, </span>
+<span id="cb3-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><p>We have axes but no geometries yet!</p>
+</section>
+<section id="building-our-visualization-step-2" class="slide level2">
+<h2>Building Our Visualization: Step 2</h2>
+<p>Add a geometry layer with <code>geom_path()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> troops, </span>
+<span id="cb4-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">group=</span>group)) <span class="sc">+</span></span>
+<span id="cb4-3"><a></a>  <span class="fu">geom_path</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><p>Now we see the path, but it’s just a single line</p>
+</section>
+<section id="building-our-visualization-step-3" class="slide level2">
+<h2>Building Our Visualization: Step 3</h2>
+<p>Map <code>direction</code> to color:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> troops, </span>
+<span id="cb5-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> longitude, </span>
+<span id="cb5-3"><a></a>                     <span class="at">y =</span> latitude, </span>
+<span id="cb5-4"><a></a>                     <span class="at">group =</span> group,</span>
+<span id="cb5-5"><a></a>                     <span class="at">color =</span> direction)) <span class="sc">+</span></span>
+<span id="cb5-6"><a></a>  <span class="fu">geom_path</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p>Advance and retreat are now distinguished!</p>
+</section>
+<section id="building-our-visualization-final" class="slide level2">
+<h2>Building Our Visualization: Final</h2>
+<p>Map <code>survivors</code> to line width:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> troops, </span>
+<span id="cb6-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> longitude, </span>
+<span id="cb6-3"><a></a>                     <span class="at">y =</span> latitude,</span>
+<span id="cb6-4"><a></a>                     <span class="at">group =</span> group,</span>
+<span id="cb6-5"><a></a>                     <span class="at">color =</span> direction,</span>
+<span id="cb6-6"><a></a>                     <span class="at">linewidth =</span> survivors)) <span class="sc">+</span></span>
+<span id="cb6-7"><a></a>  <span class="fu">geom_path</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p>The width shows the devastating losses!</p>
+</section>
+<section id="polishing-the-visualization" class="slide level2">
+<h2>Polishing the Visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a></a><span class="fu">geom_path</span>(<span class="at">data =</span> troops,</span>
+<span id="cb7-3"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude,</span>
+<span id="cb7-4"><a></a>                     <span class="at">group =</span> group,</span>
+<span id="cb7-5"><a></a>                     <span class="at">color =</span> direction,</span>
+<span id="cb7-6"><a></a>                     <span class="at">linewidth =</span> survivors),</span>
+<span id="cb7-7"><a></a>                     <span class="at">lineend =</span> <span class="st">"round"</span>) <span class="sc">+</span> </span>
+<span id="cb7-8"><a></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> cities, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb7-9"><a></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> cities, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">label =</span> city), <span class="at">vjust =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a></a>  <span class="fu">scale_linewidth_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">15</span>),</span>
+<span id="cb7-11"><a></a>                             <span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb7-12"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"A"</span> <span class="ot">=</span> <span class="st">"tan"</span>, <span class="st">"R"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb7-13"><a></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb7-14"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Napoleon's 1812 March to Moscow"</span>,</span>
+<span id="cb7-16"><a></a>       <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>,</span>
+<span id="cb7-17"><a></a>       <span class="at">color =</span> <span class="st">"Direction"</span>, <span class="at">linewidth =</span> <span class="st">"Survivors"</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="polishing-the-visualization-1" class="slide level2">
+<h2>Polishing the Visualization</h2>
+
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="adding-the-temperature-visualization" class="slide level2">
+<h2>Adding the temperature visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> minard_temps, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> temp), <span class="at">vjust =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<section id="cleaning-it-up-a-bit" class="slide level2">
+<h2>Cleaning it up a bit</h2>
+
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<section id="combining-the-visualizations" class="slide level2">
+<h2>Combining the visualizations</h2>
+
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key Takeaways</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Data visualization is about mapping</strong>: Connect data columns to visual properties</li>
+<li class="fragment"><strong>Build incrementally</strong>: Start simple, add layers</li>
+<li class="fragment"><strong>Each aesthetic tells a story</strong>:
+<ul>
+<li class="fragment">Position shows geography</li>
+<li class="fragment">Color shows direction</li>
+<li class="fragment">Width shows army size</li>
+</ul></li>
+<li class="fragment"><strong>The grammar of graphics gives us a systematic approach</strong>:
+<ul>
+<li class="fragment">Data + Aesthetics + Geometries = Visualization</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="the-5-named-graphs-5ng" class="slide level2">
+<h2>The 5 Named Graphs (5NG)</h2>
+<ul>
+<li>Scatterplots</li>
+<li>Linegraphs<br>
+</li>
+<li>Histograms</li>
+<li>Boxplots</li>
+<li>Barplots</li>
+</ul>
+</section>
+<section id="scatterplot-example" class="slide level2">
+<h2>Scatterplot Example</h2>
+<p>Arrival Delays vs Departure Delays for Envoy flights from NYC in 2023</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> envoy_flights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dep_delay, <span class="at">y =</span> arr_delay)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="linegraph-example" class="slide level2">
+<h2>Linegraph Example</h2>
+<p>Hourly Windspeeds in Newark for January 1-15, 2023</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> early_january_2023_weather, </span>
+<span id="cb10-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> time_hour, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<section id="histogram-example" class="slide level2">
+<h2>Histogram Example</h2>
+<p>Histogram of hourly wind speeds at three NYC airports</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> weather, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<section id="boxplot-example" class="slide level2">
+<h2>Boxplot Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> weather, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(month), <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<section id="barplot-example" class="slide level2">
+<h2>Barplot Example</h2>
+<p>Number of flights departing NYC in 2023 by airline using geom_bar</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> flights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carrier)) <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lecture02_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<section id="assignment" class="slide level2">
+<h2>Assignment</h2>
+<p>Lab 2 on Canvas</p>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

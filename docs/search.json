@@ -2448,5 +2448,425 @@
     "title": "\n            Quantitative Methods I\n        ",
     "section": "Standard Deviation",
     "text": "Standard Deviation\n\nStandard Deviation (\\(s\\), \\(\\sigma\\)): standardized measure of variance \\[s = \\sqrt{s^2} = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^n (x_i - \\bar{x})^2}\\]\nExpressed in the same units as the mean (i.e., inches)\n\nMean distance from the mean"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#sps-502",
+    "href": "lectures/lecture02/lecture02.html#sps-502",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "SPS 502",
+    "text": "SPS 502\nData Visualization"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-datasaurus-dozen",
+    "href": "lectures/lecture02/lecture02.html#the-datasaurus-dozen",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Datasaurus Dozen",
+    "text": "The Datasaurus Dozen"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-summary-stats-are-virtually-the-same",
+    "href": "lectures/lecture02/lecture02.html#the-summary-stats-are-virtually-the-same",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The summary stats are virtually the SAME!!!",
+    "text": "The summary stats are virtually the SAME!!!"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#quote-by-alberto-cairo",
+    "href": "lectures/lecture02/lecture02.html#quote-by-alberto-cairo",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Quote by Alberto Cairo",
+    "text": "Quote by Alberto Cairo\n“never trust summary statistics alone; always visualize your data”\n– Alberto Cairo\nAuthor of The Truthful Art"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-best-stats-youve-ever-seen",
+    "href": "lectures/lecture02/lecture02.html#the-best-stats-youve-ever-seen",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Best Stats You’ve Ever Seen",
+    "text": "The Best Stats You’ve Ever Seen\nhttps://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#data-visualization-as-story-telling",
+    "href": "lectures/lecture02/lecture02.html#data-visualization-as-story-telling",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Data Visualization as Story Telling",
+    "text": "Data Visualization as Story Telling\n\nGraphs let us see patterns in our data\nSometimes graphs alone are sufficient for telling our story and drawing inferences from our data"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#john-snow",
+    "href": "lectures/lecture02/lecture02.html#john-snow",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "John Snow",
+    "text": "John Snow\n\n\n\n\n\n\nSoho, London 1854\nSevere cholera outbreak\nThousands fell ill and at least 600 died"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#cholera-outbreak-in-soho-london---1854",
+    "href": "lectures/lecture02/lecture02.html#cholera-outbreak-in-soho-london---1854",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Cholera Outbreak in Soho, London - 1854",
+    "text": "Cholera Outbreak in Soho, London - 1854\nSevere cholera outbreak\nThousands fell ill and at least 600 died\nSoho, London - 1854\n[Visual content - John_Snow.jpg image]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#cholera-and-miasma-theory",
+    "href": "lectures/lecture02/lecture02.html#cholera-and-miasma-theory",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Cholera and Miasma Theory",
+    "text": "Cholera and Miasma Theory"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#john-snows-investigation",
+    "href": "lectures/lecture02/lecture02.html#john-snows-investigation",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "John Snow’s Investigation",
+    "text": "John Snow’s Investigation\n\n\n\n\n\nSkeptical of miasma theory\nBelieved cholera outbreaks were related to contaminated water\nInvestigated the 1854 outbreak and began to suspect the Broad Street pump"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#john-snows-quote",
+    "href": "lectures/lecture02/lecture02.html#john-snows-quote",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "John Snow’s Quote",
+    "text": "John Snow’s Quote\n“Within 250 yards of the spot where Cambridge Street joins Broad Street there were upwards of 500 fatal attacks of cholera in 10 days… As soon as I became acquainted with the situation and extent of this irruption (sic) of cholera, I suspected some contamination of the water of the much-frequented street-pump in Broad Street … There were only ten deaths in houses situated decidedly nearer to another street-pump. In five of these cases the families of the deceased persons informed me that they always sent to the pump in Broad Street, as they preferred the water to that of the pumps which were nearer. In three other cases, the deceased were children who went to school near the pump in Broad Street.”"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#snows-cholera-map",
+    "href": "lectures/lecture02/lecture02.html#snows-cholera-map",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Snow’s Cholera Map",
+    "text": "Snow’s Cholera Map\n[Visual content - Snow-cholera-map-1.jpg image]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#broad-street-implications",
+    "href": "lectures/lecture02/lecture02.html#broad-street-implications",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Broad Street Implications",
+    "text": "Broad Street Implications\n\n\n\n\nBeginning of germ theory and beginning of the end for miasma theory\nMajor catalyst for modern epidemiology\nRead more in Steven Johnson’s book —&gt;"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#napoleons-1812-march-on-russia",
+    "href": "lectures/lecture02/lecture02.html#napoleons-1812-march-on-russia",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Napoleon’s 1812 March on Russia",
+    "text": "Napoleon’s 1812 March on Russia"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-grammar-of-graphics",
+    "href": "lectures/lecture02/lecture02.html#the-grammar-of-graphics",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Grammar of Graphics",
+    "text": "The Grammar of Graphics\n[Visual content only - no text content]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#definition-of-grammar",
+    "href": "lectures/lecture02/lecture02.html#definition-of-grammar",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Definition of Grammar",
+    "text": "Definition of Grammar\ngrammar: “the fundamental principles or rules of an art or science”"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#statistical-graphics-definition",
+    "href": "lectures/lecture02/lecture02.html#statistical-graphics-definition",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Statistical Graphics Definition",
+    "text": "Statistical Graphics Definition\nA statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects.\nThe components of grammar:"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#grammar-components",
+    "href": "lectures/lecture02/lecture02.html#grammar-components",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Grammar Components",
+    "text": "Grammar Components\ndata : information from the dataset we map.\ngeom : the geometric object in question (points, lines, bars).\naes : aesthetic attributes of the geometric object that we can perceive on a graphic (x/y position, color, shape, and size).\nfacet : breaks up a plot into small multiples corresponding to the levels of another variable\nposition : adjustments for barplots"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#napoleons-march-revisited",
+    "href": "lectures/lecture02/lecture02.html#napoleons-march-revisited",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Napoleon’s March Revisited",
+    "text": "Napoleon’s March Revisited\nNapoleon’s 1812 March on Russia\n[Visual content - Minard.png image]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#creating-minards-plot-in-r",
+    "href": "lectures/lecture02/lecture02.html#creating-minards-plot-in-r",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Creating Minard’s Plot in R",
+    "text": "Creating Minard’s Plot in R\n[Visual content only - no text content]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#r-code-for-1812-plot",
+    "href": "lectures/lecture02/lecture02.html#r-code-for-1812-plot",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "R Code for 1812 Plot",
+    "text": "R Code for 1812 Plot\n1812 in ggplot\nggplot(cities, aes(x = long, y = lat)) +\ngeom_path(lineend = \"round\",\naes(size = survivors, color = direction, group = group),\ndata=troops\n) +\ngeom_point() +\ngeom_text(aes(label = city), hjust=0, vjust=1, size=4) +\nscale_size(range = c(0.5, 17)) +\nscale_color_manual(values = c(\"grey50\",\"red\"))"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#minard-in-r---result",
+    "href": "lectures/lecture02/lecture02.html#minard-in-r---result",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Minard in R - Result",
+    "text": "Minard in R - Result\nNote: Dates and temperatures recorded for retreat only\nR code here: http://www.datavis.ca/gallery/re-minard.php"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-5-named-graphs-5ng",
+    "href": "lectures/lecture02/lecture02.html#the-5-named-graphs-5ng",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The 5 Named Graphs (5NG)",
+    "text": "The 5 Named Graphs (5NG)\n\nScatterplots\nLinegraphs\n\nHistograms\nBoxplots\nBarplots"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#scatterplot-example",
+    "href": "lectures/lecture02/lecture02.html#scatterplot-example",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Scatterplot Example",
+    "text": "Scatterplot Example\nArrival Delays vs Departure Delays for Envoy flights from NYC in 2023\n\nggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + \n  geom_point()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#linegraph-example",
+    "href": "lectures/lecture02/lecture02.html#linegraph-example",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Linegraph Example",
+    "text": "Linegraph Example\nHourly Windspeeds in Newark for January 1-15, 2023\n\nggplot(data = early_january_2023_weather, \n       mapping = aes(x = time_hour, y = wind_speed)) +\n  geom_line()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#histogram-example",
+    "href": "lectures/lecture02/lecture02.html#histogram-example",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Histogram Example",
+    "text": "Histogram Example\nHistogram of hourly wind speeds at three NYC airports\n\nggplot(data = weather, mapping = aes(x = wind_speed)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#boxplot-example",
+    "href": "lectures/lecture02/lecture02.html#boxplot-example",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Boxplot Example",
+    "text": "Boxplot Example\n\nggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#barplot-example",
+    "href": "lectures/lecture02/lecture02.html#barplot-example",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Barplot Example",
+    "text": "Barplot Example\nNumber of flights departing NYC in 2023 by airline using geom_bar\n\nggplot(data = flights, mapping = aes(x = carrier)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#caution",
+    "href": "lectures/lecture02/lecture02.html#caution",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Caution!",
+    "text": "Caution!\n[Visual content only - warning slide]"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#assignment",
+    "href": "lectures/lecture02/lecture02.html#assignment",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Assignment",
+    "text": "Assignment\nLab 2 on Canvas"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#john",
+    "href": "lectures/lecture02/lecture02.html#john",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "John",
+    "text": "John\n\n\n\nSkeptical of miasma theory\nBelieved cholera outbreaks were related to contaminated water\nInvestigated the 1854 outbreak and began to suspect the Broad Street pump"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#john-snow-1",
+    "href": "lectures/lecture02/lecture02.html#john-snow-1",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "John Snow",
+    "text": "John Snow\n\n\n\n\n\n\nSkeptical of miasma theory\nBelieved cholera outbreaks were related to contaminated water\nInvestigated the 1854 outbreak and began to suspect the Broad Street pump"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#setup",
+    "href": "lectures/lecture02/lecture02.html#setup",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Setup",
+    "text": "Setup\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(gridExtra)\n\n# Load the historical data\ntroops &lt;- read_csv(\"data/Minard.troops.csv\") |&gt; \n  select(longitude = long, latitude = lat, direction, survivors, group)\n\nminard_temps &lt;- read_csv(\"data/Minard.temp.csv\") |&gt; \n  uncount(days) |&gt; \n  mutate(day_index = 1:n())\n\ncities &lt;- read.table(\"data/cities.txt\",\n                     header = TRUE, stringsAsFactors = FALSE)"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-story-napoleons-1812-march",
+    "href": "lectures/lecture02/lecture02.html#the-story-napoleons-1812-march",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Story: Napoleon’s 1812 March",
+    "text": "The Story: Napoleon’s 1812 March\n\n\nTemperature During Retreat\n\n\n\n\n\n\n\n\n\n\nArmy Casualties"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#minards-original-visualization",
+    "href": "lectures/lecture02/lecture02.html#minards-original-visualization",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Minard’s Original Visualization",
+    "text": "Minard’s Original Visualization\n\nA masterpiece of data visualization showing multiple variables simultaneously"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-concept-mapping-data-to-aesthetics",
+    "href": "lectures/lecture02/lecture02.html#the-concept-mapping-data-to-aesthetics",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Concept: Mapping Data to Aesthetics",
+    "text": "The Concept: Mapping Data to Aesthetics\n\n\nWhat is an Aesthetic?\n\nVisual property of a graph\nPosition, shape, color, size, etc.\nHow we “see” the data\n\n\nWhat is Data?\n\nColumns in a dataset\nVariables we want to visualize\nThe information we’re communicating"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#our-dataset-troops",
+    "href": "lectures/lecture02/lecture02.html#our-dataset-troops",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Our Dataset: troops",
+    "text": "Our Dataset: troops\n\n\n\n\n\nlongitude\nlatitude\ndirection\nsurvivors\ngroup\n\n\n\n\n24.0\n54.9\nA\n340000\n1\n\n\n24.5\n55.0\nA\n340000\n1\n\n\n25.5\n54.5\nA\n340000\n1\n\n\n26.0\n54.7\nA\n320000\n1\n\n\n27.0\n54.8\nA\n300000\n1\n\n\n\n\n\nEach row represents a point along Napoleon’s march"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-mapping-process",
+    "href": "lectures/lecture02/lecture02.html#the-mapping-process",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Mapping Process",
+    "text": "The Mapping Process\nHere’s the table converted to markdown:\n\n\n\nData\nAesthetic\nGraphic/Geometry\n\n\n\n\nLongitude\nPosition (x-axis)\nPoint\n\n\nLatitude\nPosition (y-axis)\nPoint\n\n\nArmy size\nSize\nPath\n\n\nArmy direction\nColor\nPath\n\n\nDate\nPosition (x-axis)\nLine + text\n\n\nTemperature\nPosition (y-axis)\nLine + text"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-ggplot2-template",
+    "href": "lectures/lecture02/lecture02.html#the-ggplot2-template",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The ggplot2 Template",
+    "text": "The ggplot2 Template\n\nggplot(data = DATA) +\n  GEOM_FUNCTION(mapping = aes(AESTHETIC = VARIABLE,\n                              AESTHETIC = VARIABLE,\n                              ...))\n\n\nThree Essential Components:\n\nDATA: The dataset to visualize\nGEOM_FUNCTION: The type of plot (points, lines, bars, etc.)\nAESTHETIC MAPPINGS: Which variables map to which visual properties"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-1",
+    "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-1",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Building Our Visualization: Step 1",
+    "text": "Building Our Visualization: Step 1\nStart with the data and coordinate system:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude))\n\n\nWe have axes but no geometries yet!"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-2",
+    "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-2",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Building Our Visualization: Step 2",
+    "text": "Building Our Visualization: Step 2\nAdd a geometry layer with geom_path():\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude, group=group)) +\n  geom_path()\n\n\nNow we see the path, but it’s just a single line"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-3",
+    "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-3",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Building Our Visualization: Step 3",
+    "text": "Building Our Visualization: Step 3\nMap direction to color:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude, \n                     group = group,\n                     color = direction)) +\n  geom_path()\n\n\nAdvance and retreat are now distinguished!"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-final",
+    "href": "lectures/lecture02/lecture02.html#building-our-visualization-final",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Building Our Visualization: Final",
+    "text": "Building Our Visualization: Final\nMap survivors to line width:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude,\n                     group = group,\n                     color = direction,\n                     linewidth = survivors)) +\n  geom_path()\n\n\nThe width shows the devastating losses!"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#polishing-the-visualization",
+    "href": "lectures/lecture02/lecture02.html#polishing-the-visualization",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Polishing the Visualization",
+    "text": "Polishing the Visualization\n\nggplot() +\ngeom_path(data = troops,\n       mapping = aes(x = longitude, y = latitude,\n                     group = group,\n                     color = direction,\n                     linewidth = survivors),\n                     lineend = \"round\") + \n    geom_point(data = cities, aes(x = long, y = lat)) +\n  geom_text(data = cities, aes(x = long, y = lat, label = city), vjust = 1.5) +\n  scale_linewidth_continuous(range = c(0.5, 15),\n                             labels = label_comma()) +\n  scale_color_manual(values = c(\"A\" = \"tan\", \"R\" = \"black\")) +\n  scale_size(range = c(0.5, 15)) +\n  guides(color = FALSE, linewidth = FALSE) +\n  labs(title = \"Napoleon's 1812 March to Moscow\",\n       x = \"Longitude\", y = \"Latitude\",\n       color = \"Direction\", linewidth = \"Survivors\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#key-takeaways",
+    "href": "lectures/lecture02/lecture02.html#key-takeaways",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\n\nData visualization is about mapping: Connect data columns to visual properties\nBuild incrementally: Start simple, add layers\nEach aesthetic tells a story:\n\nPosition shows geography\nColor shows direction\nWidth shows army size\n\nThe grammar of graphics gives us a systematic approach:\n\nData + Aesthetics + Geometries = Visualization"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#your-turn",
+    "href": "lectures/lecture02/lecture02.html#your-turn",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Your Turn!",
+    "text": "Your Turn!\nExercise: Create a Simple Version\nUsing the troops dataset, create a plot that shows:\n\nJust the path (x and y only)\nAdd color for direction\nExperiment with different geometries (geom_point(), geom_line())\n\n\n# Start here:\nggplot(data = troops, \n       mapping = aes(x = ___, y = ___)) +\n  geom___()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#dataset-troops",
+    "href": "lectures/lecture02/lecture02.html#dataset-troops",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Dataset: troops",
+    "text": "Dataset: troops\n\n\n\n\n\nlongitude\nlatitude\ndirection\nsurvivors\n\n\n\n\n24.0\n54.9\nA\n340000\n\n\n24.5\n55.0\nA\n340000\n\n\n25.5\n54.5\nA\n340000\n\n\n26.0\n54.7\nA\n320000\n\n\n27.0\n54.8\nA\n300000\n\n\n\n\n\nEach row represents a point along Napoleon’s march"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#dataset-minard_temps",
+    "href": "lectures/lecture02/lecture02.html#dataset-minard_temps",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Dataset: minard_temps",
+    "text": "Dataset: minard_temps\n\n\n\n\n\n…1\nlong\ntemp\ndate\nday_index\n\n\n\n\n1\n37.6\n0\nOct18\n1\n\n\n1\n37.6\n0\nOct18\n2\n\n\n1\n37.6\n0\nOct18\n3\n\n\n1\n37.6\n0\nOct18\n4\n\n\n1\n37.6\n0\nOct18\n5\n\n\n\n\n\nEach row represents a point along Napoleon’s march"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#polishing-the-visualization-1",
+    "href": "lectures/lecture02/lecture02.html#polishing-the-visualization-1",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Polishing the Visualization",
+    "text": "Polishing the Visualization"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section",
+    "href": "lectures/lecture02/lecture02.html#section",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "“never trust summary statistics alone; always visualize your data”\n– Alberto Cairo\nAuthor of The Truthful Art"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-story",
+    "href": "lectures/lecture02/lecture02.html#the-story",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Story",
+    "text": "The Story\n\n\nTemperature During Retreat\n\n\n\n\n\n\n\n\n\n\nArmy Casualties"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section-2",
+    "href": "lectures/lecture02/lecture02.html#section-2",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "grammar: “the fundamental principles or rules of an art or science”"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section-3",
+    "href": "lectures/lecture02/lecture02.html#section-3",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "grammar: “the fundamental principles or rules of an art or science”"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section-4",
+    "href": "lectures/lecture02/lecture02.html#section-4",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "A statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects.\nThe components of grammar:"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#the-mapping-process-1",
+    "href": "lectures/lecture02/lecture02.html#the-mapping-process-1",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "The Mapping Process",
+    "text": "The Mapping Process\n\n\n\nData\naes()\ngeom\n\n\n\n\nLongitude\nx\ngeom_point()\n\n\nLatitude\ny\ngeom_point()\n\n\nArmy size\nsize\ngeom_path()\n\n\nArmy direction\ncolor\ngeom_path()\n\n\nDate\nx\ngeom_line() + geom_text()\n\n\nTemperature\ny\ngeom_line() + geom_text()"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#adding-the-temperature-visualization",
+    "href": "lectures/lecture02/lecture02.html#adding-the-temperature-visualization",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Adding the temperature visualization",
+    "text": "Adding the temperature visualization\n\nggplot(data = minard_temps, aes(x = long, y = temp)) +\n  geom_line() +\n  geom_text(aes(label = temp), vjust = 1.5)"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#combining-the-visualizations",
+    "href": "lectures/lecture02/lecture02.html#combining-the-visualizations",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Combining the visualizations",
+    "text": "Combining the visualizations"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#cleaning-it-up-a-bit",
+    "href": "lectures/lecture02/lecture02.html#cleaning-it-up-a-bit",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "Cleaning it up a bit",
+    "text": "Cleaning it up a bit"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section-1",
+    "href": "lectures/lecture02/lecture02.html#section-1",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "“Within 250 yards of the spot where Cambridge Street joins Broad Street there were upwards of 500 fatal attacks of cholera in 10 days… As soon as I became acquainted with the situation and extent of this irruption (sic) of cholera, I suspected some contamination of the water of the much-frequented street-pump in Broad Street … There were only ten deaths in houses situated decidedly nearer to another street-pump. In five of these cases the families of the deceased persons informed me that they always sent to the pump in Broad Street, as they preferred the water to that of the pumps which were nearer. In three other cases, the deceased were children who went to school near the pump in Broad Street.”"
+  },
+  {
+    "objectID": "lectures/lecture02/lecture02.html#section-5",
+    "href": "lectures/lecture02/lecture02.html#section-5",
+    "title": "Lecture 3 - Data Visualization",
+    "section": "",
+    "text": "What is Data?\n\nColumns in a dataset\nVariables we want to visualize\nThe information we’re communicating\n\n\nWhat is an Aesthetic?\n\nVisual property of a graph\nPosition, shape, color, size, etc.\nHow we “see” the data"
   }
 ]

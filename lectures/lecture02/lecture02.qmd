@@ -1,0 +1,532 @@
+---
+title: "Lecture 3 - Data Visualization"
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    code-fold: false
+    code-summary: "Show code"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## SPS 502
+
+Data Visualization
+
+## The Datasaurus Dozen
+
+![](images/DataDino.gif)
+
+## The summary stats are virtually the SAME!!!
+
+![](images/DinoSequential.gif)
+
+## 
+
+"never trust summary statistics alone; always visualize your data"
+
+– Alberto Cairo
+
+Author of The Truthful Art
+
+## The Best Stats You've Ever Seen
+
+<https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en>
+
+## Data Visualization as Story Telling
+
+-   Graphs let us see patterns in our data
+
+-   Sometimes graphs alone are sufficient for telling our story and drawing inferences from our data
+
+## John Snow
+
+:::::: columns
+::: {.column width="50%"}
+![](images/John_Snow.jpg)
+:::
+
+:::: {.column .flex .v-center width="50%"}
+::: incremental
+-   Soho, London 1854
+-   Severe cholera outbreak
+-   Thousands fell ill and at least 600 died
+:::
+::::
+::::::
+
+## Cholera and Miasma Theory
+
+![](images/Cholera_art-335.jpg)
+
+## John Snow
+
+:::::: columns
+::: {.column width="50%"}
+![](images/John_Snow.jpg)
+:::
+
+:::: {.column .flex .v-center width="50%"}
+::: incremental
+-   Skeptical of miasma theory
+-   Believed cholera outbreaks were related to contaminated water
+-   Investigated the 1854 outbreak and began to suspect the Broad Street pump
+:::
+::::
+::::::
+
+## 
+
+"Within 250 yards of the spot where Cambridge Street joins Broad Street there were upwards of 500 fatal attacks of cholera in 10 days… As soon as I became acquainted with the situation and extent of this irruption (sic) of cholera, I suspected some contamination of the water of the much-frequented street-pump in Broad Street … There were only ten deaths in houses situated decidedly nearer to another street-pump. In five of these cases the families of the deceased persons informed me that they always sent to the pump in Broad Street, as they preferred the water to that of the pumps which were nearer. In three other cases, the deceased were children who went to school near the pump in Broad Street."
+
+##  {background-image="images/Snow-cholera-map-1-406.jpg" background-size="cover" background-position="center"}
+
+## Broad Street Implications
+
+:::::: columns
+:::: {.column .flex .v-center width="50%"}
+::: incremental
+-   Beginning of germ theory and beginning of the end for miasma theory
+
+-   Major catalyst for modern epidemiology
+
+-   Read more in Steven Johnson's book —\>
+:::
+::::
+
+::: {.column width="50%"}
+![](images/ghostmap.png)
+:::
+::::::
+
+## Napoleon's 1812 March on Russia
+
+![](images/Minard-605.png)
+
+# The Grammar of Graphics
+
+## 
+
+grammar: "the fundamental principles or rules of an art or science"
+
+## 
+
+A statistical graphic is a `mapping` of data `variables` to `aes`thetic attributes of `geom`etric objects.
+
+The components of grammar:
+
+## Grammar Components
+
+**data** : information from the dataset we map.
+
+**geom** : the geometric object in question (points, lines, bars).
+
+**aes** : aesthetic attributes of the geometric object that we can perceive on a graphic (x/y position, color, shape, and size).
+
+**facet** : breaks up a plot into small multiples corresponding to the levels of another variable
+
+**position** : adjustments for barplots
+
+# Napoleon's 1812 March on Russia in `R`
+
+## Setup
+
+```{r}
+library(tidyverse)
+library(scales)
+library(gridExtra)
+
+# Load the historical data
+troops <- read_csv("data/Minard.troops.csv") |> 
+  select(longitude = long, latitude = lat, direction, survivors, group)
+
+minard_temps <- read_csv("data/Minard.temp.csv") |> 
+  uncount(days) |> 
+  mutate(day_index = 1:n())
+
+cities <- read.table("data/cities.txt",
+                     header = TRUE, stringsAsFactors = FALSE)
+```
+
+## The Story
+
+::::: columns
+::: {.column width="50%"}
+### Temperature During Retreat
+
+```{r}
+#| echo: false
+#| fig-height: 4
+ggplot(minard_temps, aes(x = day_index, y = temp)) +
+  geom_line(color = "#4472C4", linewidth = 2) + 
+  labs(x = "Days since retreat", y = "Temperature (°C)") +
+  theme_minimal(base_size = 14)
+```
+:::
+
+::: {.column width="50%"}
+### Army Casualties
+
+```{r}
+#| echo: false
+#| fig-height: 4
+minard_deaths <- tribble(
+  ~status, ~count,
+  "Died", 422000,
+  "Survived", 10000
+)
+
+ggplot(minard_deaths, aes(x = "", y = count, fill = status)) +
+  geom_col() + 
+  coord_polar(theta = "y") +
+  scale_fill_manual(values = c("Died" = "#FFC000", 
+                               "Survived" = "#4472C4")) +
+  labs(title = "Napoleon's Grande Armée") +
+  theme_void(base_size = 14) +
+  theme(legend.position = "bottom")
+```
+:::
+:::::
+
+## 
+
+::: {.column width="50%"}
+### What is Data?
+
+-   **Columns** in a dataset
+-   Variables we want to visualize
+-   The information we're communicating
+:::
+
+::: {.column width="50%"}
+### What is an Aesthetic?
+
+-   **Visual property** of a graph
+-   Position, shape, color, size, etc.
+-   How we "see" the data
+:::
+
+## Our Dataset: `troops`
+
+```{r}
+#| echo: false
+troops |> 
+  head(5) |> 
+  knitr::kable()
+```
+
+Each row represents a point along Napoleon's march
+
+## The Mapping Process
+
+Here's the table converted to markdown:
+
+| Data           | Aesthetic         | Graphic/Geometry |
+|----------------|-------------------|------------------|
+| Longitude      | Position (x-axis) | Point            |
+| Latitude       | Position (y-axis) | Point            |
+| Army size      | Size              | Path             |
+| Army direction | Color             | Path             |
+| Date           | Position (x-axis) | Line + text      |
+| Temperature    | Position (y-axis) | Line + text      |
+
+## The Mapping Process
+
+| Data           | `aes()` | `geom`                      |
+|----------------|---------|-----------------------------|
+| Longitude      | `x`     | `geom_point()`              |
+| Latitude       | `y`     | `geom_point()`              |
+| Army size      | `size`  | `geom_path()`               |
+| Army direction | `color` | `geom_path()`               |
+| Date           | `x`     | `geom_line() + geom_text()` |
+| Temperature    | `y`     | `geom_line() + geom_text()` |
+
+## The ggplot2 Template
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|1|2|3-4"
+ggplot(data = DATA) +
+  GEOM_FUNCTION(mapping = aes(AESTHETIC = VARIABLE,
+                              AESTHETIC = VARIABLE,
+                              ...))
+```
+
+. . .
+
+### Three Essential Components:
+
+1.  **DATA**: The dataset to visualize
+2.  **GEOM_FUNCTION**: The type of plot (points, lines, bars, etc.)
+3.  **AESTHETIC MAPPINGS**: Which variables map to which visual properties
+
+## Building Our Visualization: Step 1
+
+Start with the data and coordinate system:
+
+```{r}
+#| fig-height: 4
+ggplot(data = troops, 
+       mapping = aes(x = longitude, y = latitude))
+```
+
+We have axes but no geometries yet!
+
+## Building Our Visualization: Step 2
+
+Add a geometry layer with `geom_path()`:
+
+```{r}
+#| fig-height: 4
+ggplot(data = troops, 
+       mapping = aes(x = longitude, y = latitude, group=group)) +
+  geom_path()
+```
+
+Now we see the path, but it's just a single line
+
+## Building Our Visualization: Step 3
+
+Map `direction` to color:
+
+```{r}
+#| fig-height: 4
+ggplot(data = troops, 
+       mapping = aes(x = longitude, 
+                     y = latitude, 
+                     group = group,
+                     color = direction)) +
+  geom_path()
+```
+
+Advance and retreat are now distinguished!
+
+## Building Our Visualization: Final
+
+Map `survivors` to line width:
+
+```{r}
+#| fig-height: 5
+ggplot(data = troops, 
+       mapping = aes(x = longitude, 
+                     y = latitude,
+                     group = group,
+                     color = direction,
+                     linewidth = survivors)) +
+  geom_path()
+```
+
+The width shows the devastating losses!
+
+## Polishing the Visualization
+
+```{r}
+#| fig-height: 5
+ggplot() +
+geom_path(data = troops,
+       mapping = aes(x = longitude, y = latitude,
+                     group = group,
+                     color = direction,
+                     linewidth = survivors),
+                     lineend = "round") + 
+    geom_point(data = cities, aes(x = long, y = lat)) +
+  geom_text(data = cities, aes(x = long, y = lat, label = city), vjust = 1.5) +
+  scale_linewidth_continuous(range = c(0.5, 15),
+                             labels = label_comma()) +
+  scale_color_manual(values = c("A" = "tan", "R" = "black")) +
+  scale_size(range = c(0.5, 15)) +
+  guides(color = FALSE, linewidth = FALSE) +
+  labs(title = "Napoleon's 1812 March to Moscow",
+       x = "Longitude", y = "Latitude",
+       color = "Direction", linewidth = "Survivors") +
+  theme_minimal()
+```
+
+## Polishing the Visualization
+
+```{r}
+#| fig-height: 5
+#| echo: false
+
+ggplot() +
+geom_path(data = troops,
+       mapping = aes(x = longitude, y = latitude,
+                     group = group,
+                     color = direction,
+                     linewidth = survivors),
+                     lineend = "round") + 
+    geom_point(data = cities, aes(x = long, y = lat)) +
+  geom_text(data = cities, aes(x = long, y = lat, label = city), vjust = 1.5) +
+  scale_linewidth_continuous(range = c(0.5, 15),
+                             labels = label_comma()) +
+  scale_color_manual(values = c("A" = "tan", "R" = "black")) +
+  scale_size(range = c(0.5, 15)) +
+  guides(color = FALSE, linewidth = FALSE) +
+  labs(title = "Napoleon's 1812 March to Moscow",
+       x = "Longitude", y = "Latitude",
+       color = "Direction", linewidth = "Survivors") +
+  theme_minimal()
+```
+
+```{r}
+#| fig-height: 5
+#| echo: false
+
+march_map <- ggplot() +
+geom_path(data = troops,
+       mapping = aes(x = longitude, y = latitude,
+                     group = group,
+                     color = direction,
+                     linewidth = survivors),
+                     lineend = "round") + 
+    geom_point(data = cities, aes(x = long, y = lat)) +
+  geom_text(data = cities, aes(x = long, y = lat, label = city), vjust = 1.5) +
+  scale_linewidth_continuous(range = c(0.5, 15),
+                             labels = label_comma()) +
+  scale_color_manual(values = c("A" = "tan", "R" = "black")) +
+  scale_size(range = c(0.5, 15)) +
+  guides(color = FALSE, linewidth = FALSE) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        axis.text.x = element_blank(), axis.ticks = element_blank(),
+        panel.border = element_blank())
+```
+
+## Adding the temperature visualization
+
+```{r}
+#| fig-height: 5
+ggplot(data = minard_temps, aes(x = long, y = temp)) +
+  geom_line() +
+  geom_text(aes(label = temp), vjust = 1.5)
+```
+
+## Cleaning it up a bit
+
+```{r}
+#| fig-height: 5
+#| echo: false
+ggplot(data = minard_temps, aes(x = long, y = temp)) +
+  geom_line() +
+    labs(x = NULL, y = "° Celsius") +
+  scale_x_continuous(limits = ggplot_build(march_map)$layout$panel_ranges[[1]]$x.range) +
+  scale_y_continuous(position = "right") +
+  geom_text(aes(label = temp), vjust = 1.5) +
+   theme_void() +
+  theme(
+    axis.title.x = element_text(),
+    axis.title.y = element_text(),
+    panel.border = element_rect(color = "black", fill = NA, size = 1),  # Black border
+    panel.grid.major.y = element_line(color = "black", size = 0.5)      # Horizontal lines
+  )
+```
+
+```{r}
+#| fig-height: 5
+#| echo: false
+temp_map <- ggplot(data = minard_temps, aes(x = long, y = temp)) +
+  geom_line() +
+    labs(x = NULL, y = "° Celsius") +
+  scale_x_continuous(limits = ggplot_build(march_map)$layout$panel_ranges[[1]]$x.range) +
+  scale_y_continuous(position = "right") +
+  geom_text(aes(label = temp), vjust = 1.5) +
+   theme_void() +
+  theme(
+    axis.title.x = element_text(),
+    axis.title.y = element_text(),
+    panel.border = element_rect(color = "black", fill = NA, size = 1),  # Black border
+    panel.grid.major.y = element_line(color = "black", size = 0.5)      # Horizontal lines
+  )
+```
+
+## Combining the visualizations
+
+```{r}
+#| fig-height: 5
+#| echo: false
+library(patchwork)
+march_map / temp_map + plot_layout(heights = c(3, 1))
+```
+
+## Key Takeaways
+
+::: incremental
+1.  **Data visualization is about mapping**: Connect data columns to visual properties
+2.  **Build incrementally**: Start simple, add layers
+3.  **Each aesthetic tells a story**:
+    -   Position shows geography
+    -   Color shows direction
+    -   Width shows army size
+4.  **The grammar of graphics gives us a systematic approach**:
+    -   Data + Aesthetics + Geometries = Visualization
+:::
+
+## The 5 Named Graphs (5NG)
+
+-   Scatterplots
+-   Linegraphs\
+-   Histograms
+-   Boxplots
+-   Barplots
+
+## Scatterplot Example
+
+Arrival Delays vs Departure Delays for Envoy flights from NYC in 2023
+
+```{r}
+#| echo: false
+library(nycflights23)
+library(moderndive)
+library(tibble)
+```
+
+```{r}
+ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+```
+
+## Linegraph Example
+
+Hourly Windspeeds in Newark for January 1-15, 2023
+
+```{r}
+ggplot(data = early_january_2023_weather, 
+       mapping = aes(x = time_hour, y = wind_speed)) +
+  geom_line()
+```
+
+## Histogram Example
+
+Histogram of hourly wind speeds at three NYC airports
+
+```{r}
+ggplot(data = weather, mapping = aes(x = wind_speed)) +
+  geom_histogram()
+```
+
+## Boxplot Example
+
+```{r}
+ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
+  geom_boxplot()
+```
+
+## Barplot Example
+
+Number of flights departing NYC in 2023 by airline using geom_bar
+
+```{r}
+ggplot(data = flights, mapping = aes(x = carrier)) +
+  geom_bar()
+```
+
+## Assignment
+
+Lab 2 on Canvas
