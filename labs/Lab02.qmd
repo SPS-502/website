@@ -165,7 +165,7 @@ Why do we define the `color` and `fill` of the curves by mapping aesthetics of t
 
 And yet another way to visualize this relationship is using side-by-side box plots.
 
-```{r plastic_waste_per_cap-box}
+```{r plastic_waste_per_cap-box, eval=TRUE}
 ggplot(data = plastic_waste_no, 
        mapping = aes(x = continent, 
                      y = plastic_waste_per_cap)) +

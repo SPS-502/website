@@ -165,7 +165,7 @@
     "href": "labs/Lab02.html#exercise-3",
     "title": "\n            Lab 02 - Visualization\n        ",
     "section": "Exercise 3",
-    "text": "Exercise 3\nWhy do we define the color and fill of the curves by mapping aesthetics of the plot, but define the alpha level as a characteristic of the plotting geom?\n\n\nHint: you may need to go back and read about the alpha argument in ModernDive to answer this question.\n\nAnd yet another way to visualize this relationship is using side-by-side box plots.\n\nggplot(data = plastic_waste_no, \n       mapping = aes(x = continent, \n                     y = plastic_waste_per_cap)) +\n  geom_boxplot()"
+    "text": "Exercise 3\nWhy do we define the color and fill of the curves by mapping aesthetics of the plot, but define the alpha level as a characteristic of the plotting geom?\n\n\nHint: you may need to go back and read about the alpha argument in ModernDive to answer this question.\n\nAnd yet another way to visualize this relationship is using side-by-side box plots.\n\nggplot(data = plastic_waste_no, \n       mapping = aes(x = continent, \n                     y = plastic_waste_per_cap)) +\n  geom_boxplot()\n\nWarning: Removed 51 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
   },
   {
     "objectID": "labs/Lab02.html#exercise-4",
