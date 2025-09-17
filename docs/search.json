@@ -305,42 +305,42 @@
     "href": "labs/Lab03.html#exercise-2",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "Exercise 2",
-    "text": "Exercise 2\nTake a look at the variable descriptions by typing ?txhousing into the console. What is the listings variable in this data set?"
+    "text": "Exercise 2\nTake a look at the variable descriptions by typing ?txhousing into the console. What does the listings variable measure?"
   },
   {
     "objectID": "labs/Lab03.html#select",
     "href": "labs/Lab03.html#select",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "select",
-    "text": "select\nSometimes we want to pull out or extract just one or two columns of data. The following code will extract only the column in the data set for the variables sales and volume.\n\ntxhousing %&gt;% select(sales, volume)\n\nThe %&gt;% symbol is called the piping operator. Here, it takes the txhousing data frame and “pipes” or feeds it into the select function. You can think of the %&gt;% symbol as the word “then”.\nNote that we did not use an assignment operator &lt;- so we did not save these extracted, selected values. In the following code, we save the results, in a data frame ALSO called txhousing. By putting - in front of the date variable we tell R to select all except the date variable. Run the following code:\n\ntxhousing &lt;- txhousing %&gt;% select(-date)\n\nIf you look at txhousing in the data viewer, the date variable is no longer included."
+    "text": "select\nSometimes we want to pull out or extract just one or two columns of data. The following code will extract only the column in the data set for the variables sales and volume.\n\ntxhousing %&gt;% select(sales, volume)\n\nThe %&gt;% symbol is called the piping operator. Here, it takes the txhousing data frame and “pipes” or feeds it into the select function. You can think of the %&gt;% symbol as the word “then”.\nNote that we did not use an assignment operator &lt;- so we did not save these extracted, selected values. In the following code, we save the results, in a data frame ALSO called txhousing, which overwrites the original txhousing data frame. By putting - in front of the date variable we tell R to select all except the date variable. Run the following code:\n\n\nIf we wanted to save the original for some reason, we could call the new one something like txhousing_nodate. But in this case we will stick to txhousing.\n\ntxhousing &lt;- txhousing %&gt;% select(-date)\n\nIf you look at txhousing in the data viewer, the date variable is no longer included."
   },
   {
     "objectID": "labs/Lab03.html#filter",
     "href": "labs/Lab03.html#filter",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "filter",
-    "text": "filter\nThe filter function allows you to pull out just the rows (cases or observations) you want, based on some criteria in one of the columns.\nImagine for instance that we wanted to reduce the data set include data for only 2012, in Austin. This code chunk takes the txhousing data, then filters it to only include rows in which the year is 2012, and the city is Austin. The results are saved in a new data frame called austin_12 that shows up in the workspace.\n\naustin_12 &lt;- txhousing %&gt;% filter(year == 2012, city == \"Austin\")\n\n\nNote that we use == to identify the desired criteria.\n\nWhat if we wanted to restrict our data set to only years before 2004 and the City of Austin? Below we use the &lt; symbol to accomplish this. Note we did not SAVE these results in a new data frame…so no new data frame showed up in our Environment pane, but the results print out immediately below the code chunk.\n\ntxhousing %&gt;% filter(year &lt; 2004, city == \"Austin\")\n\nWhat if we wanted to use multiple cities? Below we use the | symbol to indicate that the city could be Austin OR Abilene. In this case, we saved these results as a new data frame called aust_ab that appears in your Environment pane.\n\naust_ab &lt;- txhousing %&gt;% filter(city == \"Austin\" | city == \"Abilene\")"
+    "text": "filter\nThe filter function allows you to pull out just the rows (cases or observations) you want, based on some criteria in one of the columns.\nImagine for instance that we wanted to reduce the data set to include data for only 2012, in Austin. This code chunk takes the txhousing data, then filters it to only include rows in which the year is 2012, and the city is Austin. The results are saved in a new data frame called austin_12 that shows up in the workspace.\n\naustin_12 &lt;- txhousing %&gt;% filter(year == 2012, city == \"Austin\")\n\n\nNote that we use == to identify the desired criteria.\n\nWhat if we wanted to restrict our data set to only years before 2004 and the City of Austin? Below we use the &lt; symbol to accomplish this. Note we did not SAVE these results in a new data frame…so no new data frame showed up in our Environment pane, but the results print out immediately below the code chunk.\n\ntxhousing %&gt;% filter(year &lt; 2004, city == \"Austin\")\n\nWhat if we wanted to use multiple cities? Below we use the | symbol to indicate that the city could be Austin OR Abilene. In this case, we saved these results as a new data frame called aust_ab that appears in your Environment pane.\n\naust_ab &lt;- txhousing %&gt;% filter(city == \"Austin\" | city == \"Abilene\")"
   },
   {
     "objectID": "labs/Lab03.html#mutate",
     "href": "labs/Lab03.html#mutate",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "mutate",
-    "text": "mutate\nThe mutate function can add new columns (variables) to a data frame. For instance, the following will add a new column to the data called vol_100k that expresses volume in units of $100000.\n\ntxhousing &lt;- txhousing %&gt;%\n  mutate(vol_100k = volume/100000)\n\nNote that we SAVED these results in new data frame called txhousing. This therefore overwrote the old txhousing data frame with a new version that contains this column. You can open the txhousing data frame in the viewer to confirm that it now contains this new column."
+    "text": "mutate\nThe mutate function can add new columns (variables) to a data frame. For instance, the following will add a new column to the data called vol_100k that expresses volume in units of $100,000.\n\ntxhousing &lt;- txhousing %&gt;%\n  mutate(vol_100k = volume/100000)\n\nNote that we SAVED these results in new data frame called txhousing. This therefore overwrote the old txhousing data frame with a new version that contains this column. You can open the txhousing data frame in the viewer to confirm that it now contains this new column."
   },
   {
     "objectID": "labs/Lab03.html#summarize",
     "href": "labs/Lab03.html#summarize",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "summarize",
-    "text": "summarize\nOne of the first tasks in data analysis is often to get descriptive statistics that help to understand the central tendency and variability in the data. The summarize() command can take a column of data, and reduce it to a summary statistic.\nFor instance, the code below uses the austin_12 data set made earlier to calculate the mean monthly number of sales in Austin in 2012.\n\naustin_12 %&gt;% summarize(x_bar_sales = mean(sales))\n\nThis code tells R to calculate the mean of the variable sales, and to save the results in a variable called x_bar_sales.\nYou can also calculate multiple summary statistics at once, and even for multiple variables. Below we also calculate a standard deviation sd() of sales, a minimum min() of the volume variable, a maximum max() of the volume variable, etc. The n() calculates sample size…or the number of rows/ cases in the data frame.\n\naustin_12 %&gt;% summarize(x_bar_sales = mean(sales), \n                        sd_sales = sd(sales), \n                        min_vol = min(volume), \n                        max_vol = max(volume), \n                        mdn_list = median(listings), \n                        iqr_list = IQR(listings),\n                        sample_size = n())\n\n# A tibble: 1 × 7\n  x_bar_sales sd_sales   min_vol   max_vol mdn_list iqr_list sample_size\n        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;\n1       2127.     501. 265821275 791281075     7925     949.          12\n\n\nNote that the names of the elements you calculate are user defined, like xbar_sales, min_vol, and mdn_list. You could customize these names as you like (but don’t use spaces in your names)."
+    "text": "summarize\nOne of the first tasks in data analysis is often to get descriptive statistics that help to understand the central tendency and variability in the data. The summarize() command can take a column of data, and reduce it to a summary statistic.\nFor instance, the code below uses the austin_12 data set made earlier to calculate the mean monthly number of sales in Austin in 2012.\n\naustin_12 %&gt;% summarize(x_bar_sales = mean(sales))\n\nThis code tells R to calculate the mean of the variable sales, and to save the results in a variable called x_bar_sales.\nYou can also calculate multiple summary statistics at once, and even for multiple variables. Below we also calculate a standard deviation sd() of sales, a minimum min() of the volume variable, a maximum max() of the volume variable, etc. The n() calculates sample size…or the number of rows/cases in the data frame.\n\naustin_12 %&gt;% summarize(x_bar_sales = mean(sales), \n                        sd_sales = sd(sales), \n                        min_vol = min(volume), \n                        max_vol = max(volume), \n                        mdn_list = median(listings), \n                        iqr_list = IQR(listings),\n                        sample_size = n())\n\n# A tibble: 1 × 7\n  x_bar_sales sd_sales   min_vol   max_vol mdn_list iqr_list sample_size\n        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;\n1       2127.     501. 265821275 791281075     7925     949.          12\n\n\nNote that the names of the elements you calculate are user defined, like xbar_sales, min_vol, and mdn_list. You could customize these names as you like (but don’t use spaces in your names)."
   },
   {
     "objectID": "labs/Lab03.html#arrange",
     "href": "labs/Lab03.html#arrange",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "arrange",
-    "text": "arrange\nYou just determined that the maximum volume of monthly sales in Austin in 2012 was a total of $791,281,075 ….but what if you wanted to know WHAT MONTH that occurred in? Copy paste, and run the following into a new code chunk:\n\naustin_12 %&gt;%\n  arrange(desc(volume))\n\nThis tells R to arrange the rows in the data set based on the volume column, and to do so in descending order. So the row with the $791,281,075 in sales is shown at the top! We can see that this volume occurred in the sixth month (June)."
+    "text": "arrange\nYou just determined that the maximum volume of monthly sales in Austin in 2012 was a total of $791,281,075 ….but what if you wanted to know WHAT MONTH that occurred in? Run the following code:\n\naustin_12 %&gt;%\n  arrange(desc(volume))\n\nThis tells R to arrange the rows in the data set based on the volume column, and to do so in descending order. So the row with the $791,281,075 in sales is shown at the top! We can see that this volume occurred in the sixth month (June)."
   },
   {
     "objectID": "labs/Lab03.html#group_by",
@@ -361,7 +361,7 @@
     "href": "labs/Lab03.html#exercise-4",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "Exercise 4",
-    "text": "Exercise 4\nMake a data set called dallas_sub that includes data only from the city of Dallas in 2012 & 2013."
+    "text": "Exercise 4\nMake a data frame called dallas_sub that includes data only from the city of Dallas in 2012 & 2013."
   },
   {
     "objectID": "labs/Lab03.html#exercise-5",
@@ -396,7 +396,7 @@
     "href": "labs/Lab03.html#exercise-8",
     "title": "\n            Lab 03 - Data Wrangling\n        ",
     "section": "Exercise 8",
-    "text": "Exercise 8\nRun the following code chunk. Study the code, and the output. Explain in your own words what this code chunk calculated.\n\ntxhousing %&gt;% \n  filter(year == 2012 | year == 2013, city == \"Dallas\") %&gt;%\n  mutate(prct_sold = sales/listings *100) %&gt;%\n  group_by(month) %&gt;%\n  summarize(mean_prct_sold = mean(prct_sold)) %&gt;% \n  arrange(desc(mean_prct_sold))"
+    "text": "Exercise 8\nRun the following code chunk. Study the code, and the output. Explain in your own words what this code chunk calculated.\n\ntxhousing %&gt;% \n  filter(year &gt; 2010, city == \"Austin\") %&gt;%\n  mutate(prct_sold = sales/listings *100) %&gt;%\n  group_by(month) %&gt;%\n  summarize(mean_prct_sold = mean(prct_sold)) %&gt;% \n  arrange(desc(mean_prct_sold))"
   },
   {
     "objectID": "labs/Lab03.html#exercise-9",
@@ -2452,21 +2452,21 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#sps-502",
     "href": "lectures/lecture02/lecture02.html#sps-502",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "SPS 502",
     "text": "SPS 502\nData Visualization"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-datasaurus-dozen",
     "href": "lectures/lecture02/lecture02.html#the-datasaurus-dozen",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The Datasaurus Dozen",
     "text": "The Datasaurus Dozen"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-summary-stats-are-virtually-the-same",
     "href": "lectures/lecture02/lecture02.html#the-summary-stats-are-virtually-the-same",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The summary stats are virtually the SAME!!!",
     "text": "The summary stats are virtually the SAME!!!"
   },
@@ -2480,21 +2480,21 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#the-best-stats-youve-ever-seen",
     "href": "lectures/lecture02/lecture02.html#the-best-stats-youve-ever-seen",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The Best Stats You’ve Ever Seen",
     "text": "The Best Stats You’ve Ever Seen\nhttps://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#data-visualization-as-story-telling",
     "href": "lectures/lecture02/lecture02.html#data-visualization-as-story-telling",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Data Visualization as Story Telling",
     "text": "Data Visualization as Story Telling\n\nGraphs let us see patterns in our data\nSometimes graphs alone are sufficient for telling our story and drawing inferences from our data"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#john-snow",
     "href": "lectures/lecture02/lecture02.html#john-snow",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "John Snow",
     "text": "John Snow\n\n\n\n\n\n\nSoho, London 1854\nSevere cholera outbreak\nThousands fell ill and at least 600 died"
   },
@@ -2508,7 +2508,7 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#cholera-and-miasma-theory",
     "href": "lectures/lecture02/lecture02.html#cholera-and-miasma-theory",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Cholera and Miasma Theory",
     "text": "Cholera and Miasma Theory"
   },
@@ -2536,14 +2536,14 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#broad-street-implications",
     "href": "lectures/lecture02/lecture02.html#broad-street-implications",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Broad Street Implications",
     "text": "Broad Street Implications\n\n\n\n\nBeginning of germ theory and beginning of the end for miasma theory\nMajor catalyst for modern epidemiology\nRead more in Steven Johnson’s book —&gt;"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#napoleons-1812-march-on-russia",
     "href": "lectures/lecture02/lecture02.html#napoleons-1812-march-on-russia",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Napoleon’s 1812 March on Russia",
     "text": "Napoleon’s 1812 March on Russia"
   },
@@ -2571,7 +2571,7 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#grammar-components",
     "href": "lectures/lecture02/lecture02.html#grammar-components",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Grammar Components",
     "text": "Grammar Components\ndata : information from the dataset we map.\ngeom : the geometric object in question (points, lines, bars).\naes : aesthetic attributes of the geometric object that we can perceive on a graphic (x/y position, color, shape, and size).\nfacet : breaks up a plot into small multiples corresponding to the levels of another variable\nposition : adjustments for barplots"
   },
@@ -2606,42 +2606,42 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#the-5-named-graphs-5ng",
     "href": "lectures/lecture02/lecture02.html#the-5-named-graphs-5ng",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The 5 Named Graphs (5NG)",
     "text": "The 5 Named Graphs (5NG)\n\nScatterplots\nLinegraphs\n\nHistograms\nBoxplots\nBarplots"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#scatterplot-example",
     "href": "lectures/lecture02/lecture02.html#scatterplot-example",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Scatterplot Example",
     "text": "Scatterplot Example\nArrival Delays vs Departure Delays for Envoy flights from NYC in 2023\n\nggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + \n  geom_point()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#linegraph-example",
     "href": "lectures/lecture02/lecture02.html#linegraph-example",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Linegraph Example",
     "text": "Linegraph Example\nHourly Windspeeds in Newark for January 1-15, 2023\n\nggplot(data = early_january_2023_weather, \n       mapping = aes(x = time_hour, y = wind_speed)) +\n  geom_line()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#histogram-example",
     "href": "lectures/lecture02/lecture02.html#histogram-example",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Histogram Example",
     "text": "Histogram Example\nHistogram of hourly wind speeds at three NYC airports\n\nggplot(data = weather, mapping = aes(x = wind_speed)) +\n  geom_histogram()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#boxplot-example",
     "href": "lectures/lecture02/lecture02.html#boxplot-example",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Boxplot Example",
     "text": "Boxplot Example\n\nggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +\n  geom_boxplot()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#barplot-example",
     "href": "lectures/lecture02/lecture02.html#barplot-example",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Barplot Example",
     "text": "Barplot Example\nNumber of flights departing NYC in 2023 by airline using geom_bar\n\nggplot(data = flights, mapping = aes(x = carrier)) +\n  geom_bar()"
   },
@@ -2655,7 +2655,7 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#assignment",
     "href": "lectures/lecture02/lecture02.html#assignment",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Assignment",
     "text": "Assignment\nLab 2 on Canvas"
   },
@@ -2669,14 +2669,14 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#john-snow-1",
     "href": "lectures/lecture02/lecture02.html#john-snow-1",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "John Snow",
     "text": "John Snow\n\n\n\n\n\n\nSkeptical of miasma theory\nBelieved cholera outbreaks were related to contaminated water\nInvestigated the 1854 outbreak and began to suspect the Broad Street pump"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#setup",
     "href": "lectures/lecture02/lecture02.html#setup",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Setup",
     "text": "Setup\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(gridExtra)\n\n# Load the historical data\ntroops &lt;- read_csv(\"data/Minard.troops.csv\") |&gt; \n  select(longitude = long, latitude = lat, direction, survivors, group)\n\nminard_temps &lt;- read_csv(\"data/Minard.temp.csv\") |&gt; \n  uncount(days) |&gt; \n  mutate(day_index = 1:n())\n\ncities &lt;- read.table(\"data/cities.txt\",\n                     header = TRUE, stringsAsFactors = FALSE)"
   },
@@ -2704,63 +2704,63 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#our-dataset-troops",
     "href": "lectures/lecture02/lecture02.html#our-dataset-troops",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Our Dataset: troops",
     "text": "Our Dataset: troops\n\n\n\n\n\nlongitude\nlatitude\ndirection\nsurvivors\ngroup\n\n\n\n\n24.0\n54.9\nA\n340000\n1\n\n\n24.5\n55.0\nA\n340000\n1\n\n\n25.5\n54.5\nA\n340000\n1\n\n\n26.0\n54.7\nA\n320000\n1\n\n\n27.0\n54.8\nA\n300000\n1\n\n\n\n\n\nEach row represents a point along Napoleon’s march"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-mapping-process",
     "href": "lectures/lecture02/lecture02.html#the-mapping-process",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The Mapping Process",
-    "text": "The Mapping Process\nHere’s the table converted to markdown:\n\n\n\nData\nAesthetic\nGraphic/Geometry\n\n\n\n\nLongitude\nPosition (x-axis)\nPoint\n\n\nLatitude\nPosition (y-axis)\nPoint\n\n\nArmy size\nSize\nPath\n\n\nArmy direction\nColor\nPath\n\n\nDate\nPosition (x-axis)\nLine + text\n\n\nTemperature\nPosition (y-axis)\nLine + text"
+    "text": "The Mapping Process\n\n\n\nData\nAesthetic\nGraphic/Geometry\n\n\n\n\nLongitude\nPosition (x-axis)\nPoint\n\n\nLatitude\nPosition (y-axis)\nPoint\n\n\nArmy size\nSize\nPath\n\n\nArmy direction\nColor\nPath\n\n\nDate\nPosition (x-axis)\nLine + text\n\n\nTemperature\nPosition (y-axis)\nLine + text"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-ggplot2-template",
     "href": "lectures/lecture02/lecture02.html#the-ggplot2-template",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The ggplot2 Template",
-    "text": "The ggplot2 Template\n\nggplot(data = DATA) +\n  GEOM_FUNCTION(mapping = aes(AESTHETIC = VARIABLE,\n                              AESTHETIC = VARIABLE,\n                              ...))\n\n\nThree Essential Components:\n\nDATA: The dataset to visualize\nGEOM_FUNCTION: The type of plot (points, lines, bars, etc.)\nAESTHETIC MAPPINGS: Which variables map to which visual properties"
+    "text": "The ggplot2 Template\n\nggplot(data = DATA) +\n  GEOM_FUNCTION(mapping = aes(AESTHETIC = VARIABLE,\n                              AESTHETIC = VARIABLE,\n                              ...))\n\n. . .\n\nThree Essential Components:\n\nDATA: The dataset to visualize\nGEOM_FUNCTION: The type of plot (points, lines, bars, etc.)\nAESTHETIC MAPPINGS: Which variables map to which visual properties"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-1",
     "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-1",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Building Our Visualization: Step 1",
-    "text": "Building Our Visualization: Step 1\nStart with the data and coordinate system:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude))\n\n\nWe have axes but no geometries yet!"
+    "text": "Building Our Visualization: Step 1\nStart with the data and coordinate system:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude))"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-2",
     "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-2",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Building Our Visualization: Step 2",
-    "text": "Building Our Visualization: Step 2\nAdd a geometry layer with geom_path():\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude, group=group)) +\n  geom_path()\n\n\nNow we see the path, but it’s just a single line"
+    "text": "Building Our Visualization: Step 2\nAdd a geometry layer with geom_path():\n\nggplot(data = troops, \n       mapping = aes(x = longitude, y = latitude, group=group)) +\n  geom_path()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-step-3",
     "href": "lectures/lecture02/lecture02.html#building-our-visualization-step-3",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Building Our Visualization: Step 3",
-    "text": "Building Our Visualization: Step 3\nMap direction to color:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude, \n                     group = group,\n                     color = direction)) +\n  geom_path()\n\n\nAdvance and retreat are now distinguished!"
+    "text": "Building Our Visualization: Step 3\nMap direction to color:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude, \n                     group = group,\n                     color = direction)) +\n  geom_path()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#building-our-visualization-final",
     "href": "lectures/lecture02/lecture02.html#building-our-visualization-final",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Building Our Visualization: Final",
-    "text": "Building Our Visualization: Final\nMap survivors to line width:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude,\n                     group = group,\n                     color = direction,\n                     linewidth = survivors)) +\n  geom_path()\n\n\nThe width shows the devastating losses!"
+    "text": "Building Our Visualization: Final\nMap survivors to line width:\n\nggplot(data = troops, \n       mapping = aes(x = longitude, \n                     y = latitude,\n                     group = group,\n                     color = direction,\n                     linewidth = survivors)) +\n  geom_path()\n\n\n\n\n\n\n\n\nThe width shows the devastating losses!"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#polishing-the-visualization",
     "href": "lectures/lecture02/lecture02.html#polishing-the-visualization",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Polishing the Visualization",
     "text": "Polishing the Visualization\n\nggplot() +\ngeom_path(data = troops,\n       mapping = aes(x = longitude, y = latitude,\n                     group = group,\n                     color = direction,\n                     linewidth = survivors),\n                     lineend = \"round\") + \n    geom_point(data = cities, aes(x = long, y = lat)) +\n  geom_text(data = cities, aes(x = long, y = lat, label = city), vjust = 1.5) +\n  scale_linewidth_continuous(range = c(0.5, 15),\n                             labels = label_comma()) +\n  scale_color_manual(values = c(\"A\" = \"tan\", \"R\" = \"black\")) +\n  scale_size(range = c(0.5, 15)) +\n  guides(color = FALSE, linewidth = FALSE) +\n  labs(title = \"Napoleon's 1812 March to Moscow\",\n       x = \"Longitude\", y = \"Latitude\",\n       color = \"Direction\", linewidth = \"Survivors\") +\n  theme_minimal()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#key-takeaways",
     "href": "lectures/lecture02/lecture02.html#key-takeaways",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Key Takeaways",
     "text": "Key Takeaways\n\n\nData visualization is about mapping: Connect data columns to visual properties\nBuild incrementally: Start simple, add layers\nEach aesthetic tells a story:\n\nPosition shows geography\nColor shows direction\nWidth shows army size\n\nThe grammar of graphics gives us a systematic approach:\n\nData + Aesthetics + Geometries = Visualization"
   },
@@ -2788,23 +2788,23 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#polishing-the-visualization-1",
     "href": "lectures/lecture02/lecture02.html#polishing-the-visualization-1",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Polishing the Visualization",
     "text": "Polishing the Visualization"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#section",
     "href": "lectures/lecture02/lecture02.html#section",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "",
     "text": "“never trust summary statistics alone; always visualize your data”\n– Alberto Cairo\nAuthor of The Truthful Art"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-story",
     "href": "lectures/lecture02/lecture02.html#the-story",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The Story",
-    "text": "The Story\n\n\nTemperature During Retreat\n\n\n\n\n\n\n\n\n\n\nArmy Casualties"
+    "text": "The Story\n\n\n\nTemperature During Retreat\n\n\n\n\n\n\n\n\n\n\n\n\nArmy Casualties"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#section-2",
@@ -2816,58 +2816,58 @@
   {
     "objectID": "lectures/lecture02/lecture02.html#section-3",
     "href": "lectures/lecture02/lecture02.html#section-3",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "",
     "text": "grammar: “the fundamental principles or rules of an art or science”"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#section-4",
     "href": "lectures/lecture02/lecture02.html#section-4",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "",
     "text": "A statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects.\nThe components of grammar:"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#the-mapping-process-1",
     "href": "lectures/lecture02/lecture02.html#the-mapping-process-1",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "The Mapping Process",
     "text": "The Mapping Process\n\n\n\nData\naes()\ngeom\n\n\n\n\nLongitude\nx\ngeom_point()\n\n\nLatitude\ny\ngeom_point()\n\n\nArmy size\nsize\ngeom_path()\n\n\nArmy direction\ncolor\ngeom_path()\n\n\nDate\nx\ngeom_line() + geom_text()\n\n\nTemperature\ny\ngeom_line() + geom_text()"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#adding-the-temperature-visualization",
     "href": "lectures/lecture02/lecture02.html#adding-the-temperature-visualization",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Adding the temperature visualization",
     "text": "Adding the temperature visualization\n\nggplot(data = minard_temps, aes(x = long, y = temp)) +\n  geom_line() +\n  geom_text(aes(label = temp), vjust = 1.5)"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#combining-the-visualizations",
     "href": "lectures/lecture02/lecture02.html#combining-the-visualizations",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Combining the visualizations",
     "text": "Combining the visualizations"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#cleaning-it-up-a-bit",
     "href": "lectures/lecture02/lecture02.html#cleaning-it-up-a-bit",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "Cleaning it up a bit",
     "text": "Cleaning it up a bit"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#section-1",
     "href": "lectures/lecture02/lecture02.html#section-1",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "",
     "text": "“Within 250 yards of the spot where Cambridge Street joins Broad Street there were upwards of 500 fatal attacks of cholera in 10 days… As soon as I became acquainted with the situation and extent of this irruption (sic) of cholera, I suspected some contamination of the water of the much-frequented street-pump in Broad Street … There were only ten deaths in houses situated decidedly nearer to another street-pump. In five of these cases the families of the deceased persons informed me that they always sent to the pump in Broad Street, as they preferred the water to that of the pumps which were nearer. In three other cases, the deceased were children who went to school near the pump in Broad Street.”"
   },
   {
     "objectID": "lectures/lecture02/lecture02.html#section-5",
     "href": "lectures/lecture02/lecture02.html#section-5",
-    "title": "Lecture 3 - Data Visualization",
+    "title": "\n            Data Visualization\n        ",
     "section": "",
-    "text": "What is Data?\n\nColumns in a dataset\nVariables we want to visualize\nThe information we’re communicating\n\n\nWhat is an Aesthetic?\n\nVisual property of a graph\nPosition, shape, color, size, etc.\nHow we “see” the data"
+    "text": "What is Data?\n\nColumns in a dataset\nVariables we want to visualize\nThe information we’re communicating\n\n\n\n\n\nWhat is an Aesthetic?\n\nVisual property of a graph\nPosition, shape, color, size, etc.\nHow we “see” the data"
   },
   {
     "objectID": "lectures/lecture03/lecture03.html#positive-skewed-distribution",

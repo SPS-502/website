@@ -57,7 +57,7 @@ RStudio does not like to knit documents that execute the `View()` command. So be
 
 ## Exercise 2
 
-Take a look at the variable descriptions by typing ?txhousing into the **console**. What is the `listings` variable in this data set?
+Take a look at the variable descriptions by typing ?txhousing into the **console**. What does the `listings` variable measure?
 
 ------------------------------------------------------------------------
 
@@ -73,7 +73,11 @@ txhousing %>% select(sales, volume)
 
 The `%>%` symbol is called the **piping** operator. Here, it takes the `txhousing` **data frame** and "pipes" or feeds it into the `select` function. You can think of the `%>%` symbol as the word "then".
 
-Note that we did not use an assignment operator `<-` so we did not save these extracted, selected values. In the following code, we **save** the results, in a data frame **ALSO** called txhousing. By putting - in front of the `date` variable we tell R to select all **except** the `date` variable. Run the following code:
+Note that we did not use an assignment operator `<-` so we did not save these extracted, selected values. In the following code, we **save** the results, in a data frame **ALSO** called txhousing, which overwrites the original txhousing data frame. By putting - in front of the `date` variable we tell R to select all **except** the `date` variable. Run the following code:
+
+::: column-margin
+ If we wanted to save the original for some reason, we could call the new one something like txhousing_nodate. But in this case we will stick to txhousing.
+:::
 
 ```{r }
 txhousing <- txhousing %>% select(-date)
@@ -85,7 +89,7 @@ If you look at txhousing in the data viewer, the `date` variable is no longer in
 
 The filter function allows you to pull out just the **rows** (cases or observations) you want, based on some criteria in **one of the columns**.
 
-Imagine for instance that we wanted to reduce the data set include data for only 2012, in Austin. This code chunk takes the txhousing data, then filters it to only include rows in which the year is 2012, **and** the city is Austin. The results are saved in a new data frame called `austin_12` that shows up in the **workspace**.
+Imagine for instance that we wanted to reduce the data set to include data for only 2012, in Austin. This code chunk takes the txhousing data, then filters it to only include rows in which the year is 2012, **and** the city is Austin. The results are saved in a new data frame called `austin_12` that shows up in the **workspace**.
 
 ```{r }
 austin_12 <- txhousing %>% filter(year == 2012, city == "Austin")
@@ -107,7 +111,7 @@ aust_ab <- txhousing %>% filter(city == "Austin" | city == "Abilene")
 
 ## mutate
 
-The mutate function can add new columns (variables) to a data frame. For instance, the following will add a new column to the data called `vol_100k` that expresses volume in units of \$100000.
+The mutate function can add new columns (variables) to a data frame. For instance, the following will add a new column to the data called `vol_100k` that expresses volume in units of \$100,000.
 
 ```{r}
 txhousing <- txhousing %>%
@@ -128,7 +132,7 @@ austin_12 %>% summarize(x_bar_sales = mean(sales))
 
 This code tells R to calculate the `mean` of the variable `sales`, and to save the results in a variable called `x_bar_sales`.
 
-You can also calculate multiple summary statistics at once, and even for multiple variables. Below we also calculate a standard deviation `sd()` of `sales`, a minimum `min()` of the `volume` variable, a maximum `max()` of the `volume` variable, etc. The `n()` calculates sample size...or the number of rows/ cases in the data frame.
+You can also calculate multiple summary statistics at once, and even for multiple variables. Below we also calculate a standard deviation `sd()` of `sales`, a minimum `min()` of the `volume` variable, a maximum `max()` of the `volume` variable, etc. The `n()` calculates sample size...or the number of rows/cases in the data frame.
 
 ```{r }
 austin_12 %>% summarize(x_bar_sales = mean(sales), 
@@ -144,7 +148,7 @@ Note that the names of the elements you calculate are user defined, like `xbar_s
 
 ## arrange
 
-You just determined that the maximum volume of monthly sales in Austin in 2012 was a total of \$791,281,075 ....but what if you wanted to know **WHAT MONTH** that occurred in? Copy paste, and run the following into a new code chunk:
+You just determined that the maximum volume of monthly sales in Austin in 2012 was a total of \$791,281,075 ....but what if you wanted to know **WHAT MONTH** that occurred in? Run the following code:
 
 ```{r eval = F}
 austin_12 %>%
@@ -181,7 +185,7 @@ Write a code chunk to remove the inventory variable. Save the results in a data 
 
 ## Exercise 4
 
-Make a data set called `dallas_sub` that includes data only from the city of Dallas in 2012 & 2013.
+Make a data frame called `dallas_sub` that includes data only from the city of Dallas in 2012 & 2013.
 
 ## Exercise 5
 
@@ -207,7 +211,7 @@ Run the following code chunk. Study the code, and the output. Explain in your ow
 
 ```{r eval = F}
 txhousing %>% 
-  filter(year == 2012 | year == 2013, city == "Dallas") %>%
+  filter(year > 2010, city == "Austin") %>%
   mutate(prct_sold = sales/listings *100) %>%
   group_by(month) %>%
   summarize(mean_prct_sold = mean(prct_sold)) %>% 
