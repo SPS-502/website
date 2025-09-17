@@ -1,5 +1,5 @@
 ---
-title: "Lecture 3 - Data Visualization"
+title: "Data Visualization"
 format:
   revealjs:
     theme: default
@@ -223,8 +223,6 @@ Each row represents a point along Napoleon's march
 
 ## The Mapping Process
 
-Here's the table converted to markdown:
-
 | Data           | Aesthetic         | Graphic/Geometry |
 |----------------|-------------------|------------------|
 | Longitude      | Position (x-axis) | Point            |
@@ -274,7 +272,6 @@ ggplot(data = troops,
        mapping = aes(x = longitude, y = latitude))
 ```
 
-We have axes but no geometries yet!
 
 ## Building Our Visualization: Step 2
 
@@ -287,7 +284,6 @@ ggplot(data = troops,
   geom_path()
 ```
 
-Now we see the path, but it's just a single line
 
 ## Building Our Visualization: Step 3
 
@@ -303,7 +299,7 @@ ggplot(data = troops,
   geom_path()
 ```
 
-Advance and retreat are now distinguished!
+
 
 ## Building Our Visualization: Final
 

@@ -60,7 +60,7 @@ ggplot(d, aes(Height)) +
   ylab("Density") + xlab("Height (Inches)")
 ```
 
-## Postive Skewed Distribution {auto-animate="true"}
+## Positive Skewed Distribution {auto-animate="true"}
 
 ```{r Central Tendency (Postive Skewed Distribution), fig.width = 10, fig.height = 5}
 set.seed(1)

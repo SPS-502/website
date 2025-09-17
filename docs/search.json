@@ -2868,5 +2868,12 @@
     "title": "Lecture 3 - Data Visualization",
     "section": "",
     "text": "What is Data?\n\nColumns in a dataset\nVariables we want to visualize\nThe information we’re communicating\n\n\nWhat is an Aesthetic?\n\nVisual property of a graph\nPosition, shape, color, size, etc.\nHow we “see” the data"
+  },
+  {
+    "objectID": "lectures/lecture03/lecture03.html#positive-skewed-distribution",
+    "href": "lectures/lecture03/lecture03.html#positive-skewed-distribution",
+    "title": "Data Wrangling",
+    "section": "Positive Skewed Distribution",
+    "text": "Positive Skewed Distribution"
   }
 ]
