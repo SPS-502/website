@@ -1,6 +1,6 @@
 ---
 title: "SPS 502 - Homework 1"
-subtitle: "Due by 11:59 p.m., Friday, September 29"
+subtitle: "Due by 11:59 p.m., Sunday, September 28"
 toc: true
 editor: source
 execute: 
@@ -13,7 +13,7 @@ knitr::include_graphics("img/hw01header.jpeg")
 
 # Introduction
 
-Welcome to your first homework assignment! We're going to use local data to analyze a problem we discussed in our very first class: traffic accidents. You'll use a variety of tools and techniques to analyze the data and generate visualizations and summary statistics that may help us better understand car accidents in Idaho.
+Welcome to your first homework assignment! We're going to use local data to analyze traffic accidents. You'll use a variety of tools and techniques to analyze the data and generate visualizations and summary statistics that may help us better understand car accidents in Idaho.
 
 ## Logistics and tips for success
 
@@ -27,7 +27,7 @@ Some questions will direct you to write code, while others will direct you to wr
 Copying and editing code from other answers or examples is a great way to both save time and learn. If you copy code over and something isn't working, look carefully at the edits you made to see whether you missed something in the copying/pasting process. Also, be sure you've edited ALL the variable/object names appropriately so you're accomplishing what the question is asking you to do. You should also make sure that you're typing the variable and object names EXACTLY as they appear in the dataset or environment pane (spelling and case must match exactly).
 
 ### If you're stuck
-If you get stuck, don't panic! Before you ask for help, give yourself a few minutes to figure it out. Search ModernDive, look at your previous labs, and google your problem with "tidyverse". Also, step away from your computer for a few minutes if you need a break. Finally (and this doesn't have to be the last step), ask for help on [Slack!](https://sps502f23.slack.com)
+If you get stuck, don't panic! Before you ask for help, give yourself a few minutes to figure it out. Search ModernDive, look at your previous labs, and google your problem with "tidyverse". Also, step away from your computer for a few minutes if you need a break. Finally (and this doesn't have to be the last step), ask for help on [Slack!](https://sps502-fall25.slack.com)
 
 # Setup
 
@@ -160,7 +160,7 @@ ggplot(data = accidents_per_year,
 
 ### Question 6
 
-6.  Which is the most dangerous month? Let's create a new dataframe that groups accidents by month then create a bar graph `geom_col()` to visualize the data. Try writing the code yourself this time.
+6.  Which is the most dangerous month? Let's create a new dataframe that groups accidents by month then create a line graph `geom_line()` to visualize the data. Try writing the code yourself this time. Add `group = 1` in your `aes()` to connect all points (this is needed when x is categorical, which `Month` is in this case)
 
 ## Accidents by time of day
 
@@ -200,7 +200,7 @@ accidents_by_county
 
 The dataset has information on whether accidents are fatal recorded in the variable, `Number_Of_Fatalities`. Let's focus on those and see if the trends are any different.
 
-There are a number of ways to do this, but let's keep it simple for now and use the subset function to create a new dataframe which only includes fatal accidents (i.e. observations where number of fatalities is greater than zero).
+There are a number of ways to do this (e.g., filter), but let's try something different and use the subset function to create a new dataframe which only includes fatal accidents (i.e. observations where number of fatalities is greater than zero).
 
 ```{r fatal-subset, results='hide'}
 idaho_fatal_crashes <- subset(idaho_crashes_clean, subset = Number_Of_Fatalities > 0)
@@ -216,14 +216,21 @@ Alright. A much smaller dataset. Let's dig in a bit.
 
 First, let's see if the most dangerous counties are also the deadliest. You'll need to write this code yourself.
 
+::: column-margin
+**Hint:** The code will be very, very similar to the code in Question 8 (in codeblock `count-county`) and the code in Question 5 (in codeblock `count-year-viz`). You will just need to figure out which inputs to replace so that you're using the right data.
+:::
+
 9a. Create a new dataframe that counts the number of fatal crashes per county and print the result.
 
 9b. Next, create a visualization showing fatal crashes by county. Enter your code in the codeblocks provided in the RMarkdown file.
 
 9c. What are the similarities and differences between this and the original county list? Type your answer in the RMarkdown file.
 
+
+
 ::: column-margin
-**Hint:** The code will be very, very similar to the code in Question 8 (in codeblock `count-county`) and the code in Question 5 (in codeblock `count-year-viz`). You will just need to figure out which inputs to replace so that you're using the right data.
+**Hint:** If you don't like the way they labels looks in your visualization, you have a couple of options. For both you'll need to add a `+` at the end of your `geom_---()` line followed by one of the following on a new line:
+`theme(axis.text.x = element_text(angle = 45, hjust = 1))` or `coord_flip()`
 :::
 
 ### Question 10
@@ -232,7 +239,7 @@ Now let's look at fatal accidents by month.
 
 10a. Create a new dataframe counting fatal accidents by month.
 
-10b. Next, create a linegraph to visualize the data.
+10b. Next, create a visualization.
 
 Based on your tables and visualizations, how do *fatal* accidents by month differ from *total* accidents by month? What might explain the differences? Provide your code and your written answer in your RMarkdown file.
 

@@ -111,9 +111,7 @@ Okay, let's explore a couple of relationships in the data. We have data for gdp 
 
 What do you observe about the relationship between these variables?
 
-# Exercise 8 (on your own at home!)
 
-Think of another visualization independently on your own, write the code, run it, and describe what you've done!
 
 # Submission
 
