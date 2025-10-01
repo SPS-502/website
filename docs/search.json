@@ -1047,35 +1047,35 @@
     "href": "lectures/lecture05/lecture05.html#aesthetics-options",
     "title": "Data Visualization II",
     "section": "Aesthetics options",
-    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are\n\ncolor\nshape\nsize\nalpha (transparency)"
+    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are\n\nx\ny\ncolor\nshape\nsize\nalpha (transparency)"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#color",
     "href": "lectures/lecture05/lecture05.html#color",
     "title": "Data Visualization II",
     "section": "Color",
-    "text": "Color\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. Candidate (2020)\")"
+    "text": "Color\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. \\nCandidate (2020)\")"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#shape",
     "href": "lectures/lecture05/lecture05.html#shape",
     "title": "Data Visualization II",
     "section": "Shape",
-    "text": "Shape\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     shape = win_candidate)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       shape = \"Winning Pres. Candidate (2020)\")"
+    "text": "Shape\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     shape = win_candidate)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       shape = \"Winning Pres. \\nCandidate (2020)\")"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#alpha",
     "href": "lectures/lecture05/lecture05.html#alpha",
     "title": "Data Visualization II",
     "section": "Alpha",
-    "text": "Alpha\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate,\n                     size = total_populationE,\n                     alpha = pct_democrat_votes)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. Candidate (2020)\")"
+    "text": "Alpha\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate,\n                     size = total_populationE,\n                     alpha = pct_democrat_votes)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. \\nCandidate (2020)\")"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#size",
     "href": "lectures/lecture05/lecture05.html#size",
     "title": "Data Visualization II",
     "section": "Size",
-    "text": "Size\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate,\n                     size = total_populationM)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. Candidate (2020)\")"
+    "text": "Size\n\n\nggplot(data = idaho_county_merged, \n       mapping = aes(x = pct_collegeE, y = median_incomeE,\n                     color = win_candidate,\n                     size = total_populationE)) +\n  geom_point() +\n  labs(title = \"Education and Median Income\",\n       subtitle = \"Linear relationship between education and income\",\n       x = \"Pct Adults w/ Bachelor's Degree or Higher\", \n       y = \"Median Income\",\n       color = \"Winning Pres. \\nCandidate (2020)\")"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#extra-stuff-pulling-census-data-with-tidycensus",
@@ -1089,14 +1089,14 @@
     "href": "lectures/lecture05/lecture05.html#extra-stuff-visualizing-census-data-with-tidycensus",
     "title": "Data Visualization II",
     "section": "Extra Stuff: Visualizing Census Data with tidycensus",
-    "text": "Extra Stuff: Visualizing Census Data with tidycensus"
+    "text": "Extra Stuff: Visualizing Census Data with tidycensus\n\n\nggplot(data = id_education, aes(fill = estimate)) + \n  geom_sf() + \n  scale_fill_distiller(direction = 1) + \n  labs(title = \"  Educational Attainment by County\",\n       caption = \"Data source: 2020 5-year ACS, US Census Bureau\",\n       fill = \"ACS estimate\") + \n  theme_void()"
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#grammar-of-graphics",
     "href": "lectures/lecture05/lecture05.html#grammar-of-graphics",
     "title": "Data Visualization II",
     "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic\nA statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects. # ggplot Review"
+    "text": "Grammar of Graphics\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic\nA statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects."
   },
   {
     "objectID": "lectures/lecture05/lecture05.html#anatomy-of-a-ggplot",

@@ -16,7 +16,8 @@ format:
 
 - A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
 - A statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects.
-# ggplot Review
+
+# `ggplot` Review
 
 ## Anatomy of a ggplot
 - `ggplot()` is the main function in ggplot2
@@ -373,16 +374,18 @@ ggplot(idaho_county_merged,
 
 Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
 
+- `x`
+- `y`
 - `color`
 - `shape`
 - `size`
 - `alpha` (transparency)
 
 ## Color
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 ```{r idaho-color, fig.show = "hide", warning = FALSE, echo = TRUE}
-#| code-line-numbers: 3
+#| code-line-numbers: "|3"
 ggplot(data = idaho_county_merged, 
        mapping = aes(x = pct_collegeE, y = median_incomeE,
                      color = win_candidate)) +
@@ -391,23 +394,23 @@ ggplot(data = idaho_county_merged,
        subtitle = "Linear relationship between education and income",
        x = "Pct Adults w/ Bachelor's Degree or Higher", 
        y = "Median Income",
-       color = "Winning Pres. Candidate (2020)")
+       color = "Winning Pres. \nCandidate (2020)")
 ```
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
-```{r ref.label = "idaho-color", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```{r ref.label = "idaho-color", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
 
 :::
 
 ## Shape
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 ```{r idaho-shape, fig.show = "hide", warning = FALSE, echo = TRUE}
-#| code-line-numbers: 3
+#| code-line-numbers: "3"
 ggplot(data = idaho_county_merged, 
        mapping = aes(x = pct_collegeE, y = median_incomeE,
                      shape = win_candidate)) +
@@ -416,24 +419,24 @@ ggplot(data = idaho_county_merged,
        subtitle = "Linear relationship between education and income",
        x = "Pct Adults w/ Bachelor's Degree or Higher", 
        y = "Median Income",
-       shape = "Winning Pres. Candidate (2020)")
+       shape = "Winning Pres. \nCandidate (2020)")
 ```
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
-```{r ref.label = "idaho-shape", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```{r ref.label = "idaho-shape", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
 
 :::
 
 
 ## Alpha
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 ```{r idaho-alpha, fig.show = "hide", warning = FALSE, echo = TRUE}
-#| code-line-numbers: 5
+#| code-line-numbers: "5"
 ggplot(data = idaho_county_merged, 
        mapping = aes(x = pct_collegeE, y = median_incomeE,
                      color = win_candidate,
@@ -444,41 +447,41 @@ ggplot(data = idaho_county_merged,
        subtitle = "Linear relationship between education and income",
        x = "Pct Adults w/ Bachelor's Degree or Higher", 
        y = "Median Income",
-       color = "Winning Pres. Candidate (2020)")
+       color = "Winning Pres. \nCandidate (2020)")
 ```
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
-```{r ref.label = "idaho-alpha", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```{r ref.label = "idaho-alpha", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
 
 :::
 
 
 ## Size
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 ```{r idaho-size, fig.show = "hide", warning = FALSE, echo = TRUE}
-#| code-line-numbers: 4
+#| code-line-numbers: "4"
 ggplot(data = idaho_county_merged, 
        mapping = aes(x = pct_collegeE, y = median_incomeE,
                      color = win_candidate,
-                     size = total_populationM)) +
+                     size = total_populationE)) +
   geom_point() +
   labs(title = "Education and Median Income",
        subtitle = "Linear relationship between education and income",
        x = "Pct Adults w/ Bachelor's Degree or Higher", 
        y = "Median Income",
-       color = "Winning Pres. Candidate (2020)")
+       color = "Winning Pres. \nCandidate (2020)")
 ```
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
-```{r ref.label = "idaho-size", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```{r ref.label = "idaho-size", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
 
 :::
@@ -500,7 +503,8 @@ id_education <- get_acs(
 
 
 ## Extra Stuff: Visualizing Census Data with `tidycensus`
-```{r}
+::: {.column width="60%"}
+```{r idaho-ed, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = id_education, aes(fill = estimate)) + 
   geom_sf() + 
   scale_fill_distiller(direction = 1) + 
@@ -511,4 +515,11 @@ ggplot(data = id_education, aes(fill = estimate)) +
 ```
 
 
+:::
 
+::: {.column width="40%"}
+
+```{r ref.label = "idaho-ed", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 4}
+```
+
+:::
