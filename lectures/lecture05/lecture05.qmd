@@ -9,22 +9,42 @@ format:
     width: 1600
 ---
 
+# Inspiration
 
-# Data Visualization Review
+## 
+
+{{< video https://www.youtube.com/watch?v=AdSZJzb-aX8 width="100%" height="100%">}}
+
+# Principles
+
+## 
+
+![](images/clipboard-1026078641.png)
+
+<small>Tufte 2001 (p. 51)</small>
+
+## Time-Space
+
+![](images/clipboard-639045667.png)
+
+<small>The air pollution display is a *small multiple*. The same graphical design structure is repeated for each of the twelve slices or multi-ples. Small multiples are economical: once viewers understand the design of one slice, they have immediate access to the data in all the other slices. Thus, as the eye moves from one slice to the next, the constancy of the design allows the viewer to focus on changes in the data rather than on changes in graphical design.\<`/small>`{=html}
+
+# Review
 
 ## Grammar of Graphics
 
-- A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
-- A statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects.
+-   A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+-   A statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects.
 
 # `ggplot` Review
 
 ## Anatomy of a ggplot
-- `ggplot()` is the main function in ggplot2
 
-- Plots are constructed in layers
+-   `ggplot()` is the main function in ggplot2
 
-- Structure of the code for plots can be summarized as
+-   Plots are constructed in layers
+
+-   Structure of the code for plots can be summarized as
 
 ```{r eval=FALSE, echo=TRUE}
 
@@ -39,7 +59,7 @@ other options
 
 ```
 
-- For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+-   For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 
 # Application: County Demographics and Voting Data
 
@@ -49,9 +69,6 @@ library(tidycensus)
 census_api_key("73889d62141017dde93defc72c78ed83b64b253b")
 library(dataverse)
 ```
-
-
-
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 id_wide <- get_acs(
@@ -67,12 +84,9 @@ id_wide <- get_acs(
 )
 ```
 
-
 ```{r}
 idaho_voting_long <- read_csv("data/idaho_voting_2020.csv")
 ```
-
-
 
 ```{r}
 idaho_voting_wide <- idaho_voting_long %>% 
@@ -100,9 +114,8 @@ idaho_county_merged <- id_wide %>%
   left_join(idaho_voting_wide, by = "county_fips")
 ```
 
-
-
 ## Data: Idaho County Demographics and 2020 Voting
+
 Data on 2020 Presidential election results, income, age, education, total population, and median home value.
 
 ```{r, echo=TRUE}
@@ -123,12 +136,9 @@ ggplot(data = idaho_county_merged,
        caption = "Source:Education and income data from U.S. Census Bureau. \n Voting data from the Harvard Dataverse")
 ```
 
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 **Start with the `idaho_county_merged` data frame**
-
 
 ```{r}
 #| echo: fenced
@@ -137,9 +147,7 @@ ggplot(data = idaho_county_merged,
 ggplot(data = idaho_county_merged)
 ```
 
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, **map college attainment to the x-axis**
 
@@ -151,13 +159,9 @@ ggplot(data = idaho_county_merged,
        mapping = aes(x = pct_collegeE))
 ```
 
-
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and **map median income to the y-axis**
-
 
 ```{r}
 #| echo: fenced
@@ -168,14 +172,9 @@ ggplot(data = idaho_county_merged,
                      y = median_incomeE))
 ```
 
-
-
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. **Represent each observation with a point**
-
 
 ```{r}
 #| echo: fenced
@@ -187,12 +186,9 @@ ggplot(data = idaho_county_merged,
   geom_point()
 ```
 
+## Coding Out Loud
 
-
-## Coding Out Loud 
-
-
-Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point **and map election winner to the color of each point**. 
+Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point **and map election winner to the color of each point**.
 
 ```{r}
 #| echo: fenced
@@ -205,11 +201,9 @@ ggplot(data = idaho_county_merged,
   geom_point()
 ```
 
+## Coding Out Loud
 
-## Coding Out Loud 
-
-
-Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. **Title the plot "Education and Median Income".** 
+Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. **Title the plot "Education and Median Income".**
 
 ```{r}
 #| echo: fenced
@@ -222,9 +216,7 @@ ggplot(data = idaho_county_merged,
   labs(title = "Education and Median Income")
 ```
 
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. Title the plot "Education and Median Income". **Add the subtitle, "Linear relationship between education and income"**
 
@@ -240,9 +232,7 @@ ggplot(data = idaho_county_merged,
        subtitle = "Linear relationship between education and income")
 ```
 
-
-## Coding Out Loud 
-
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. Title the plot "Education and Median Income". Add the subtitle, "Linear relationship between education and income". **Label the x and y axes "Pct Adults w/ Bachelor's Degree or Higher" and "Median Income", respectively**
 
@@ -260,10 +250,9 @@ ggplot(data = idaho_county_merged,
        y = "Median Income")
 ```
 
-## Coding Out Loud 
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. Title the plot "Education and Median Income". Add the subtitle, "Linear relationship between education and income". Label the x and y axes "Pct Adults w/ Bachelor's Degree or Higher" and "Median Income", respectively, **label the legend "Winning Pres. Candidate (2020)"**
-
 
 ```{r}
 #| echo: fenced
@@ -280,8 +269,7 @@ ggplot(data = idaho_county_merged,
        color = "Winning Pres. Candidate (2020)")
 ```
 
-
-## Coding Out Loud 
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. Title the plot "Education and Median Income". Add the subtitle, "Linear relationship between education and income". Label the x and y axes "Pct Adults w/ Bachelor's Degree or Higher" and "Median Income", respectively, label the legend "Winning Pres. Candidate (2020)", **and add a caption for the data source.**
 
@@ -301,7 +289,7 @@ ggplot(data = idaho_county_merged,
        caption = "Source:Education and income data from U.S. Census Bureau. \n Voting data from the Harvard Dataverse")
 ```
 
-## Coding Out Loud 
+## Coding Out Loud
 
 Start with the `idaho_county_merged` data frame, map college attainment to the x-axis and map median income to the y-axis. Represent each observation with a point and map election winner to the color of each point. Title the plot "Education and Median Income". Add the subtitle, "Linear relationship between education and income". Label the x and y axes "Pct Adults w/ Bachelor's Degree or Higher" and "Median Income", respectively, label the legend "Winning Pres. Candidate (2020)", and add a caption for the data source. **Oh! AND fix the candidate name colors with one more layer of code for `ggplot`**
 
@@ -322,13 +310,11 @@ ggplot(data = idaho_county_merged,
  scale_color_manual(values = c("blue","red")) 
 ```
 
-
 ## Argument names
 
-> You can omit the names of first two arguments when building plots with `ggplot()`. 
+> You can omit the names of first two arguments when building plots with `ggplot()`.
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 ```{r idaho-10, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = idaho_county_merged, 
@@ -345,7 +331,6 @@ ggplot(data = idaho_county_merged,
 ```
 :::
 
-
 ::: {.column width="50%"}
 ```{r idaho-11, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(idaho_county_merged, 
@@ -361,29 +346,24 @@ ggplot(idaho_county_merged,
  scale_color_manual(values = c("blue","red")) 
 ```
 :::
-
-::::
-
-
-
+:::::
 
 # Aesthetics
-
 
 ## Aesthetics options
 
 Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
 
-- `x`
-- `y`
-- `color`
-- `shape`
-- `size`
-- `alpha` (transparency)
+-   `x`
+-   `y`
+-   `color`
+-   `shape`
+-   `size`
+-   `alpha` (transparency)
 
 ## Color
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r idaho-color, fig.show = "hide", warning = FALSE, echo = TRUE}
 #| code-line-numbers: "|3"
 ggplot(data = idaho_county_merged, 
@@ -396,19 +376,16 @@ ggplot(data = idaho_county_merged,
        y = "Median Income",
        color = "Winning Pres. \nCandidate (2020)")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 ```{r ref.label = "idaho-color", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
-
 :::
 
 ## Shape
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r idaho-shape, fig.show = "hide", warning = FALSE, echo = TRUE}
 #| code-line-numbers: "3"
 ggplot(data = idaho_county_merged, 
@@ -421,20 +398,16 @@ ggplot(data = idaho_county_merged,
        y = "Median Income",
        shape = "Winning Pres. \nCandidate (2020)")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 ```{r ref.label = "idaho-shape", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
-
 :::
 
-
 ## Alpha
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r idaho-alpha, fig.show = "hide", warning = FALSE, echo = TRUE}
 #| code-line-numbers: "5"
 ggplot(data = idaho_county_merged, 
@@ -449,20 +422,16 @@ ggplot(data = idaho_county_merged,
        y = "Median Income",
        color = "Winning Pres. \nCandidate (2020)")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 ```{r ref.label = "idaho-alpha", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
-
 :::
 
-
 ## Size
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r idaho-size, fig.show = "hide", warning = FALSE, echo = TRUE}
 #| code-line-numbers: "4"
 ggplot(data = idaho_county_merged, 
@@ -476,14 +445,11 @@ ggplot(data = idaho_county_merged,
        y = "Median Income",
        color = "Winning Pres. \nCandidate (2020)")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 ```{r ref.label = "idaho-size", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 5}
 ```
-
 :::
 
 ## Extra Stuff: Pulling Census Data with `tidycensus`
@@ -499,10 +465,8 @@ id_education <- get_acs(
 )
 ```
 
-
-
-
 ## Extra Stuff: Visualizing Census Data with `tidycensus`
+
 ::: {.column width="60%"}
 ```{r idaho-ed, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = id_education, aes(fill = estimate)) + 
@@ -513,13 +477,9 @@ ggplot(data = id_education, aes(fill = estimate)) +
        fill = "ACS estimate") + 
   theme_void()
 ```
-
-
 :::
 
 ::: {.column width="40%"}
-
 ```{r ref.label = "idaho-ed", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 4}
 ```
-
 :::
