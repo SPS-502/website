@@ -15,9 +15,7 @@ format:
 
 {{< video https://www.youtube.com/watch?v=AdSZJzb-aX8 width="100%" height="100%">}}
 
-# Principles
-
-## 
+## Principles
 
 ![](images/clipboard-1026078641.png)
 
@@ -27,7 +25,7 @@ format:
 
 ![](images/clipboard-639045667.png)
 
-<small>The air pollution display is a *small multiple*. The same graphical design structure is repeated for each of the twelve slices or multi-ples. Small multiples are economical: once viewers understand the design of one slice, they have immediate access to the data in all the other slices. Thus, as the eye moves from one slice to the next, the constancy of the design allows the viewer to focus on changes in the data rather than on changes in graphical design.\<`/small>`{=html}
+<small>The air pollution display is a *small multiple*. The same graphical design structure is repeated for each of the twelve slices or multi-ples. Small multiples are economical: once viewers understand the design of one slice, they have immediate access to the data in all the other slices. Thus, as the eye moves from one slice to the next, the constancy of the design allows the viewer to focus on changes in the data rather than on changes in graphical design.</small>
 
 # Review
 

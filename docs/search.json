@@ -2986,6 +2986,13 @@
     "href": "lectures/lecture05/lecture05.html#time-space",
     "title": "Data Visualization II",
     "section": "Time-Space",
-    "text": "Time-Space\n\nThe air pollution display is a small multiple. The same graphical design structure is repeated for each of the twelve slices or multi-ples. Small multiples are economical: once viewers understand the design of one slice, they have immediate access to the data in all the other slices. Thus, as the eye moves from one slice to the next, the constancy of the design allows the viewer to focus on changes in the data rather than on changes in graphical design.&lt;/small&gt;"
+    "text": "Time-Space\n\nThe air pollution display is a small multiple. The same graphical design structure is repeated for each of the twelve slices or multi-ples. Small multiples are economical: once viewers understand the design of one slice, they have immediate access to the data in all the other slices. Thus, as the eye moves from one slice to the next, the constancy of the design allows the viewer to focus on changes in the data rather than on changes in graphical design."
+  },
+  {
+    "objectID": "lectures/lecture05/lecture05.html#principles",
+    "href": "lectures/lecture05/lecture05.html#principles",
+    "title": "Data Visualization II",
+    "section": "Principles",
+    "text": "Principles\n\nTufte 2001 (p. 51)"
   }
 ]
