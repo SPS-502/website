@@ -41,7 +41,7 @@ You can see the **dimensions of this data frame (# of rows and columns)**, the n
 glimpse(nc)
 ```
 
-We can see that there are 1000 observations and 13 variables in this data set. The variable names are `fage`, `mage`, `mature`, etc. This output also tells us that some variables are numbers...some specifically integers `<int>`, others are numbers with decimals `<dbl>`. Some of the variables are factors `<fct>`. It is a good practice to see if R is treating variables as factors `<fct>`; as numbers `<int>` or `<dbl>` (basically numbers with decimals); or as characters (i.e. text) `<chr>`.
+We can see that there are 800 observations and 13 variables in this data set. The variable names are `fage`, `mage`, `mature`, etc. This output also tells us that some variables are numbers...some specifically integers `<int>`, others are numbers with decimals `<dbl>`. Some of the variables are factors `<fct>`. It is a good practice to see if R is treating variables as factors `<fct>`; as numbers `<int>` or `<dbl>` (basically numbers with decimals); or as characters (i.e. text) `<chr>`.
 
 ### Exercise 1
 
