@@ -172,8 +172,9 @@ p
 -   Practicing
     -   Datacamp
     -   Moderndive
-    
-## ...How are we going to learn? 
+
+## ...How are we going to learn?
+
 -   Doing
     -   In-class labs
     -   Homework
@@ -202,28 +203,29 @@ p
 ## Can/Should I use AI in this course?
 
 -   YES... BUT sparingly at first while you learn to code
-- I use it daily
-- It can be a great time saver/helper/troubleshooter when it comes to coding
-- You should DEFINITELY be using it
+-   I use it daily
+-   It can be a great time saver/helper/troubleshooter when it comes to coding
+-   You should DEFINITELY be using it
 
 ## AI and your brain
 
 ![](images/clipboard-867447823.png)
 
+## AI and this course
+
+-   It can basically do everything in the class for you... But
+    -   It frequently overcomplicates or gets things wrong
+    -   If you don't know how to code, you might not know there's a problem and/or might not know how to fix it (or ask it to fix it)
 
 ## AI and this course
-- It can basically do everything in the class for you... But
-  - It frequently overcomplicates or gets things wrong 
-  - If you don't know how to code, you might not know there's a problem and/or might not know how to fix it (or ask it to fix it)
 
-
-## AI and this course
-- You have an opportunity to grow your skills well beyond what we do in class this semester. 
-- Over-reliance on AI will rob you of that opportunity. You're investing a tremendous amount of your time to this course and your education, generally.
-- If you can't do anything more than what AI/LLM can do then it CAN replace you
+-   You have an opportunity to grow your skills well beyond what we do in class this semester.
+-   Over-reliance on AI will rob you of that opportunity. You're investing a tremendous amount of your time to this course and your education, generally.
+-   If you can't do anything more than what AI/LLM can do then it CAN replace you
 
 ## Toolkit
-- Datacamp
-- Posit cloud (RStudio in your browser)
-- Slack
-- Canvas
+
+-   Datacamp
+-   Posit cloud (RStudio in your browser)
+-   Slack
+-   Canvas

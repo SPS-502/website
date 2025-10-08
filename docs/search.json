@@ -2046,7 +2046,7 @@
   {
     "objectID": "lectures/lecture00/lecture00.html#introductions",
     "href": "lectures/lecture00/lecture00.html#introductions",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Introductions",
     "text": "Introductions\n\nName\nProgram (MPA, PhD, nondegree, etc.)\nPolicy interest(s) (e.g., environment, education, health, etc.)\nBonus: If you could get your hands on any kind of dataset (real or imagined), what would it be and why? (could the dataset help solve a problem? provide insight into something we don’t know very much about?)"
   },
@@ -2221,7 +2221,7 @@
   {
     "objectID": "lectures/lecture00/lecture00.html#what-were-doing-in-this-course",
     "href": "lectures/lecture00/lecture00.html#what-were-doing-in-this-course",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What we’re doing in this course",
     "text": "What we’re doing in this course"
   },
@@ -2235,16 +2235,16 @@
   {
     "objectID": "lectures/lecture00/lecture00.html#how-are-we-doing-it",
     "href": "lectures/lecture00/lecture00.html#how-are-we-doing-it",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "How are we doing it?",
     "text": "How are we doing it?\n\n\\[\n\\Pr(Y_i = j \\mid Z_i = z) = \n\\frac{\\exp(z' \\gamma_j)}\n     {1 + \\sum_{l=1}^J \\exp(z' \\gamma_l)}\n\\]"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-were-actually-doing",
     "href": "lectures/lecture00/lecture00.html#what-were-actually-doing",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What we’re actually doing",
-    "text": "What we’re actually doing\nThis…\n\ncounties &lt;- ggplot(\n  data = idaho_county_merged,\n  mapping = aes(x = pct_collegeE, y = median_incomeE)\n) +\n  geom_point() +\n  labs(\n    title = \"Idaho Counties: Education and Median Income\",\n    subtitle = \"Linear relationship between education and income\",\n    x = \"Pct Adults w/ Bachelor's Degree or Higher\",\n    y = \"Median Income\",\n    caption = \"Source: Education & income: U.S. Census Bureau\"\n  )"
+    "text": "What we’re actually doing\nThis…\n\n\nRows: 44 Columns: 23\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): NAME, county_name, win_candidate\ndbl (20): county_fips, median_incomeE, median_incomeM, median_ageE, median_a...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\ncounties &lt;- ggplot(\n  data = idaho_county_merged,\n  mapping = aes(x = pct_collegeE, y = median_incomeE)\n) +\n  geom_point() +\n  labs(\n    title = \"Idaho Counties: Education and Median Income\",\n    subtitle = \"Linear relationship between education and income\",\n    x = \"Pct Adults w/ Bachelor's Degree or Higher\",\n    y = \"Median Income\",\n    caption = \"Source: Education & income: U.S. Census Bureau\"\n  )"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#test",
@@ -2256,112 +2256,112 @@
   {
     "objectID": "lectures/lecture00/lecture00.html#to-turn-this",
     "href": "lectures/lecture00/lecture00.html#to-turn-this",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "…to turn this",
     "text": "…to turn this\n\n\n# A tibble: 10 × 23\n   county_fips NAME        median_incomeE median_incomeM median_ageE median_ageM\n         &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n 1       16001 Ada County…          69952           1549        37.2         0.2\n 2       16003 Adams Coun…          50309           3186        55.3         1.3\n 3       16005 Bannock Co…          51977           2046        34.1         0.3\n 4       16007 Bear Lake …          52829           3650        39.4         0.9\n 5       16009 Benewah Co…          47983           2962        46           0.5\n 6       16011 Bingham Co…          58260           2673        34.1         0.3\n 7       16013 Blaine Cou…          64627           4953        43.7         0.6\n 8       16015 Boise Coun…          51760           7210        54.4         0.4\n 9       16017 Bonner Cou…          51594           3114        47.9         0.4\n10       16019 Bonneville…          61435           1525        33           0.3\n# ℹ 17 more variables: total_populationE &lt;dbl&gt;, total_populationM &lt;dbl&gt;,\n#   median_valueE &lt;dbl&gt;, median_valueM &lt;dbl&gt;, pct_collegeE &lt;dbl&gt;,\n#   pct_collegeM &lt;dbl&gt;, county_name &lt;chr&gt;, totalvotes &lt;dbl&gt;,\n#   democrat_votes &lt;dbl&gt;, libertarian_votes &lt;dbl&gt;, other_votes &lt;dbl&gt;,\n#   republican_votes &lt;dbl&gt;, pct_democrat_votes &lt;dbl&gt;,\n#   pct_libertarian_votes &lt;dbl&gt;, pct_other_votes &lt;dbl&gt;,\n#   pct_republican_votes &lt;dbl&gt;, win_candidate &lt;chr&gt;"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#into-this",
     "href": "lectures/lecture00/lecture00.html#into-this",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Into this!",
     "text": "Into this!"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#or-this",
     "href": "lectures/lecture00/lecture00.html#or-this",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Or this!",
     "text": "Or this!"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#or-this-1",
     "href": "lectures/lecture00/lecture00.html#or-this-1",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Or this!",
     "text": "Or this!"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn",
     "href": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "How are we going to learn?",
     "text": "How are we going to learn?\n\nReading\n\nModerndive\nA few other things\n\nPracticing\n\nDatacamp\nModerndive"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-about-ai",
     "href": "lectures/lecture00/lecture00.html#what-about-ai",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What about AI?",
     "text": "What about AI?"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-about-ai-1",
     "href": "lectures/lecture00/lecture00.html#what-about-ai-1",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What about AI?",
     "text": "What about AI?"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-about-ai-2",
     "href": "lectures/lecture00/lecture00.html#what-about-ai-2",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What about AI?",
     "text": "What about AI?"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-about-ai-3",
     "href": "lectures/lecture00/lecture00.html#what-about-ai-3",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What about AI?",
     "text": "What about AI?"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#what-about-ai-4",
     "href": "lectures/lecture00/lecture00.html#what-about-ai-4",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "What about AI?",
     "text": "What about AI?"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#canshould-i-use-ai-in-this-course",
     "href": "lectures/lecture00/lecture00.html#canshould-i-use-ai-in-this-course",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Can/Should I use AI in this course?",
     "text": "Can/Should I use AI in this course?\n\nYES… BUT sparingly at first while you learn to code\nI use it daily\nIt can be a great time saver/helper/troubleshooter when it comes to coding\nYou should DEFINITELY be using it"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#ai-and-your-brain",
     "href": "lectures/lecture00/lecture00.html#ai-and-your-brain",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "AI and your brain",
     "text": "AI and your brain"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#ai-and-this-course",
     "href": "lectures/lecture00/lecture00.html#ai-and-this-course",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "AI and this course",
     "text": "AI and this course\n\nIt can basically do everything in the class for you… But\n\nIt frequently overcomplicates or gets things wrong\nIf you don’t know how to code, you might not know there’s a problem and/or might not know how to fix it (or ask it to fix it)"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#ai-and-this-course-1",
     "href": "lectures/lecture00/lecture00.html#ai-and-this-course-1",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "AI and this course",
     "text": "AI and this course\n\nYou have an opportunity to grow your skills well beyond what we do in class this semester.\nOver-reliance on AI will rob you of that opportunity. You’re investing a tremendous amount of your time to this course and your education, generally.\nIf you can’t do anything more than what AI/LLM can do then it CAN replace you"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn-1",
     "href": "lectures/lecture00/lecture00.html#how-are-we-going-to-learn-1",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "…How are we going to learn?",
     "text": "…How are we going to learn?\n\nDoing\n\nIn-class labs\nHomework\nFinal Project"
   },
   {
     "objectID": "lectures/lecture00/lecture00.html#toolkit",
     "href": "lectures/lecture00/lecture00.html#toolkit",
-    "title": "Course Overview",
+    "title": "\n            Course Overview\n        ",
     "section": "Toolkit",
     "text": "Toolkit\n\nDatacamp\nPosit cloud (RStudio in your browser)\nSlack\nCanvas"
   },
@@ -2994,5 +2994,327 @@
     "title": "Data Visualization II",
     "section": "Principles",
     "text": "Principles\n\nTufte 2001 (p. 51)"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#correlation",
+    "href": "lectures/lecture06/lecture06.html#correlation",
+    "title": "Correlation and Basic Regression",
+    "section": "Correlation",
+    "text": "Correlation\n\nPurpose: Determine how closely two variables are related and the direction of the relationship\nPossible range from -1 to 1\n\n-1 = perfect negative correlation\n1 = perfect positive correlation\n0 = perfectly uncorrelated"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#strong-positive-correlations",
+    "href": "lectures/lecture06/lecture06.html#strong-positive-correlations",
+    "title": "Correlation and Basic Regression",
+    "section": "Strong Positive Correlations",
+    "text": "Strong Positive Correlations"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#strong-negative-correlation",
+    "href": "lectures/lecture06/lecture06.html#strong-negative-correlation",
+    "title": "Correlation and Basic Regression",
+    "section": "Strong Negative Correlation",
+    "text": "Strong Negative Correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#no-correlation",
+    "href": "lectures/lecture06/lecture06.html#no-correlation",
+    "title": "Correlation and Basic Regression",
+    "section": "No Correlation",
+    "text": "No Correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#general-guidelines",
+    "href": "lectures/lecture06/lecture06.html#general-guidelines",
+    "title": "Correlation and Basic Regression",
+    "section": "General Guidelines",
+    "text": "General Guidelines\n\n\n\nRange\nInterpretation\n\n\n\n\n0\nNo relationship\n\n\n0.01–0.19\nLittle to no relationship\n\n\n0.20–0.29\nWeak relationship\n\n\n0.30–0.39\nModerate relationship\n\n\n0.40–0.69\nStrong relationship\n\n\n0.70–0.99\nVery strong relationship\n\n\n1\nPerfect relationship\n\n\n\n\n\n\n\n\n\nNote\n\n\nCan be positive or negative"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#interpreting-correlation-coefficients",
+    "href": "lectures/lecture06/lecture06.html#interpreting-correlation-coefficients",
+    "title": "Correlation and Basic Regression",
+    "section": "Interpreting Correlation Coefficients",
+    "text": "Interpreting Correlation Coefficients\n\nAs the value of X goes up, Y tends to go up (or down) a lot/a little/not at all"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#guess-the-correlation",
+    "href": "lectures/lecture06/lecture06.html#guess-the-correlation",
+    "title": "Correlation and Basic Regression",
+    "section": "Guess the Correlation",
+    "text": "Guess the Correlation\n\n\nX\n\nVehicle velocity\n\n\nTime in School\n\n\nAlcohol consumed\n\n\nIncome\n\n\nAge\n\n\nHair length\n\n\nYard Size\n\n\nY\n\nTravel time\n\n\nDebt\n\n\nJudgment\n\n\nHappiness\n\n\nHealth\n\n\nShampoo use\n\n\nWater bill"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#basic-regression",
+    "href": "lectures/lecture06/lecture06.html#basic-regression",
+    "title": "Correlation and Basic Regression",
+    "section": "Basic Regression",
+    "text": "Basic Regression\n\nCorrelation only tells part of the story (direction and magnitude of relationship)\nRegression allows us to predict events and/or explain why they occur"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#essential-parts",
+    "href": "lectures/lecture06/lecture06.html#essential-parts",
+    "title": "Correlation and Basic Regression",
+    "section": "Essential Parts",
+    "text": "Essential Parts\n\n\nY\n\nOutcome variable\nResponse variable\nDependent variable\nThing you want to explain or predict\n\n\n~X (or lots of Xs)\n\nExplanatory variable\nPredictor variable\nIndependent variable\nThing you use to explain changes in Y"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#identify-the-y-and-x-variables",
+    "href": "lectures/lecture06/lecture06.html#identify-the-y-and-x-variables",
+    "title": "Correlation and Basic Regression",
+    "section": "Identify the Y and X Variables",
+    "text": "Identify the Y and X Variables\n\n\nA study examines the effect of smoking on lung cancer\n\n\n\n\nResearchers predict genocides by looking at negative media coverage, revolutions in neighboring countries, and economic growth\n\n\n\n\nYou want to see if students taking more AP classes in high school improves their college grades\n\n\n\n\nNetflix uses your past viewing history, the day of the week, and the time of the day to guess which show you want to watch next"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#two-purposes-of-regression",
+    "href": "lectures/lecture06/lecture06.html#two-purposes-of-regression",
+    "title": "Correlation and Basic Regression",
+    "section": "Two Purposes of Regression",
+    "text": "Two Purposes of Regression\n\n\n\n\n\n📊 Prediction\n\n\n\n\nForecast the future\nFocus is on Y\n\n\n\nExamples:\n\n\n\n\n\nNetflix trying to guess your next show\n\n\n\n\n\n\n\n\nPredicting who will escape poverty\n\n\n\n\n\n\n\n\n\n\n\n🔍 Explanation\n\n\n\n\nExplain effect of X on Y\nFocus is on X\n\n\n\nExamples:\n\n\n\n\n\nNetflix estimating the effect of time of day on show selection\n\n\n\n\n\n\n\n\nEstimating the effect of food stamps on poverty reduction"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#regression-how",
+    "href": "lectures/lecture06/lecture06.html#regression-how",
+    "title": "Correlation and Basic Regression",
+    "section": "Regression (How)",
+    "text": "Regression (How)\n\nPlot X and Y\nDraw a line that approximates the relationship\nFind the “mathy” parts of the line\nInterpret the math"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#cookies-and-happiness-data",
+    "href": "lectures/lecture06/lecture06.html#cookies-and-happiness-data",
+    "title": "Correlation and Basic Regression",
+    "section": "Cookies and Happiness Data",
+    "text": "Cookies and Happiness Data\n\nlibrary(tidyverse)\n\ncookies_data &lt;- tibble(\n  happiness = c(0.5, 2.0, 1.0, 2.5, 3.0, 1.5, 2.0, 2.5, 2.0, 3.0),\n  cookies = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\n)\n\ncookies_data\n\n# A tibble: 10 × 2\n   happiness cookies\n       &lt;dbl&gt;   &lt;dbl&gt;\n 1       0.5       1\n 2       2         2\n 3       1         3\n 4       2.5       4\n 5       3         5\n 6       1.5       6\n 7       2         7\n 8       2.5       8\n 9       2         9\n10       3        10"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#scatterplot-cookies-and-happiness",
+    "href": "lectures/lecture06/lecture06.html#scatterplot-cookies-and-happiness",
+    "title": "Correlation and Basic Regression",
+    "section": "Scatterplot: Cookies and Happiness",
+    "text": "Scatterplot: Cookies and Happiness"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#finding-the-best-line",
+    "href": "lectures/lecture06/lecture06.html#finding-the-best-line",
+    "title": "Correlation and Basic Regression",
+    "section": "Finding the Best Line",
+    "text": "Finding the Best Line"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#residual-errors",
+    "href": "lectures/lecture06/lecture06.html#residual-errors",
+    "title": "Correlation and Basic Regression",
+    "section": "Residual Errors",
+    "text": "Residual Errors"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#residual-errors-distance-from-line",
+    "href": "lectures/lecture06/lecture06.html#residual-errors-distance-from-line",
+    "title": "Correlation and Basic Regression",
+    "section": "Residual Errors (Distance from Line)",
+    "text": "Residual Errors (Distance from Line)"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#comparing-views",
+    "href": "lectures/lecture06/lecture06.html#comparing-views",
+    "title": "Correlation and Basic Regression",
+    "section": "Comparing Views",
+    "text": "Comparing Views"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#ordinary-least-squares-ols-regression",
+    "href": "lectures/lecture06/lecture06.html#ordinary-least-squares-ols-regression",
+    "title": "Correlation and Basic Regression",
+    "section": "Ordinary Least Squares (OLS) Regression",
+    "text": "Ordinary Least Squares (OLS) Regression"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#the-math-part",
+    "href": "lectures/lecture06/lecture06.html#the-math-part",
+    "title": "Correlation and Basic Regression",
+    "section": "The Math Part",
+    "text": "The Math Part\n\\[y = mx + b\\]\n\n\ny: A number\nx: A number\nm: Slope\nb: y intercept"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#slopes-and-intercepts",
+    "href": "lectures/lecture06/lecture06.html#slopes-and-intercepts",
+    "title": "Correlation and Basic Regression",
+    "section": "Slopes and Intercepts",
+    "text": "Slopes and Intercepts\n\n\ny = 2x - 1\n\n\n\n\n\n\n\n\n\n\ny = -0.5x + 6"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#modeling-cookies-happiness-in-r",
+    "href": "lectures/lecture06/lecture06.html#modeling-cookies-happiness-in-r",
+    "title": "Correlation and Basic Regression",
+    "section": "Modeling Cookies & Happiness in R",
+    "text": "Modeling Cookies & Happiness in R\n\ncookies_model &lt;- lm(happiness ~ cookies, \n                    data = cookies_data)\n\ncookies_model %&gt;%\n  get_regression_table()\n\n\n\n# A tibble: 2 × 7\n  term      estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept    1.1       0.47       2.34   0.047    0.016    2.18 \n2 cookies      0.164     0.076      2.16   0.063   -0.011    0.338"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#interpreting-regression-coefficients",
+    "href": "lectures/lecture06/lecture06.html#interpreting-regression-coefficients",
+    "title": "Correlation and Basic Regression",
+    "section": "Interpreting Regression Coefficients",
+    "text": "Interpreting Regression Coefficients\n\n\nA one unit increase in X is associated with a \\(\\beta_1\\) increase (or decrease) in Y, on average\n\n\n\n\\[\\widehat{happiness} = 1.1 + 0.164 \\times cookies + \\varepsilon\\]\n\n\n\\[\\widehat{y} = \\beta_0 + \\beta_1 x_1 + \\varepsilon\\]\n\n\nInterpretation: A one-cookie increase is associated with a 0.164 point increase in happiness, on average."
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#section",
+    "href": "lectures/lecture06/lecture06.html#section",
+    "title": "Correlation and Basic Regression",
+    "section": "",
+    "text": "Female correlation: r = 0.767\n\n\nMale correlation: r = 0.642"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#correlation-height-and-weight",
+    "href": "lectures/lecture06/lecture06.html#correlation-height-and-weight",
+    "title": "Correlation and Basic Regression",
+    "section": "Correlation: Height and Weight",
+    "text": "Correlation: Height and Weight\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrong positive correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#human-height-and-weight",
+    "href": "lectures/lecture06/lecture06.html#human-height-and-weight",
+    "title": "Correlation and Basic Regression",
+    "section": "Human Height and Weight",
+    "text": "Human Height and Weight\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrong positive correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#car-weight-and-fuel-efficiency",
+    "href": "lectures/lecture06/lecture06.html#car-weight-and-fuel-efficiency",
+    "title": "Correlation and Basic Regression",
+    "section": "Car weight and fuel efficiency",
+    "text": "Car weight and fuel efficiency\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrong negative correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#iq-and-weight",
+    "href": "lectures/lecture06/lecture06.html#iq-and-weight",
+    "title": "Correlation and Basic Regression",
+    "section": "IQ and Weight",
+    "text": "IQ and Weight\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNO correlation"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#test-slide",
+    "href": "lectures/lecture06/lecture06.html#test-slide",
+    "title": "Correlation and Basic Regression",
+    "section": "Test slide",
+    "text": "Test slide\n\n\n\n{.fragment data-fragment-index=“1”} Col 1 - Item A\n{.fragment data-fragment-index=“3”} Col 1 - Item B\n{.fragment data-fragment-index=“5”} Col 1 - Item C\n\n\n\n{.fragment data-fragment-index=“2”} Col 2 - Item A\n{.fragment data-fragment-index=“4”} Col 2 - Item B\n{.fragment data-fragment-index=“6”} Col 2 - Item C"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#alternating-two-column-list",
+    "href": "lectures/lecture06/lecture06.html#alternating-two-column-list",
+    "title": "Correlation and Basic Regression",
+    "section": "Alternating Two-Column List",
+    "text": "Alternating Two-Column List\n\n\n\nAppears last\n\n\nAppears first\n\n\nAppears second\n\n\n\nAppears last\n\n\nAppears first\n\n\nAppears second"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#guess-the-correlation-1",
+    "href": "lectures/lecture06/lecture06.html#guess-the-correlation-1",
+    "title": "Correlation and Basic Regression",
+    "section": "Guess the Correlation",
+    "text": "Guess the Correlation\n\n\nX\n\nVehicle velocity\n\n\nTime in School\n\n\nAlcohol consumed\n\n\nIncome\n\n\nAge\n\n\nHair length\n\n\nYard Size\n\n\nY\n\nTravel time\n\n\nDebt\n\n\nJudgment\n\n\nHappiness\n\n\nHealth\n\n\nShampoo use\n\n\nWater bill"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#regression-process",
+    "href": "lectures/lecture06/lecture06.html#regression-process",
+    "title": "Correlation and Basic Regression",
+    "section": "Regression Process",
+    "text": "Regression Process\n\n\n\nHow to Perform Regression\n\n\n\n\nPlot X and Y\nVisualize the relationship between variables\nDraw a line that approximates the relationship\nFind the best fit through the data points\nFind the “mathy” parts of the line\nCalculate slope and intercept\nInterpret the math\nTranslate coefficients into meaningful insights"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#drawing-lines-with-stats",
+    "href": "lectures/lecture06/lecture06.html#drawing-lines-with-stats",
+    "title": "Correlation and Basic Regression",
+    "section": "Drawing Lines with Stats",
+    "text": "Drawing Lines with Stats\n\\[\\widehat{y} = \\beta_0 + \\beta_1 x + \\varepsilon\\]\n\n\n\\(\\widehat{y}\\): Outcome variable\n\\(x\\): Explanatory variable\n\n\\(\\beta_1\\): Slope\n\\(\\beta_0\\): y intercept\n\\(\\varepsilon\\): Error (residuals)"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#modeling-cookies-and-happiness",
+    "href": "lectures/lecture06/lecture06.html#modeling-cookies-and-happiness",
+    "title": "Correlation and Basic Regression",
+    "section": "Modeling Cookies and Happiness",
+    "text": "Modeling Cookies and Happiness\n\\(\\widehat{y} = \\beta_0 + \\beta_1 x_1 + \\varepsilon\\)\n\\(\\widehat{happiness} = \\beta_0 + \\beta_1 \\times cookies + \\varepsilon\\)"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#modeling-cookies-happiness-in-r-1",
+    "href": "lectures/lecture06/lecture06.html#modeling-cookies-happiness-in-r-1",
+    "title": "Correlation and Basic Regression",
+    "section": "Modeling Cookies & Happiness in R",
+    "text": "Modeling Cookies & Happiness in R\n\\[\\widehat{happiness} = 1.1 + 0.164 \\times cookies + \\varepsilon\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd_error\nstatistic\np_value\nlower_ci\nupper_ci\n\n\n\n\nintercept\n1.1\n0.47\n2.339\n0.047\n0.016\n2.184\n\n\ncookies\n0.164\n0.076\n2.159\n0.063\n-0.011\n0.338"
+  },
+  {
+    "objectID": "lectures/lecture06/lecture06.html#ordinary-least-squares-ols-regression-1",
+    "href": "lectures/lecture06/lecture06.html#ordinary-least-squares-ols-regression-1",
+    "title": "Correlation and Basic Regression",
+    "section": "Ordinary Least Squares (OLS) Regression",
+    "text": "Ordinary Least Squares (OLS) Regression"
+  },
+  {
+    "objectID": "labs/Lab06.html#background",
+    "href": "labs/Lab06.html#background",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Background",
+    "text": "Background\nFor this lab you will first run through an example of a simple linear regression, answering a few questions on the way. Then you will work through a regression analysis independently.\nWe will look at some demographic data from the fivethirtyeight package recorded for 48 voting areas in the US states just after the 2016 presidential election. We will investigate which variables within those regions might be tied to the percentage of US voters that supported Donald Trump, and in turn, which variables might be useful to predict Trump support in other regions (i.e. to a wider US population)."
+  },
+  {
+    "objectID": "labs/Lab06.html#setup",
+    "href": "labs/Lab06.html#setup",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Setup",
+    "text": "Setup\n\nLoad packages\nWe will read the data in with the readr package, explore the data using the dplyr package and visualize it using the ggplot2 package. The moderndive package includes some nice functions to show regression model outputs.\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(readr)\nlibrary(moderndive)\n\n\n\nThe data\nRun the following in a code chunk to load the data from where it is published on the web.\n\ntrump &lt;- read_csv(\"https://docs.google.com/spreadsheets/d/e/2PACX-1vT8qHdvTPaRc62hU94ShBcSh04HP3c11b6XZIPMiUDGuwPtifpP7QhHdSHS2YgTRMRTgfUmBYq-L3ZT/pub?gid=1217616678&single=true&output=csv\")\n\nTake a moment to look at the data in the viewer or by using glimpse(). The explanatory variables include:\n\nhs_ed - the percentage of the adults in the region with a high school education.\npoverty- the percentage of the “white” households in the region in poverty.\nnon_white- the percentage of humans in a region that identify as a person of color.\n\nThe outcome variable trump_support is the percentage of votes for Trump in 2016 in each region.\nObserve that all percentages are expressed as values between 0 and 100, and not 0 and 1."
+  },
+  {
+    "objectID": "labs/Lab06.html#an-exampledemo",
+    "href": "labs/Lab06.html#an-exampledemo",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "An Example/Demo",
+    "text": "An Example/Demo\n\nVisualization\nWe will start by investigating the relationship between white poverty levels and support for Trump.\nWe’ll do this by creating a scatterplot with trump_support as the outcome variable on the y-axis and poverty as the explanatory variable on the x-axis. Note the use of the geom_smooth() function, that tells R to add a regression line. While the points do scatter/vary around the blue regression line, of all possible lines we can draw in this point of clouds, the blue line is the “best-fitting” line in the sense that it minimizes the sum of the squared residuals (see moderndive 5.3.2 for a fuller explanation).\n\nggplot(data = trump, aes(y = trump_support, x = poverty)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(x = \"Percentage of white households in poverty\", \n       y = \"Percentage of voters supporting Trump\", \n       title = \"White poverty and Trump support in the US\")"
+  },
+  {
+    "objectID": "labs/Lab06.html#the-correlation-coefficient-r",
+    "href": "labs/Lab06.html#the-correlation-coefficient-r",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "The correlation coefficient (r)",
+    "text": "The correlation coefficient (r)\nWe can numerically quantify the strength of the linear relationship between the two variables with the correlation coefficient. The following tells R to summarize() the correlation coefficient between the numerical variables poverty and trump_support. Note that the correlation coefficient only exists for pairs of numerical variables.\n\ntrump %&gt;%\n  summarize(r = cor(trump_support, poverty))\n\n# A tibble: 1 × 1\n      r\n  &lt;dbl&gt;\n1 0.486"
+  },
+  {
+    "objectID": "labs/Lab06.html#running-a-linear-regression-model",
+    "href": "labs/Lab06.html#running-a-linear-regression-model",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Running a linear regression model",
+    "text": "Running a linear regression model\nIn R we can fit a linear regression model (a regression line), like so:\n\npoverty_mod &lt;- lm(trump_support ~ poverty, data = trump)\n\nNote that:\n\nthe function lm() is short for “linear model”\nthe first argument is a formula in the form y ~ x or in other words outcome variable ~ explantory variable.\n\nthe second argument is the data frame in which the outcome and explanatory variables can be found.\nwe SAVED THE MODEL RESULTS as an object called poverty_mod\n\nThis object poverty_mod contains all of the information we need about the linear model that was just fit and we’ll be accessing this information again later."
+  },
+  {
+    "objectID": "labs/Lab06.html#get-the-regression-table",
+    "href": "labs/Lab06.html#get-the-regression-table",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Get the regression table",
+    "text": "Get the regression table\nThe get_regression_table() function from the moderndive package will output a regression table. Let’s focus on the value in the second column: an estimate for 1) an intercept, and 2) a slope for the poverty variable.\n\nget_regression_table(poverty_mod)\n\n# A tibble: 2 × 7\n  term      estimate std_error statistic p_value lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept    30.8      5.22       5.90       0   20.3      41.3 \n2 poverty       2.06     0.545      3.78       0    0.961     3.16\n\n\nWe can interpret the intercept and poverty slope like so:\n\nWhen the poverty level is 0, the predicted average Trump support is 30.81%\nFor every increase in poverty level of 1 percentage point, there is an associated increase in Trump support of 2.059 percentage points.\n\nRevisiting the plot from earlier, we can see that the best-fit line hits the y axis at 30.8064 (if we extend it). This is the intercept…the y value at which poverty = 0 (note, a value that is sadly not close to the range of values for “percentage of white households in poverty”)."
+  },
+  {
+    "objectID": "labs/Lab06.html#making-predictions",
+    "href": "labs/Lab06.html#making-predictions",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Making predictions",
+    "text": "Making predictions\nBased on the R output of our model, the following is our least squares regression line for the linear model:\n\\(\\widehat{trump\\_support} = 30.806 + 2.059 \\times poverty\\)\nWe can use the line from our graph of the poverty, trump_support relationship to visually make predictions…for instance at 15% white poverty, the line shows a value of just over 60% Trump support.\nTo get a more accurate prediction, we could actually plug 15% into the regression equation like so:\n\ny_hat = 30.8064 + 2.0591 * 15\ny_hat\n\n[1] 61.6929"
+  },
+  {
+    "objectID": "labs/Lab06.html#residuals",
+    "href": "labs/Lab06.html#residuals",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Residuals",
+    "text": "Residuals\nRecall that model residuals are the difference between the observed values in your data set and the values predicted by the line:\n\\(\\text{residual} = y - \\hat{y}\\)\nFor instance, below, one data point is highlighted in blue…the residual is the difference between the y value of the data point (here 69), and the y value predicted by the line (roughly 59). Here the residual is roughly 10 (\\(69 - 59 = 10\\)). The regression equation has under-estimated Trump support in this voting area.\n\n\n\n\n\n\n\n\n\nThe following function get_regression_points() gives you the fitted (also known as predicted) value for every data point, and the residual for every data point. The first row in the output is the first data point. You can see that in this voting area Trump support was 30%, white poverty was 7%, the regression equation predicted 45.22% Trump support, and the residual was -15.22 (\\(30 - 45.22\\)).\n\nget_regression_points(poverty_mod)"
+  },
+  {
+    "objectID": "labs/Lab06.html#put-your-skills-to-practice-independently",
+    "href": "labs/Lab06.html#put-your-skills-to-practice-independently",
+    "title": "\n            Lab 6: Correlation and Basic Regression\n        ",
+    "section": "Put your skills to practice independently!",
+    "text": "Put your skills to practice independently!\nUse the same trump data set for the following questions:"
+  },
+  {
+    "objectID": "lectures/lecture00/lecture00.html",
+    "href": "lectures/lecture00/lecture00.html",
+    "title": "\n            Course Overview\n        ",
+    "section": "",
+    "text": "SPS 502"
   }
 ]

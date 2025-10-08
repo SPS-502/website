@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Course Overview – SPS 502 | Data Science for Public Service</title>
+<title>Lab 6: Correlation and Basic Regression – SPS 502 | Data Science for Public Service</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,24 +57,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d1b12f2568ecbe55642fee6aa00bd082.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-b2511bcbb01c2159fd96a78deb42ffd9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d1b12f2568ecbe55642fee6aa00bd082.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b2511bcbb01c2159fd96a78deb42ffd9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,14 +135,14 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">SPS 502 | Data Science for Public Service</span>
     </a>
   </div>
@@ -153,7 +153,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item compact">
@@ -178,19 +178,17 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture00.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="course-title title display-7">
-            Course Overview
+            Lab 6: Correlation and Basic Regression
         </h1></header>
 
 <div class="grid title-block">
     <div class="course-details-title-block g-col-12 g-col-sm-8 order-2 order-sm-1 text-center text-sm-start">
         
         <div class="course-subtitle">
-            <p>SPS 502</p>
+            <p></p>
         </div>
         <div class="course-meta">
             <p></p>
@@ -206,211 +204,206 @@ window.Quarto = {
 </div>
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/lz_kIDxbzGA" width="100%" height="100%" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>For this lab you will first run through an example of a simple linear regression, answering a few questions on the way. Then you will work through a regression analysis independently.</p>
+<p>We will look at some demographic data from the <code>fivethirtyeight</code> package recorded for 48 voting areas in the US states just after the 2016 presidential election. We will investigate which variables within those regions might be tied to the percentage of US voters that supported Donald Trump, and in turn, which variables might be useful to predict Trump support in other regions (i.e.&nbsp;to a wider US population).</p>
 </section>
-<section id="introductions" class="level2">
-<h2 class="anchored" data-anchor-id="introductions">Introductions</h2>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="load-packages" class="level3">
+<h3 class="anchored" data-anchor-id="load-packages">Load packages</h3>
+<p>We will read the data in with the <code>readr</code> package, explore the data using the <code>dplyr</code> package and visualize it using the <code>ggplot2</code> package. The <code>moderndive</code> package includes some nice functions to show regression model outputs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moderndive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The data</h3>
+<p>Run the following in a code chunk to load the data from where it is published on the web.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>trump <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vT8qHdvTPaRc62hU94ShBcSh04HP3c11b6XZIPMiUDGuwPtifpP7QhHdSHS2YgTRMRTgfUmBYq-L3ZT/pub?gid=1217616678&amp;single=true&amp;output=csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Take a moment to look at the data in the viewer or by using <code>glimpse()</code>. The explanatory variables include:</p>
 <ul>
-<li>Name</li>
-<li>Program (MPA, PhD, nondegree, etc.)</li>
-<li>Policy interest(s) (e.g., environment, education, health, etc.)</li>
-<li>Bonus: If you could get your hands on any kind of dataset (real or imagined), what would it be and why? (could the dataset help solve a problem? provide insight into something we don’t know very much about?)</li>
+<li><code>hs_ed</code> - the percentage of the adults in the region with a high school education.</li>
+<li><code>poverty</code>- the percentage of the “white” households in the region in poverty.</li>
+<li><code>non_white</code>- the percentage of humans in a region that identify as a person of color.</li>
 </ul>
+<p>The outcome variable <code>trump_support</code> is the percentage of votes for Trump in 2016 in each region.</p>
+<p>Observe that all percentages are expressed as values between 0 and 100, and not 0 and 1.</p>
 </section>
-<section id="what-were-doing-in-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="what-were-doing-in-this-course">What we’re doing in this course</h2>
-<p><img src="images/clipboard-3721032631.png" class="img-fluid"></p>
 </section>
-<section id="how-are-we-doing-it" class="level2">
-<h2 class="anchored" data-anchor-id="how-are-we-doing-it">How are we doing it?</h2>
-<div style="display:flex; justify-content:center; align-items:center; height:100%;">
-<p><span class="math display">\[
-\Pr(Y_i = j \mid Z_i = z) =&nbsp;
-\frac{\exp(z' \gamma_j)}
-&nbsp;&nbsp; &nbsp; {1 + \sum_{l=1}^J \exp(z' \gamma_l)}
-\]</span></p>
-</div>
-</section>
-<section id="what-were-actually-doing" class="level2">
-<h2 class="anchored" data-anchor-id="what-were-actually-doing">What we’re actually doing</h2>
-<p>This…</p>
+<section id="an-exampledemo" class="level2">
+<h2 class="anchored" data-anchor-id="an-exampledemo">An Example/Demo</h2>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+<p>We will start by investigating the relationship between white poverty levels and support for Trump.</p>
+<p>We’ll do this by creating a scatterplot with <code>trump_support</code> as the outcome variable on the y-axis and <code>poverty</code> as the explanatory variable on the x-axis. Note the use of the <code>geom_smooth()</code> function, that tells R to add a regression line. While the points do scatter/vary around the blue regression line, of all possible lines we can draw in this point of clouds, the blue line is the “best-fitting” line in the sense that it minimizes the sum of the squared residuals (see moderndive 5.3.2 for a fuller explanation).</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 44 Columns: 23
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (3): NAME, county_name, win_candidate
-dbl (20): county_fips, median_incomeE, median_incomeM, median_ageE, median_a...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trump, <span class="fu">aes</span>(<span class="at">y =</span> trump_support, <span class="at">x =</span> poverty)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Percentage of white households in poverty"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage of voters supporting Trump"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"White poverty and Trump support in the US"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab06_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> idaho_county_merged,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pct_collegeE, <span class="at">y =</span> median_incomeE)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Idaho Counties: Education and Median Income"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Linear relationship between education and income"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pct Adults w/ Bachelor's Degree or Higher"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Median Income"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Education &amp; income: U.S. Census Bureau"</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="to-turn-this" class="level2">
-<h2 class="anchored" data-anchor-id="to-turn-this">…to turn this</h2>
+</section>
+<section id="exercise-1" class="level1">
+<h1>Exercise 1</h1>
+<p>Does the relationship appear to be positive or negative? Does it look to be reasonably linear?</p>
+<section id="the-correlation-coefficient-r" class="level2">
+<h2 class="anchored" data-anchor-id="the-correlation-coefficient-r">The correlation coefficient (r)</h2>
+<p>We can numerically quantify the strength of the linear relationship between the two variables with the correlation coefficient. The following tells R to <code>summarize()</code> the correlation coefficient between the numerical variables <code>poverty</code> and <code>trump_support</code>. Note that the correlation coefficient only exists for pairs of numerical variables.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>trump <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">r =</span> <span class="fu">cor</span>(trump_support, poverty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 23
-   county_fips NAME        median_incomeE median_incomeM median_ageE median_ageM
-         &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
- 1       16001 Ada County…          69952           1549        37.2         0.2
- 2       16003 Adams Coun…          50309           3186        55.3         1.3
- 3       16005 Bannock Co…          51977           2046        34.1         0.3
- 4       16007 Bear Lake …          52829           3650        39.4         0.9
- 5       16009 Benewah Co…          47983           2962        46           0.5
- 6       16011 Bingham Co…          58260           2673        34.1         0.3
- 7       16013 Blaine Cou…          64627           4953        43.7         0.6
- 8       16015 Boise Coun…          51760           7210        54.4         0.4
- 9       16017 Bonner Cou…          51594           3114        47.9         0.4
-10       16019 Bonneville…          61435           1525        33           0.3
-# ℹ 17 more variables: total_populationE &lt;dbl&gt;, total_populationM &lt;dbl&gt;,
-#   median_valueE &lt;dbl&gt;, median_valueM &lt;dbl&gt;, pct_collegeE &lt;dbl&gt;,
-#   pct_collegeM &lt;dbl&gt;, county_name &lt;chr&gt;, totalvotes &lt;dbl&gt;,
-#   democrat_votes &lt;dbl&gt;, libertarian_votes &lt;dbl&gt;, other_votes &lt;dbl&gt;,
-#   republican_votes &lt;dbl&gt;, pct_democrat_votes &lt;dbl&gt;,
-#   pct_libertarian_votes &lt;dbl&gt;, pct_other_votes &lt;dbl&gt;,
-#   pct_republican_votes &lt;dbl&gt;, win_candidate &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 1 × 1
+      r
+  &lt;dbl&gt;
+1 0.486</code></pre>
 </div>
 </div>
 </section>
-<section id="into-this" class="level2">
-<h2 class="anchored" data-anchor-id="into-this">Into this!</h2>
+<section id="running-a-linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="running-a-linear-regression-model">Running a linear regression model</h2>
+<p>In R we can fit a linear regression model (a regression line), like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>poverty_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(trump_support <span class="sc">~</span> poverty, <span class="at">data =</span> trump)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that:</p>
+<ul>
+<li>the function <code>lm()</code> is short for “linear model”</li>
+<li>the first argument is a <em>formula</em> in the form <code>y ~ x</code> or in other words <code>outcome variable ~ explantory variable</code>.<br>
+</li>
+<li>the second argument is the data frame in which the outcome and explanatory variables can be found.</li>
+<li>we <strong>SAVED THE MODEL RESULTS</strong> as an object called <code>poverty_mod</code></li>
+</ul>
+<p>This object <code>poverty_mod</code> contains all of the information we need about the linear model that was just fit and we’ll be accessing this information again later.</p>
+</section>
+<section id="get-the-regression-table" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-regression-table">Get the regression table</h2>
+<p>The <code>get_regression_table()</code> function from the <code>moderndive</code> package will output a regression table. Let’s focus on the value in the second column: an estimate for 1) an intercept, and 2) a slope for the <code>poverty</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_regression_table</span>(poverty_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  term      estimate std_error statistic p_value lower_ci upper_ci
+  &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept    30.8      5.22       5.90       0   20.3      41.3 
+2 poverty       2.06     0.545      3.78       0    0.961     3.16</code></pre>
+</div>
+</div>
+<p>We can interpret the <code>intercept</code> and <code>poverty</code> slope like so:</p>
+<ul>
+<li>When the poverty level is 0, the predicted average Trump support is 30.81%</li>
+<li>For every increase in poverty level of 1 percentage point, there is an <strong>associated increase</strong> in Trump support of 2.059 percentage points.</li>
+</ul>
+<p>Revisiting the plot from earlier, we can see that the best-fit line hits the y axis at 30.8064 (if we extend it). This is the intercept…the y value at which poverty = 0 (note, a value that is sadly not close to the range of values for “percentage of white households in poverty”).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture00_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="Lab06_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="or-this" class="level2">
-<h2 class="anchored" data-anchor-id="or-this">Or this!</h2>
+</section>
+<section id="exercise-2" class="level1">
+<h1>Exercise 2</h1>
+<p>We found a positive correlation coefficient. Is it reasonable for us to conclude that social policies that increase white poverty will <strong>cause</strong> an increase in Trump support? Explain why or why not?</p>
+<section id="making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="making-predictions">Making predictions</h2>
+<p>Based on the R output of our model, the following is our least squares regression line for the linear model:</p>
+<p><span class="math inline">\(\widehat{trump\_support} = 30.806 + 2.059 \times poverty\)</span></p>
+<p>We can use the line from our graph of the <code>poverty</code>, <code>trump_support</code> relationship to <strong>visually</strong> make predictions…for instance at 15% white poverty, the line shows a value of just over 60% Trump support.</p>
+<p>To get a <strong>more accurate</strong> prediction, we could actually plug 15% into the regression equation like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">=</span> <span class="fl">30.8064</span> <span class="sc">+</span> <span class="fl">2.0591</span> <span class="sc">*</span> <span class="dv">15</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 61.6929</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-3" class="level1">
+<h1>Exercise 3</h1>
+<p>What percent of Trump support would you expect at a value of 6% white poverty?</p>
+</section>
+<section id="exercise-4" class="level1">
+<h1>Exercise 4</h1>
+<p>Do you think it is a good idea to predict Trump support at 85% white poverty, based on this regression equation? Explain your reasoning.</p>
+<section id="residuals" class="level2">
+<h2 class="anchored" data-anchor-id="residuals">Residuals</h2>
+<p>Recall that model residuals are the difference between the <strong>observed values in your data set</strong> and the <strong>values predicted by the line</strong>:</p>
+<p><span class="math inline">\(\text{residual} = y - \hat{y}\)</span></p>
+<p>For instance, below, one data point is highlighted in blue…the residual is the difference between the y value of the <strong>data point</strong> (here 69), and the y value <strong>predicted</strong> by the line (roughly 59). Here the residual is roughly 10 (<span class="math inline">\(69 - 59 = 10\)</span>). The regression equation has under-estimated Trump support in this voting area.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lecture00_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="Lab06_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="or-this-1" class="level2">
-<h2 class="anchored" data-anchor-id="or-this-1">Or this!</h2>
+<p>The following function <code>get_regression_points()</code> gives you the <strong>fitted</strong> (also known as <strong>predicted</strong>) value for every data point, and the <strong>residual</strong> for every data point. The first row in the output is the first data point. You can see that in this voting area Trump support was 30%, white poverty was 7%, the regression equation predicted 45.22% Trump support, and the residual was -15.22 (<span class="math inline">\(30 - 45.22\)</span>).</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="lecture00_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_regression_points</span>(poverty_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+<p><br></p>
 </section>
-<section id="how-are-we-going-to-learn" class="level2">
-<h2 class="anchored" data-anchor-id="how-are-we-going-to-learn">How are we going to learn?</h2>
-<ul>
-<li>Reading
-<ul>
-<li>Moderndive</li>
-<li>A few other things</li>
-</ul></li>
-<li>Practicing
-<ul>
-<li>Datacamp</li>
-<li>Moderndive</li>
-</ul></li>
-</ul>
+<section id="put-your-skills-to-practice-independently" class="level2">
+<h2 class="anchored" data-anchor-id="put-your-skills-to-practice-independently">Put your skills to practice independently!</h2>
+<p>Use the same <code>trump</code> data set for the following questions:</p>
 </section>
-<section id="how-are-we-going-to-learn-1" class="level2">
-<h2 class="anchored" data-anchor-id="how-are-we-going-to-learn-1">…How are we going to learn?</h2>
-<ul>
-<li>Doing
-<ul>
-<li>In-class labs</li>
-<li>Homework</li>
-<li>Final Project</li>
-</ul></li>
-</ul>
 </section>
-<section id="what-about-ai" class="level2">
-<h2 class="anchored" data-anchor-id="what-about-ai">What about AI?</h2>
-<p><img src="images/clipboard-1703976771.png" class="img-fluid"></p>
+<section id="exercise-5" class="level1">
+<h1>Exercise 5</h1>
+<p>Generate a scatterplot with a best-fitting line with <code>non_white</code> as the explanatory variable, and <code>trump_support</code> as the response. Be sure to include an informative title and axis labels to your plot. This will help contextualize it.</p>
 </section>
-<section id="what-about-ai-1" class="level2">
-<h2 class="anchored" data-anchor-id="what-about-ai-1">What about AI?</h2>
-<p><img src="images/clipboard-999996351.png" class="img-fluid"></p>
+<section id="exercise-6" class="level1">
+<h1>Exercise 6</h1>
+<p>Do you expect the correlation coefficient (for <code>non_white</code> and <code>trump_support</code>) to be positive or negative? Test your prediction using R (it is OK if your expectation was wrong!).</p>
 </section>
-<section id="what-about-ai-2" class="level2">
-<h2 class="anchored" data-anchor-id="what-about-ai-2">What about AI?</h2>
-<p><img src="images/clipboard-2771995878.png" class="img-fluid"></p>
+<section id="exercise-7" class="level1">
+<h1>Exercise 7</h1>
+<p>Run a linear regression using <code>non_white</code> as the <strong>explanatory</strong> variable, and <code>trump_support</code> as the <strong>outcome</strong> variable. Interpret the Intercept and slope estimates.</p>
 </section>
-<section id="what-about-ai-3" class="level2">
-<h2 class="anchored" data-anchor-id="what-about-ai-3">What about AI?</h2>
-<p><img src="images/clipboard-2848733843.png" class="img-fluid"></p>
+<section id="exercise-8" class="level1">
+<h1>Exercise 8</h1>
+<p>Make a numerical prediction for the level of Trump support for a region that has 70% of humans that identify as a person of color. In other words, use <strong>math</strong> not a visual prediction.</p>
 </section>
-<section id="what-about-ai-4" class="level2">
-<h2 class="anchored" data-anchor-id="what-about-ai-4">What about AI?</h2>
-<p><img src="images/clipboard-191082182.png" class="img-fluid"></p>
+<section id="exercise-9" class="level1">
+<h1>Exercise 9</h1>
+<p>Based on the evidence you have so far (scatterplots and correlation coefficients), which of the explanatory variables we have considered (<code>non_white</code> or <code>poverty</code>) seems to be a better explanatory variable of Trump support? Explain.</p>
 </section>
-<section id="canshould-i-use-ai-in-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="canshould-i-use-ai-in-this-course">Can/Should I use AI in this course?</h2>
-<ul>
-<li>YES… BUT sparingly at first while you learn to code</li>
-<li>I use it daily</li>
-<li>It can be a great time saver/helper/troubleshooter when it comes to coding</li>
-<li>You should DEFINITELY be using it</li>
-</ul>
+<section id="exercise-10" class="level1">
+<h1>Exercise 10</h1>
+<p>If you saw the regression line and not the actual data:</p>
+<p><strong>A.</strong> What would your prediction of Trump support be for a region in which 61% of the people identify as non-white?</p>
+<p><strong>B.</strong> Would your prediction be an overestimate or an underestimate (compared to the observed data), and by how much?</p>
+<p><strong>C.</strong> In other words, what is the residual for this prediction?</p>
 </section>
-<section id="ai-and-your-brain" class="level2">
-<h2 class="anchored" data-anchor-id="ai-and-your-brain">AI and your brain</h2>
-<p><img src="images/clipboard-867447823.png" class="img-fluid"></p>
-</section>
-<section id="ai-and-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="ai-and-this-course">AI and this course</h2>
-<ul>
-<li>It can basically do everything in the class for you… But
-<ul>
-<li>It frequently overcomplicates or gets things wrong</li>
-<li>If you don’t know how to code, you might not know there’s a problem and/or might not know how to fix it (or ask it to fix it)</li>
-</ul></li>
-</ul>
-</section>
-<section id="ai-and-this-course-1" class="level2">
-<h2 class="anchored" data-anchor-id="ai-and-this-course-1">AI and this course</h2>
-<ul>
-<li>You have an opportunity to grow your skills well beyond what we do in class this semester.</li>
-<li>Over-reliance on AI will rob you of that opportunity. You’re investing a tremendous amount of your time to this course and your education, generally.</li>
-<li>If you can’t do anything more than what AI/LLM can do then it CAN replace you</li>
-</ul>
-</section>
-<section id="toolkit" class="level2">
-<h2 class="anchored" data-anchor-id="toolkit">Toolkit</h2>
-<ul>
-<li>Datacamp</li>
-<li>Posit cloud (RStudio in your browser)</li>
-<li>Slack</li>
-<li>Canvas</li>
-</ul>
+<section id="submission" class="level1">
+<h1>Submission</h1>
+<p>Finally, save your html file and submit it to me on Canvas.</p>
+<p><strong>And you’re done!</strong></p>
 
 
 </section>

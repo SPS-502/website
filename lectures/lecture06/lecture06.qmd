@@ -1,0 +1,1064 @@
+---
+title: "Correlation and Basic Regression"
+subtitle: "SPS 502"
+format: 
+  revealjs:
+    theme: dark
+    slide-number: true
+    preview-links: auto
+---
+
+## Correlation
+
+- **Purpose:** Determine how closely two variables are related and the direction of the relationship
+- Possible range from -1 to 1
+  - -1 = perfect negative correlation
+  - 1 = perfect positive correlation
+  - 0 = perfectly uncorrelated
+
+---
+
+## Human Height and Weight
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
+library(tidyverse)
+library(patchwork)
+set.seed(123)
+n <- 1000
+
+height_weight_data <- tibble(
+  gender = rep(c("Female", "Male"), each = n),
+  weight = c(rnorm(n, 170, 30), rnorm(n, 200, 25))
+) %>%
+  mutate(
+    height = case_when(
+      gender == "Female" ~ 55 + 0.08 * weight + rnorm(n(), 0, 2),
+      gender == "Male" ~ 60 + 0.07 * weight + rnorm(n(), 0, 2)
+    )
+  )
+
+correlations <- height_weight_data %>%
+  group_by(gender) %>%
+  summarize(correlation = cor(weight, height))
+
+cor_female <- correlations %>% filter(gender == "Female") %>% pull(correlation)
+cor_male <- correlations %>% filter(gender == "Male") %>% pull(correlation)
+```
+
+::: {.r-stack}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+
+#axis limit to make graphs same size
+x_limits <- range(height_weight_data$weight)
+y_limits <- range(height_weight_data$height)
+
+x_label_female <- x_limits[1] + 0.7 * diff(x_limits)
+y_label_female <- y_limits[1] + 0.1 * diff(y_limits)
+x_label_male <- x_limits[1] + 0.7 * diff(x_limits)
+y_label_male <- y_limits[1] + 0.1 * diff(y_limits)
+
+# Step 1: Empty plots with axes only
+p1_empty <- height_weight_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = height)) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_dark(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_empty <- height_weight_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = height)) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_empty + p2_empty
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+# Step 2: Plots with scatterplots
+p1_scatter <- height_weight_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = height)) +
+  geom_point(color = "#FF9999", alpha = 0.5, size = 1) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_scatter <- height_weight_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = height)) +
+  geom_point(color = "#66CCCC", alpha = 0.5, size = 1) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_scatter + p2_scatter
+```
+:::
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+# Step 3: Plots with scatterplots and correlations
+p1_final <- height_weight_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = height)) +
+  geom_point(color = "#FF9999", alpha = 0.5, size = 1) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  annotate("label", x = x_label_female, y = y_label_female, 
+           label = paste0("r = ", round(cor_female, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_final <- height_weight_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = height)) +
+  geom_point(color = "#66CCCC", alpha = 0.5, size = 1) +
+  labs(x = "Weight (pounds)", y = "Height (inches)") +
+  facet_wrap(~gender) +
+  annotate("label", x = x_label_male, y = y_label_male, 
+           label = paste0("r = ", round(cor_male, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_final + p2_final
+```
+:::
+:::
+
+::: {.fragment}
+Strong _positive_ correlation
+:::
+---
+
+## Car weight and fuel efficiency
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+library(tidyverse)
+set.seed(456)
+n <- 40
+car_data <- tibble(
+  weight = runif(n, 1.5, 5.5),
+  mpg = 35 - 4 * weight + rnorm(n, 0, 2)
+)
+cor_cars <- car_data %>%
+  summarize(cor = cor(weight, mpg)) %>%
+  pull(cor)
+
+# Calculate axis limits once
+x_limits <- range(car_data$weight)
+y_limits <- range(car_data$mpg)
+
+# Calculate label position within the plot area
+x_label <- x_limits[1] + 0.7 * diff(x_limits)
+y_label <- y_limits[1] + 0.1 * diff(y_limits)
+```
+
+::: {.r-stack}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+# Step 1: Empty plot with axes only
+car_data %>%
+  ggplot(aes(x = weight, y = mpg)) +
+  labs(x = "Car weight (tons)", 
+       y = "Miles per gallon") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 16)
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+# Step 2: Plot with scatterplot
+car_data %>%
+  ggplot(aes(x = weight, y = mpg)) +
+  geom_point(size = 3) +
+  labs(x = "Car weight (tons)", 
+       y = "Miles per gallon") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 16)
+```
+:::
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+# Step 3: Plot with scatterplot AND correlation
+car_data %>%
+  ggplot(aes(x = weight, y = mpg)) +
+  geom_point(size = 3) +
+  labs(x = "Car weight (tons)", 
+       y = "Miles per gallon") +
+  annotate("label", x = x_label, y = y_label, 
+           label = paste0("r = ", round(cor_cars, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 16)
+```
+:::
+:::
+
+::: {.fragment}
+Strong _negative_ correlation
+:::
+
+---
+
+## IQ and Weight
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
+library(tidyverse)
+library(patchwork)
+set.seed(789)
+n <- 1500
+
+# Create combined dataset
+iq_data <- tibble(
+  gender = rep(c("Female", "Male"), each = n),
+  weight = c(rnorm(n, 170, 30), rnorm(n, 200, 30)),
+  iq = rnorm(n * 2, 110, 15)
+)
+
+# Calculate correlations
+correlations_iq <- iq_data %>%
+  group_by(gender) %>%
+  summarize(correlation = cor(weight, iq))
+
+cor_female_iq <- correlations_iq %>% 
+  filter(gender == "Female") %>% 
+  pull(correlation)
+
+cor_male_iq <- correlations_iq %>% 
+  filter(gender == "Male") %>% 
+  pull(correlation)
+
+# Calculate axis limits once
+x_limits <- range(iq_data$weight)
+y_limits <- range(iq_data$iq)
+
+# Calculate label positions within the plot area
+x_label_female <- x_limits[1] + 0.7 * diff(x_limits)
+y_label_female <- y_limits[1] + 0.1 * diff(y_limits)
+x_label_male <- x_limits[1] + 0.7 * diff(x_limits)
+y_label_male <- y_limits[1] + 0.1 * diff(y_limits)
+```
+
+::: {.r-stack}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+# Step 1: Empty plots with axes only
+p1_empty <- iq_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_empty <- iq_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_empty + p2_empty
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+# Step 2: Plots with scatterplots
+p1_scatter <- iq_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  geom_point(color = "#FF9999", alpha = 0.4, size = 1) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_scatter <- iq_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  geom_point(color = "#66CCCC", alpha = 0.4, size = 1) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_scatter + p2_scatter
+```
+:::
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+# Step 3: Plots with scatterplots AND correlations
+p1_final <- iq_data %>%
+  filter(gender == "Female") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  geom_point(color = "#FF9999", alpha = 0.4, size = 1) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  annotate("label", x = x_label_female, y = y_label_female, 
+           label = paste0("r = ", round(cor_female_iq, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p2_final <- iq_data %>%
+  filter(gender == "Male") %>%
+  ggplot(aes(x = weight, y = iq)) +
+  geom_point(color = "#66CCCC", alpha = 0.4, size = 1) +
+  labs(x = "Weight (pounds)", y = "IQ") +
+  facet_wrap(~gender) +
+  annotate("label", x = x_label_male, y = y_label_male, 
+           label = paste0("r = ", round(cor_male_iq, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  coord_cartesian(xlim = x_limits, ylim = y_limits) +
+  theme_minimal(base_size = 14) +
+  theme(strip.text = element_text(size = 16))
+
+p1_final + p2_final
+```
+:::
+:::
+
+::: {.fragment}
+**NO** correlation
+:::
+
+---
+
+## General Guidelines
+
+| Range | Interpretation | 
+|-------|----------------|
+| 0 | No relationship |
+| 0.01–0.19 | Little to no relationship |
+| 0.20–0.29 | Weak relationship |
+| 0.30–0.39 | Moderate relationship |
+| 0.40–0.69 | Strong relationship |
+| 0.70–0.99 | Very strong relationship |
+| 1 | Perfect relationship |
+
+::: {.callout-note}
+Can be positive or negative
+:::
+
+---
+
+## Interpreting Correlation Coefficients
+
+> As the value of X goes up, Y tends to go up (or down) a lot/a little/not at all
+
+---
+
+
+## Guess the Correlation
+
+::: columns
+::: {.column width="50%"}
+**X** 
+
+::: {.fragment fragment-index=2}
+Vehicle velocity
+:::
+
+::: {.fragment fragment-index=4}
+Time in School
+:::
+
+::: {.fragment fragment-index=6}
+Alcohol consumed
+:::
+
+::: {.fragment fragment-index=8}
+Income
+:::
+
+::: {.fragment fragment-index=10}
+Age
+:::
+
+::: {.fragment fragment-index=12}
+Hair length
+:::
+
+::: {.fragment fragment-index=14}
+Yard Size
+:::
+
+:::
+
+::: {.column width="50%"}
+
+**Y**
+
+::: {.fragment fragment-index=1}
+Travel time
+:::
+
+::: {.fragment fragment-index=3}
+Debt
+:::
+
+::: {.fragment fragment-index=5}
+Judgment
+:::
+
+::: {.fragment fragment-index=7}
+Happiness
+:::
+
+::: {.fragment fragment-index=9}
+Health
+:::
+
+::: {.fragment fragment-index=11}
+Shampoo use
+:::
+
+::: {.fragment fragment-index=13}
+Water bill
+:::
+
+:::
+:::
+
+## Basic Regression
+
+- Correlation only tells part of the story (direction and magnitude of relationship)
+- Regression allows us to **predict** events and/or **explain** why they occur
+
+
+## Essential Parts
+
+::: {.columns}
+::: {.column width="50%"}
+### Y
+
+- Outcome variable
+- Response variable
+- Dependent variable
+- Thing you want to explain or predict
+:::
+
+::: {.column width="50%"}
+### ~X (or lots of Xs)
+
+- Explanatory variable
+- Predictor variable
+- Independent variable
+- Thing you use to explain changes in Y
+:::
+:::
+
+
+## Identify the Y and X Variables
+
+::: {.fragment .fade-in}
+::: {.fragment .semi-fade-out}
+A study examines the effect of smoking on lung cancer
+:::
+:::
+
+::: {.fragment .fade-in}
+::: {.fragment .semi-fade-out}
+Researchers predict genocides by looking at negative media coverage, revolutions in neighboring countries, and economic growth
+:::
+:::
+
+::: {.fragment .fade-in}
+::: {.fragment .semi-fade-out}
+You want to see if students taking more AP classes in high school improves their college grades
+:::
+:::
+
+::: {.fragment .fade-in}
+::: {.fragment .semi-fade-out}
+Netflix uses your past viewing history, the day of the week, and the time of the day to guess which show you want to watch next
+:::
+:::
+
+
+## Two Purposes of Regression
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.callout-note icon="false"}
+## 📊 Prediction
+
+::: {.incremental}
+- **Forecast the future**
+- **Focus is on Y**
+:::
+
+::: {.fragment}
+##### Examples:
+:::
+
+::: {.fragment}
+::: {.callout-tip appearance="minimal"}
+Netflix trying to guess your next show
+:::
+:::
+
+::: {.fragment}
+::: {.callout-tip appearance="minimal"}
+Predicting who will escape poverty
+:::
+:::
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-note icon="false"}
+## 🔍 Explanation
+
+::: {.incremental}
+- **Explain effect of X on Y**
+- **Focus is on X**
+:::
+
+::: {.fragment}
+##### Examples:
+:::
+
+::: {.fragment}
+::: {.callout-tip appearance="minimal"}
+Netflix estimating the effect of time of day on show selection
+:::
+:::
+
+::: {.fragment}
+::: {.callout-tip appearance="minimal"}
+Estimating the effect of food stamps on poverty reduction
+:::
+:::
+:::
+:::
+:::
+
+---
+
+## Regression Process
+
+::: {.callout-important icon="false"}
+## How to Perform Regression
+
+:::: {.incremental}
+1. **Plot X and Y**  
+   *Visualize the relationship between variables*
+
+2. **Draw a line that approximates the relationship**  
+   *Find the best fit through the data points*
+
+3. **Find the "mathy" parts of the line**  
+   *Calculate slope and intercept*
+
+4. **Interpret the math**  
+   *Translate coefficients into meaningful insights*
+::::
+:::
+
+## Cookies and Happiness Data
+
+```{r}
+#| echo: true
+
+library(tidyverse)
+
+cookies_data <- tibble(
+  happiness = c(0.5, 2.0, 1.0, 2.5, 3.0, 1.5, 2.0, 2.5, 2.0, 3.0),
+  cookies = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+)
+
+cookies_data
+```
+
+---
+
+## Scatterplot: Cookies and Happiness
+
+::: {.r-stack}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+library(tidyverse)
+
+# Base plot without points
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+# Add points
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+:::
+
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+# Add correlation coefficient
+cor_cookies <- cookies_data %>%
+  summarize(cor = cor(cookies, happiness)) %>%
+  pull(cor)
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  annotate("label", x = 8.5, y = 0.7, 
+           label = paste0("r = ", round(cor_cookies, 3)),
+           size = 8, fill = "#3399FF", color = "white") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+:::
+:::
+
+## Finding the Best Line
+
+::: {.r-stack}
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_line(color = "#3399FF", se = FALSE, linewidth = 1.5) +
+  geom_point(size = 4) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+:::
+
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_smooth(color = "#3399FF", se = FALSE, linewidth = 1.5) +
+  geom_point(size = 4) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+:::
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+library(tidyverse)
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+:::
+:::
+
+---
+
+## Residual Errors
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+library(tidyverse)
+library(broom)
+
+model <- lm(happiness ~ cookies, data = cookies_data)
+
+cookies_augmented <- cookies_data %>%
+  mutate(
+    predicted = predict(model),
+    residuals = residuals(model)
+  )
+
+cookies_augmented %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  geom_segment(aes(xend = cookies, yend = predicted), 
+               color = "#FF9900", linewidth = 1) +
+  geom_point(size = 4) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+
+---
+
+## Residual Errors (Distance from Line)
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+library(tidyverse)
+
+cookies_augmented %>%
+  ggplot(aes(x = cookies, y = residuals)) +
+  geom_hline(yintercept = 0, color = "purple", linewidth = 1.5) +
+  geom_segment(aes(xend = cookies, yend = 0), 
+               color = "#FF9900", linewidth = 1) +
+  geom_point(size = 4, color = "#FF9900") +
+  labs(x = "Cookies eaten", 
+       y = "Distance from line",
+       title = "Residual errors (distance from line)") +
+  theme_minimal(base_size = 16)
+```
+
+---
+
+## 
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
+
+library(tidyverse)
+library(patchwork)
+
+p1 <- cookies_augmented %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  geom_segment(aes(xend = cookies, yend = predicted), 
+               color = "#FF9900", linewidth = 1) +
+  geom_point(size = 3) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Cookies and happiness") +
+  theme_minimal(base_size = 12) +
+  scale_y_continuous(limits = c(0, 3))
+
+p2 <- cookies_augmented %>%
+  ggplot(aes(x = cookies, y = residuals)) +
+  geom_hline(yintercept = 0, color = "purple", linewidth = 1.5) +
+  geom_segment(aes(xend = cookies, yend = 0), 
+               color = "#FF9900", linewidth = 1) +
+  geom_point(size = 3, color = "#FF9900") +
+  labs(x = "Cookies eaten", 
+       y = "Distance from line",
+       title = "Residual errors") +
+  theme_minimal(base_size = 12)
+
+p1 + p2
+```
+
+---
+
+
+
+## Ordinary Least Squares (OLS) Regression
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 7
+#| message: false
+
+library(tidyverse)
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  annotate("label", x = 7.5, y = 1, 
+           label = "Ordinary least\nsquares (OLS)\nregression",
+           size = 6, fill = "#66CCFF", color = "white") +
+  theme_minimal(base_size = 16) +
+  scale_y_continuous(limits = c(0, 3))
+```
+
+---
+
+## The Math Part
+
+$$y = mx + b$$
+
+::: {.incremental}
+- **y**: A number
+- **x**: A number
+- **m**: Slope
+- **b**: y intercept
+:::
+
+---
+
+## Slopes and Intercepts
+
+::: {.columns}
+::: {.column width="50%"}
+### y = 2x - 1
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+#| message: false
+
+library(tidyverse)
+
+tibble(x = 0:5) %>%
+  mutate(y = 2*x - 1) %>%
+  ggplot(aes(x, y)) +
+  geom_line(color = "darkblue", linewidth = 2) +
+  theme_minimal(base_size = 14) +
+  scale_x_continuous(breaks = 0:5) +
+  scale_y_continuous(breaks = seq(0, 9, 1))
+```
+:::
+
+::: {.column width="50%"}
+### y = -0.5x + 6
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+#| message: false
+
+library(tidyverse)
+
+tibble(x = 0:14) %>%
+  mutate(y = -0.5*x + 6) %>%
+  ggplot(aes(x, y)) +
+  geom_line(color = "darkblue", linewidth = 2) +
+  theme_minimal(base_size = 14) +
+  scale_x_continuous(breaks = seq(0, 14, 1))
+```
+
+:::
+:::
+
+---
+
+## Drawing Lines with Stats
+
+$$\widehat{y} = \beta_0 + \beta_1 x + \varepsilon$$
+
+::: {.incremental}
+- $\widehat{y}$: Outcome variable
+- $x$: Explanatory variable  
+- $\beta_1$: Slope
+- $\beta_0$: y intercept
+- $\varepsilon$: Error (residuals)
+:::
+
+---
+
+## Modeling Cookies and Happiness
+
+$\widehat{y} = \beta_0 + \beta_1 x_1 + \varepsilon$
+
+$\widehat{happiness} = \beta_0 + \beta_1 \times cookies + \varepsilon$
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+#| message: false
+
+library(tidyverse)
+
+cookies_data %>%
+  ggplot(aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 14) +
+  scale_y_continuous(limits = c(0, 3))
+```
+
+---
+
+## Modeling Cookies & Happiness in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+cookies_model <- lm(happiness ~ cookies, 
+                    data = cookies_data)
+
+cookies_model %>%
+  get_regression_table()
+```
+
+```{r}
+#| echo: false
+
+library(moderndive)
+
+cookies_model <- lm(happiness ~ cookies, data = cookies_data)
+get_regression_table(cookies_model)
+```
+
+---
+
+## Modeling Cookies & Happiness in R
+
+$$\widehat{happiness} = 1.1 + 0.164 \times cookies + \varepsilon$$
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4.5
+
+ggplot(cookies_data, aes(x = cookies, y = happiness)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm", se = FALSE, color = "#3399FF", linewidth = 1.5) +
+  labs(x = "Cookies eaten", 
+       y = "Level of happiness",
+       title = "Relationship between cookies and happiness") +
+  theme_minimal(base_size = 14) +
+  scale_y_continuous(limits = c(0, 3))
+```
+
+| term | estimate | std_error | statistic | p_value | lower_ci | upper_ci |
+|------|----------|-----------|-----------|---------|----------|----------|
+| intercept | 1.1 | 0.47 | 2.339 | 0.047 | 0.016 | 2.184 |
+| cookies | 0.164 | 0.076 | 2.159 | 0.063 | -0.011 | 0.338 |
+
+---
+
+## Interpreting Regression Coefficients
+::: {.fragment}
+> A one unit increase in X is associated with a $\beta_1$ increase (or decrease) in Y, on average
+
+::: 
+
+::: {.fragment}
+$$\widehat{happiness} = 1.1 + 0.164 \times cookies + \varepsilon$$
+:::
+
+::: {.fragment}
+$$\widehat{y} = \beta_0 + \beta_1 x_1 + \varepsilon$$
+:::
+
+::: {.fragment}
+**Interpretation:** A one-cookie increase is associated with a 0.164 point increase in happiness, on average.
+::: 
