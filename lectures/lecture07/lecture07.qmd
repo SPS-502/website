@@ -1,0 +1,330 @@
+---
+title: "Multiple Regression and Diagnostics"
+subtitle: "SPS 502"
+format:
+  revealjs:
+    slide-number: true
+    code-overflow: wrap
+    self-contained: true
+    toc: false
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+> Slides mirror the provided deck except Homework 2 and Exam 1. Data: `/data/world_happiness.csv`.
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+packages <- c("tidyverse", "broom", "forcats", "gt")
+need <- setdiff(packages, rownames(installed.packages()))
+if (length(need)) install.packages(need, quiet = TRUE)
+invisible(lapply(packages, library, character.only = TRUE))
+
+# Load and clean data
+wh <- read_csv("data/world_happiness.csv", show_col_types = FALSE)
+
+# Clean column names using base R instead of janitor
+names(wh) <- tolower(gsub("[^a-zA-Z0-9]", "_", names(wh)))
+names(wh) <- gsub("_+", "_", names(wh))  # Remove multiple underscores
+names(wh) <- gsub("^_|_$", "", names(wh))  # Remove leading/trailing underscores
+
+# Check data structure and available variables
+has_school <- "school_enrollment" %in% names(wh)
+has_region <- "region" %in% names(wh)
+
+# Clean and factor region variable if it exists
+if (has_region) {
+  wh <- wh %>% 
+    filter(!is.na(region)) %>%
+    mutate(region = str_trim(region),
+           region = forcats::fct_relevel(region, "East Asia & Pacific"))
+}
+
+# Remove rows with missing happiness scores
+wh <- wh %>% filter(!is.na(happiness_score))
+```
+
+## Goal of Regression
+
+Explain or predict variation in an outcome using one or more predictors.
+
+## Algebra → Stats
+
+$$\widehat{y} = \beta_0 + \beta_1 x + \varepsilon$$
+
+::: {.incremental}
+- $\widehat{y}$: Outcome variable
+- $x$: Explanatory variable  
+- $\beta_1$: Slope
+- $\beta_0$: y intercept
+- $\varepsilon$: Error (residuals)
+:::
+
+
+## Example: Cookies and Happiness
+
+```{r}
+#| echo: false
+# toy data to illustrate simple regression
+set.seed(123)
+cookies_df <- tibble(
+  cookies = 1:10,
+  happiness = 1.1 + 0.164 * cookies + rnorm(10, sd = 0.35)
+)
+
+mod_cookies <- lm(happiness ~ cookies, data = cookies_df)
+broom::tidy(mod_cookies, conf.int = TRUE) %>%
+  gt() %>%
+  fmt_number(columns = c(estimate, std.error, statistic, p.value, conf.low, conf.high), decimals = 3)
+```
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 5
+ggplot(cookies_df, aes(cookies, happiness)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Relationship between cookies and happiness",
+       x = "Cookies eaten", y = "Level of happiness") +
+  theme_minimal()
+```
+
+**Interpretation of slope.** A 1-unit increase in `cookies` is associated with a $\beta_1$ change in `happiness`, on average.
+
+## Variable Types
+
+- Numeric (continuous)  
+- Categorical (factors)
+
+## Life Expectancy and Happiness
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 6
+if (has_region) {
+  ggplot(wh, aes(life_expectancy, happiness_score, color = region)) +
+    geom_point(alpha = 0.7, size = 2) +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(x = "Life expectancy", y = "Happiness score",
+         title = "Life Expectancy vs Happiness by Region") +
+    theme_minimal() +
+    theme(legend.position = "bottom")
+} else {
+  ggplot(wh, aes(life_expectancy, happiness_score)) +
+    geom_point(alpha = 0.7, size = 2, color = "steelblue") +
+    geom_smooth(method = "lm", se = FALSE, color = "red") +
+    labs(x = "Life expectancy", y = "Happiness score",
+         title = "Life Expectancy vs Happiness") +
+    theme_minimal()
+}
+```
+
+## Regional Differences
+
+```{r}
+#| echo: false
+if (has_region) {
+  region_avg <- wh %>%
+    group_by(region) %>%
+    summarise(
+      avg_happiness = mean(happiness_score, na.rm = TRUE),
+      n_countries = n(),
+      .groups = "drop"
+    ) %>%
+    arrange(desc(avg_happiness))
+  
+  region_avg %>% 
+    gt() %>%
+    cols_label(
+      region = "Region",
+      avg_happiness = "Average Happiness",
+      n_countries = "Number of Countries"
+    ) %>%
+    fmt_number(columns = avg_happiness, decimals = 2)
+} else {
+  tibble(note = "Region data not available in this dataset") %>% gt()
+}
+```
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+if (has_region && exists("region_avg")) {
+  ggplot(region_avg, aes(reorder(region, avg_happiness), avg_happiness)) +
+    geom_col(fill = "steelblue", alpha = 0.8) +
+    coord_flip() +
+    labs(x = NULL, y = "Average happiness",
+         title = "Average Happiness by Region") +
+    theme_minimal()
+}
+```
+
+## Model: Happiness ~ Region
+
+```{r}
+#| echo: false
+if (has_region) {
+  mod_region <- lm(happiness_score ~ region, data = wh)
+  broom::tidy(mod_region, conf.int = TRUE) %>%
+    mutate(term = str_replace(term, "^region", "region: ")) %>%
+    gt() %>%
+    cols_label(
+      term = "Term",
+      estimate = "Estimate",
+      std.error = "Std. Error",
+      statistic = "t-statistic",
+      p.value = "p-value",
+      conf.low = "95% CI Lower",
+      conf.high = "95% CI Upper"
+    ) %>%
+    fmt_number(columns = c(estimate, std.error, statistic, conf.low, conf.high), decimals = 3) %>%
+    fmt_scientific(columns = p.value, decimals = 3)
+} else {
+  tibble(note = "Cannot run region model - region data not available") %>% gt()
+}
+```
+
+## Predicted Means by Region (baseline = East Asia & Pacific)
+
+```{r}
+#| echo: false
+if (has_region && exists("mod_region")) {
+  co <- coef(mod_region)
+  baseline <- unname(co[["(Intercept)"]])
+  
+  # Get all region coefficients
+  region_coefs <- co[grepl("^region", names(co))]
+  
+  # Create predicted means table
+  pred_means <- tibble(
+    region = c("East Asia & Pacific", str_replace(names(region_coefs), "^region", "")),
+    predicted_mean = c(baseline, baseline + unname(region_coefs))
+  ) %>%
+    arrange(desc(predicted_mean))
+  
+  pred_means %>%
+    gt() %>%
+    cols_label(
+      region = "Region",
+      predicted_mean = "Predicted Mean Happiness"
+    ) %>%
+    fmt_number(columns = predicted_mean, decimals = 3)
+}
+```
+
+- Compared to East Asia & Pacific, the coefficient on each region is the mean difference in happiness.
+
+## Multiple Regression
+
+```{r}
+#| echo: false
+if (!has_school) {
+  cat("Note: 'school_enrollment' not found in dataset. Using available predictors instead.\n")
+  # Show available numeric variables
+  numeric_vars <- wh %>% select(where(is.numeric)) %>% names()
+  cat("Available numeric variables:", paste(numeric_vars, collapse = ", "), "\n")
+}
+```
+
+```{r}
+#| echo: false
+if (has_school) {
+  mod_life_school <- lm(happiness_score ~ life_expectancy + school_enrollment, data = wh)
+  broom::tidy(mod_life_school, conf.int = TRUE) %>% 
+    gt() %>%
+    cols_label(
+      term = "Term",
+      estimate = "Estimate",
+      std.error = "Std. Error",
+      statistic = "t-statistic",
+      p.value = "p-value",
+      conf.low = "95% CI Lower",
+      conf.high = "95% CI Upper"
+    ) %>%
+    fmt_number(columns = c(estimate, std.error, statistic, conf.low, conf.high), decimals = 3) %>%
+    fmt_scientific(columns = p.value, decimals = 3)
+} else {
+  # Use an alternative predictor if school enrollment isn't available
+  alt_vars <- setdiff(names(wh %>% select(where(is.numeric))), c("happiness_score", "year"))
+  if (length(alt_vars) >= 1) {
+    alt_var <- alt_vars[1]  # Use first available numeric variable
+    mod_alt <- lm(as.formula(paste("happiness_score ~ life_expectancy +", alt_var)), data = wh)
+    broom::tidy(mod_alt, conf.int = TRUE) %>% 
+      gt() %>%
+      cols_label(
+        term = "Term",
+        estimate = "Estimate",
+        std.error = "Std. Error",
+        statistic = "t-statistic",
+        p.value = "p-value",
+        conf.low = "95% CI Lower",
+        conf.high = "95% CI Upper"
+      ) %>%
+      fmt_number(columns = c(estimate, std.error, statistic, conf.low, conf.high), decimals = 3) %>%
+      fmt_scientific(columns = p.value, decimals = 3)
+  }
+}
+```
+
+**Interpretation.** Holding other variables in the model constant, a 1-unit increase in a predictor is associated with a \(\beta\) change in the outcome, on average.
+
+## R² and Adjusted R²
+
+How much variation in \(y\) is explained by \(x\). Scale 0–1. Higher indicates better fit.
+
+Adjusted \(R^2\) penalizes adding predictors relative to sample size:  
+\(
+R^2_{\text{adj}} = 1 - (1 - R^2)\frac{n - 1}{n - p - 1}
+\)
+
+## Finding R² in R
+
+```{r}
+#| echo: false
+model1 <- lm(happiness_score ~ life_expectancy, data = wh)
+broom::glance(model1) %>% 
+  select(r.squared, adj.r.squared) %>% 
+  gt() %>%
+  cols_label(
+    r.squared = "R²",
+    adj.r.squared = "Adjusted R²"
+  ) %>%
+  fmt_number(columns = c(r.squared, adj.r.squared), decimals = 3)
+```
+
+```{r}
+#| echo: false
+if (has_school && exists("mod_life_school")) {
+  broom::glance(mod_life_school) %>% 
+    select(r.squared, adj.r.squared) %>% 
+    gt() %>%
+    cols_label(
+      r.squared = "R²",
+      adj.r.squared = "Adjusted R²"
+    ) %>%
+    fmt_number(columns = c(r.squared, adj.r.squared), decimals = 3)
+} else if (exists("mod_alt")) {
+  broom::glance(mod_alt) %>% 
+    select(r.squared, adj.r.squared) %>% 
+    gt() %>%
+    cols_label(
+      r.squared = "R²",
+      adj.r.squared = "Adjusted R²"
+    ) %>%
+    fmt_number(columns = c(r.squared, adj.r.squared), decimals = 3)
+}
+```
+
+## Interpreting R²
+
+- “This model explains X% of the variation in the outcome.”  
+- Use \(R^2\) for one predictor. Use adjusted \(R^2\) for multiple predictors.  
+- Higher is better. No universal threshold.

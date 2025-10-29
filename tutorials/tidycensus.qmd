@@ -16,12 +16,16 @@ You'll need to install, load, and configure the `tidycensus` package. BUT it's n
 
 Run the following code to install and load the necessary packages:
 
-```{r message=FALSE, warning=FALSE, results=FALSE}
+```{r message=FALSE, warning=FALSE, results=FALSE, eval=FALSE}
 install.packages("tidycensus")
 library(tidycensus)
 library(tidyverse)
 ```
 
+```{r message=FALSE, warning=FALSE, results=FALSE}
+library(tidycensus)
+library(tidyverse)
+```
 
 
 ## Step 2: Load and configure
