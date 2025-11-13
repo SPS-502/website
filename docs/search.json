@@ -1822,70 +1822,70 @@
   {
     "objectID": "lectures/lecture09/lecture_09.html#hypothesis-testing-1",
     "href": "lectures/lecture09/lecture_09.html#hypothesis-testing-1",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Hypothesis testing",
-    "text": "Hypothesis testing\n\n\n\nhypothesis testing"
+    "text": "Hypothesis testing\n\nhypothesis testing"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#specifying-hypotheses",
     "href": "lectures/lecture09/lecture_09.html#specifying-hypotheses",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Specifying Hypotheses",
     "text": "Specifying Hypotheses\n\\(H_0\\): The null hypothesis (statement of no difference or no effect)\n\\(H_A\\): The research hypothesis (statement of different or effect)"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#example-hypotheses",
     "href": "lectures/lecture09/lecture_09.html#example-hypotheses",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Example Hypotheses",
     "text": "Example Hypotheses\n\\(H_0\\): There is no difference in average latté consumption between democrats and republicans\n\\(H_A\\): Democrats consume more lattés than republicans, on average"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#statistical-significance",
     "href": "lectures/lecture09/lecture_09.html#statistical-significance",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Statistical Significance",
     "text": "Statistical Significance\n\nStatistical significance = enough evidence to safely reject the null hypothesis\n\nCourt of law analogy: not enough evidence to prove guilt\n\nP-Values: standard measure for determining statistical significance\n\nThe probability of observing an effect at least that large when no effect exists\nIn other words, probability that effect was observed due to chance alone (we want this to be as small as possible)"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#decision-errors-in-hypothesis-testing",
     "href": "lectures/lecture09/lecture_09.html#decision-errors-in-hypothesis-testing",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Decision Errors in Hypothesis Testing",
     "text": "Decision Errors in Hypothesis Testing\n\nStatistical inference involves uncertainty, so hypothesis tests are never 100% accurate\n\nType I error (“false positive”): reject \\(H_0\\) when \\(H_0\\) is actually true\n\nDetect a difference (or effect) that is not present\nTo reduce type I error, we increase our standard of evidence (i.e., from 95% to 99%)\n\nType II error (“false negative”): fail to reject \\(H_0\\) when \\(H_A\\) is actually true\n\nFail to detect a difference (or effect) that is present\nTo reduce type II error, we reduce our standard of evidence (i.e., from 95% to 90%)\n\nIn a court of law\n\nNull hypothesis: Defendant is innocent\nAlternative hypothesis: Defendant is guilty\n\n\n\nWhich is worse: Type 1 or Type 2 error?"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#type-i-vs.-type-ii-error",
     "href": "lectures/lecture09/lecture_09.html#type-i-vs.-type-ii-error",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Type I vs. Type II Error",
-    "text": "Type I vs. Type II Error\n\n\n\nerror type"
+    "text": "Type I vs. Type II Error\n\nerror type"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#the-real-world",
     "href": "lectures/lecture09/lecture_09.html#the-real-world",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "The Real World",
-    "text": "The Real World\n\n\n\nsorting regression"
+    "text": "The Real World\n\nsorting regression"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#regression-review",
     "href": "lectures/lecture09/lecture_09.html#regression-review",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Regression Review",
-    "text": "Regression Review\n\nEstimating the effects of age and sex on teaching evaluations\n\nscore_model_2 &lt;- lm(score ~ age + gender, \n                    data = evals_multiple)\nget_regression_table(score_model_2)"
+    "text": "Regression Review\nEstimating the effects of age and sex on teaching evaluations"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#results-tables-in-public-policy-administration-journals",
     "href": "lectures/lecture09/lecture_09.html#results-tables-in-public-policy-administration-journals",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Results tables in public policy / administration journals",
-    "text": "Results tables in public policy / administration journals\n\n\n\njournal example"
+    "text": "Results tables in public policy / administration journals\n\njournal example"
   },
   {
     "objectID": "lectures/lecture09/lecture_09.html#datascience-pipeline",
     "href": "lectures/lecture09/lecture_09.html#datascience-pipeline",
-    "title": "\n            LAST CLASS!!!\n        ",
+    "title": "Hypothesis Testing and Inference for Regression",
     "section": "Datascience Pipeline",
     "text": "Datascience Pipeline\n\n\n\ndatascience pipeline"
   },
@@ -3414,5 +3414,12 @@
     "title": "SPS 502 | Data Science for Public Service",
     "section": "",
     "text": "SPS 502"
+  },
+  {
+    "objectID": "lectures/lecture09/lecture_09.html",
+    "href": "lectures/lecture09/lecture_09.html",
+    "title": "Hypothesis Testing",
+    "section": "",
+    "text": "¶— title: “Hypothesis Testing and Inference for Regression” author: “SPS 502” date: “November 12, 2025” format: revealjs: theme: [simple] code-overflow: wrap height: 900 width: 1600"
   }
 ]
